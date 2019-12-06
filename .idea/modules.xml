@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Thesis Figures.iml" filepath="$PROJECT_DIR$/.idea/Thesis Figures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Python/Packages/colour-fork/.idea/colour-fork.iml" filepath="$PROJECT_DIR$/../Python/Packages/colour-fork/.idea/colour-fork.iml" />
     </modules>
   </component>
 </project>
