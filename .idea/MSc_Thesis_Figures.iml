@@ -5,10 +5,21 @@
       <sourceFolder url="file://$MODULE_DIR$/Test" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Blackbody" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Blackbody/Python" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/figures" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/bandgap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/blackbody" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/cri_simulation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/green_gap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/market" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Blackbody/TeX" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/cri_simulation/files" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/cri_simulation/files/input" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/figures/cri_simulation/files/output" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/supplementary" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/supplementary/header" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (venv_fork)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
