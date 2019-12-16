@@ -61,9 +61,7 @@ X_new = list()
 for i in range(x_start, x_stop):
     X_new.append(i)
 
-# Calculate spline from original data points
-#spd_spline = interpolate.splrep(X, Y)
-#spd_ndarray_new = interpolate.splev(X_new, spd_spline)
+
 
 
 
