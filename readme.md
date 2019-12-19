@@ -21,11 +21,12 @@ given its the specrtral power distribution._
 
 #### Caveats
 
-- Error while using [`luxpy.toolboxes.hypspcim.render_image`](https://ksmet1977.github.io/luxpy/build/html/toolboxes.html?highlight=hyper#luxpy.toolboxes.hypspcim.render_image): `cannot reshape array of size XXX into shape (XXX,3)`
+- Error while using [`luxpy.toolboxes.hypspcim.render_image`](https://ksmet1977.github.io/luxpy/build/html/toolboxes.html?highlight=hyper#luxpy.toolboxes.hypspcim.render_image): \
+`cannot reshape array of size XXX into shape (XXX,3)`
 
   Solution:
   
-  _Convert RGBK image to uint8 RGB image._
-  Function input must be an array of unsigned, 8-bit integer RGB values. An additional key (RGB_K_) value will throw an error.
+  Convert RGBK image to uint8 RGB image before passing it to the function. 
+  Function input must be an array of unsigned, 8-bit integer RGB values. An additional key ("K" in RGBK) value will throw this error.
   
   
