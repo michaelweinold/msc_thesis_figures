@@ -18,6 +18,7 @@ given its the specrtral power distribution._
 #### Documentation
 
 [LuxPy introductory article](https://doi.org/10.1080/15502724.2018.1518717) in LEUKOS.
+[LuxPy documentation on readthedocs.io](https://ksmet1977.github.io/luxpy/build/html/index.html)
 
 #### Caveats
 
