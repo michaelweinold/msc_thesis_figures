@@ -2,6 +2,9 @@
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
+\usepackage[official]{eurosym} %For € symbol in text
+\usepgfplotslibrary{groupplots} %For grouping plots
+
 \pgfplotsset{compat=newest,
 			width=10cm,
 			height=8cm,
@@ -14,23 +17,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
-%Domain
-xmin=1995, xmax=2020,
-ymin=0, 
-%Ticks
-xtick distance=5,
-minor x tick num=4,
-minor y tick num=4,
-/pgf/number format/1000 sep={},
-%Axis Labels
-ylabel=Luminous Efficacy \text{[}lm/W\text{]},
-%Legend
-legend style={at={(0.02,0.98)}, anchor=north west}],
-			]
+	%Domain
+	xmin=2008, xmax=2020,
+	ymin=0, ymax=1,
+	%Log
+	ymode=log,
+	%Ticks
+	log ticks with fixed point,
+	xtick distance=5,
+	minor x tick num=4,
+	minor y tick num=4,
+	/pgf/number format/1000 sep={},
+	%Axis Labels
+	ylabel=Cost/Flux \text{[}\euro(2020)/lm\text{]}
+	]
 \addplot [only marks]
-	table [col sep=comma, x=year, y=efficacy]
-	{../data/efficacy.csv};
-\addplot [domain=2000:2020] {11.845*x-23670};
+	table [col sep=comma, x=year, y=cpl]
+	{../data/cpl.csv};
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
