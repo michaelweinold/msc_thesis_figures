@@ -3,11 +3,11 @@
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \usepackage[official]{eurosym} %For € symbol in text
-\usepgfplotslibrary{groupplots} %For grouping plots
+\usetikzlibrary{pgfplots.statistics} %For boxplots
 
 \pgfplotsset{compat=newest,
 			width=10cm,
-			height=8cm,
+			height=10cm,
 			xtick pos=left,
 			ytick pos=left
 			}
@@ -16,7 +16,14 @@
 \begin{tikzpicture}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+	
+
 \begin{axis}[
+	%Grouping
+	name=scatter,
+	%Size
+	height=6cm,
+	width=10cm,
 	%Domain
 	xmin=2008, xmax=2020,
 	ymin=0, ymax=1,
@@ -35,6 +42,63 @@
 	table [col sep=comma, x=year, y=cpl]
 	{../data/cpl.csv};
 \end{axis}
+
+\begin{axis}[
+	%Grouping
+	name=boxplot,
+	at={(0,-1)},
+	anchor=scatter.below south west,
+	%Size
+	height=6cm,
+	width=10cm,
+	%Domain
+	boxplot/draw direction=y,
+	%Log
+	ymode=log,
+	%Ticks
+	xticklabels={},
+	log ticks with fixed point,
+	%Axis Labels
+	ylabel=Cost/Flux \text{[}\euro(2020)/lm\text{]}
+	]
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2009.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2010.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2011.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2012.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2013.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2014.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2015.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2016.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2017.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2018.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2019.csv};
+\end{axis}
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}
