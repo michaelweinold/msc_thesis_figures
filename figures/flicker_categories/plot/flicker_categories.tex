@@ -20,85 +20,75 @@
 
 \begin{axis}[
 	%Grouping
-	name=scatter,
+	name=olino,
 	%Size
 	height=6cm,
 	width=10cm,
 	%Domain
-	xmin=2008, xmax=2020,
-	ymin=0, ymax=1,
-	%Log
-	ymode=log,
-	%Ticks
-	log ticks with fixed point,
-	xtick distance=5,
-	minor x tick num=4,
-	minor y tick num=4,
-	/pgf/number format/1000 sep={},
-	%Axis Labels
-	ylabel=Cost/Flux \text{[}\euro(2020)/lm\text{]}
+	ymin=-0.2,ymax=1.22,
+	%Labels
+	%Boxplot	
+	boxplot/draw direction=y,
+	ylabel=Flicker \text{[}IMI\text{]},
+	xtick={1,2,3,4,5,6},
+	xticklabels={},
 	]
-\addplot [only marks]
-	table [col sep=comma, x=year, y=cpl]
-	{../data/cpl.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/olino_panel.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/olino_strip.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/olino_bulb.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/olino_spot.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/olino_high.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/olino_tube.csv};
 \end{axis}
 
 \begin{axis}[
 	%Grouping
-	name=boxplot,
-	at={(0,-0.8)},
+	name=peter,
+	at={(0,-2.3)},
 	anchor=north west,
 	%Size
 	height=6cm,
 	width=10cm,
 	%Domain
+	ymin=-20,ymax=150,
+	%Labels
+	%Boxplot	
 	boxplot/draw direction=y,
-	%Log
-	ymode=log,
-	%Ticks
-	xticklabels={},
-	log ticks with fixed point,
-	%Axis Labels
-	ylabel=Cost/Flux \text{[}\euro(2020)/lm\text{]}
+	ylabel=Flicker \text{[}CDF\text{]},
+	xtick={1,2,3,4,5,6},
+	xticklabels={Panel,Strip,Bulb,Spot,High,Tube},
 	]
+\addplot [boxplot,draw=white]
+	table [col sep=comma, y index=0]
+	{../data/peter_strip.csv};
+\addplot [boxplot,draw=white]
+	table [col sep=comma, y index=0]
+	{../data/peter_strip.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2009.csv};
+	{../data/peter_bulb.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2010.csv};
+	{../data/peter_spot.csv};
+\addplot [boxplot,draw=white]
+	table [col sep=comma, y index=0]
+	{../data/peter_strip.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2011.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2012.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2013.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2014.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2015.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2016.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2017.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2018.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/2019.csv};
+	{../data/peter_tube.csv};
 \end{axis}
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}

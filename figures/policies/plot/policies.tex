@@ -1,0 +1,64 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+	%Grouping
+	name=global,
+	at={(0,0)},
+	%Domain
+	xmin=1985, xmax=2020,
+	ymin=0,
+	%Ticks
+	xtick distance=5,
+	minor x tick num=4,
+	/pgf/number format/1000 sep={},
+	%Size
+	height=5cm,
+	width=10cm,
+	%Axis Labels
+	ylabel style={align=center},
+	ylabel=Cummulative $\#$  \\ of Lighting Policies,
+			]
+\addplot []
+	table [col sep=comma, x=year, y=policies]
+	{../data/global_policies.csv};
+\end{axis}
+
+\begin{axis}[
+	%Grouping
+	name=us,
+	at={(0,-300)},
+	anchor=north west,
+	%Domain
+	xmin=1985, xmax=2020,
+	ymin=0,
+	%Size
+	height=5cm,
+	width=10cm,
+	%Axis Labels
+	%Ticks
+	xtick distance=5,
+	minor x tick num=4,
+	/pgf/number format/1000 sep={},
+	ylabel style={align=center},
+	ylabel=Cummulative $\#$  \\ of Lighting Policies,
+			]
+\addplot [red]
+	table [col sep=comma, x=year, y=policies]
+	{../data/us_policies.csv};
+\end{axis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
