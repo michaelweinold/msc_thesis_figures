@@ -2,6 +2,8 @@
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
+\usepackage[official]{eurosym} %For € symbol in text
+
 \pgfplotsset{compat=newest,
 			width=10cm,
 			height=8cm,
@@ -13,39 +15,31 @@
 \begin{tikzpicture}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+	
 \begin{axis}[
 %Domain
-	ymin=0.0001, ymax=1000000,
 	xmin=2000, xmax=2020,
+	%ymin=0, ymax=1,
+%Log
 	ymode=log,
 %Ticks
+	log ticks with fixed point,
 	xtick distance=5,
 	minor x tick num=4,
-	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
-	max space between ticks=20,
+	minor y tick num=4,
 	/pgf/number format/1000 sep={},
 %Axis Labels
-	ylabel=Flux/Lamp \text{[}lm\text{]},
-			]
-\addplot [only marks]
-	table [col sep=comma, x=year, y=flux]
-	{../data/flux.csv};
+	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]}
+	]
+\addplot [blue,only marks]
+	table [col sep=comma, x=year, y=cost]
+	{../data/doe_cold.csv};
+\addplot [red,only marks]
+	table [col sep=comma, x=year, y=cost]
+	{../data/doe_warm.csv};
+\legend{DOE Reports (Cool White), DOE Reports (Warm White)}
 \end{axis}
 
-\begin{axis}[
-	axis y line*=right,
-	axis x line=none,
- %Domain
- 	ymode=log,
-	ymin=0.0001, ymax=1000000,
-	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
-	max space between ticks=20,
-	ylabel=Cost/Flux \text{[}\$(2020)/lm\text{]},
-]
-\addplot [only marks]
-	table [col sep=comma, x=year, y=cost]
-	{../data/cost.csv};
-\end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}

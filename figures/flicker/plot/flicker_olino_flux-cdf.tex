@@ -1,0 +1,42 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{axis}[
+%Domain
+	ymax=1.1,
+	xmax=20000,
+%Ticks
+	%xtick distance=5,
+	%minor x tick num=4,
+	%minor y tick num=4,
+	%/pgf/number format/1000 sep={},
+	xtick={0,5000,10000,15000,20000},
+	scaled x ticks=false,
+	xticklabel style={/pgf/number format/sci},
+%Axis Labels
+	ylabel=Flicker \text{[}IMI\text{]},
+	xlabel=Flux \text{[}lm\text{]},
+%Legend
+	%
+			]
+\addplot [only marks]
+	table [col sep=comma, x=flux, y=imi]
+	{../data/olino/all_flux-imi.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

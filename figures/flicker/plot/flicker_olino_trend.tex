@@ -1,0 +1,44 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\usepgfplotslibrary{dateplot}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{axis}[
+%Domain
+	ymax=1.1,
+	%xmax=20000,
+%Ticks
+	%xtick distance=5,
+	%minor x tick num=4,
+	%minor y tick num=4,
+	xtick={2010-01-01,2015-01-01,2020-01-01},
+	xticklabel={2010,2015,2020},
+	xticklabel style={rotate=90, anchor=near xticklabel},
+%Axis Labels
+	ylabel=Flicker \text{[}IMI\text{]},
+%Legend
+	%
+%Dates
+	date coordinates in=x,
+			]
+\addplot [only marks]
+	table [col sep=comma, x=date, y=imi]
+	{../data/olino/all_trend.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,37 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+	%
+%Ticks
+	%xtick distance=5,
+	%minor x tick num=4,
+	%minor y tick num=4,
+	%/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Flicker \text{[}CDF\text{]},
+	xlabel=Flux \text{[}lm\text{]},
+%Legend
+	%
+			]
+\addplot [only marks]
+	table [col sep=comma, x=flux, y=cdf]
+	{../data/lichtpeter/bulbs_flux-cdf.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
