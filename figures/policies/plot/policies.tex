@@ -28,6 +28,8 @@
 	height=5cm,
 	width=10cm,
 	%Axis Labels
+	ytick={100,200,300},
+	yticklabels={100,200,300},
 	ylabel style={align=center},
 	ylabel=Cummulative $\#$  \\ of Lighting Policies,
 			]
@@ -39,7 +41,7 @@
 \begin{axis}[
 	%Grouping
 	name=us,
-	at={(0,-300)},
+	at={(0,-150)},
 	anchor=north west,
 	%Domain
 	xmin=1985, xmax=2020,
@@ -49,6 +51,7 @@
 	width=10cm,
 	%Axis Labels
 	%Ticks
+	xticklabels={,,},
 	xtick distance=5,
 	minor x tick num=4,
 	/pgf/number format/1000 sep={},

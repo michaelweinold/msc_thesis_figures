@@ -26,15 +26,25 @@ ylabel=Luminous Efficacy \text{[}lm/W\text{]},
 %Legend
 legend style={at={(0.02,0.98)}, anchor=north west}],
 			]
-\addplot [only marks, red]
-	table [col sep=comma, x=year, y=efficacy]
-	{../data/cri_greater_90.csv};
 \addplot [only marks, blue]
 	table [col sep=comma, x=year, y=efficacy]
 	{../data/cri_smaller_90.csv};
-\addplot [domain=2007:2020, red] {11.319*x-22686};
+\addplot [
+	blue,
+	only marks,
+	mark=star,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=year,
+	y=eff,
+	y error plus=max,
+	y error minus=min,
+] {../data/retail_cri_smaller_90.csv};
 \addplot [domain=2005:2020, blue] {12.188*x-24360};
-\legend{CRI$>$90,CRI$<$90}
+\legend{Best Performers,Average Lamps}
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

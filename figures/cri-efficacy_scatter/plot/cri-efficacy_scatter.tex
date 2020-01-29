@@ -1,0 +1,52 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\usetikzlibrary{pgfplots.groupplots}
+
+\pgfplotsset{compat=newest,
+			width=12cm,
+			height=12cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{groupplot}[
+	group style={
+		group size=2 by 2,
+		horizontal sep=0.2cm,
+		vertical sep=0.2cm,
+		xlabels at=edge bottom,
+		ylabels at =edge left,
+		x descriptions at=edge bottom,
+		y descriptions at=edge left,
+		},
+	height=6cm,width=6cm,
+	xlabel=Efficacy \text{[}lm/W\text{]},
+	ylabel=Color Rendering \text{[}CRI\text{]},
+	]
+\nextgroupplot [xmin=60,xmax=150]
+	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
+	{../data/2013-2014.csv};
+	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+\nextgroupplot [xmin=60,xmax=150]
+	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
+	{../data/2016.csv};
+	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+\nextgroupplot [xmin=60,xmax=150]
+	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
+	{../data/2018.csv};
+	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+\nextgroupplot [xmin=60,xmax=150]
+	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
+	{../data/2020.csv};
+	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+\end{groupplot}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

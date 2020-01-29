@@ -1,0 +1,42 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+xmin=2005, xmax=2020,
+%Ticks
+xtick={2006,2008,2010,2012,2014,2016,2018,2020},
+minor x tick num=1,
+minor y tick num=4,
+/pgf/number format/1000 sep={},
+%Axis Labels
+ylabel=Luminous Efficacy \text{[}lm/W\text{]},
+%Legend
+legend style={at={(0.02,0.98)}, anchor=north west}],
+			]
+\addplot [only marks, red]
+	table [col sep=comma, x=year, y=efficacy]
+	{../data/cri_greater_90.csv};
+\addplot [only marks, blue]
+	table [col sep=comma, x=year, y=efficacy]
+	{../data/cri_smaller_90.csv};
+\legend{CRI$>$90,CRI$<$90}
+\addplot [domain=2007:2020, red] {11.319*x-22686};
+\addplot [domain=2005:2020, blue] {12.188*x-24360};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+	%
+%Ticks
+	%xtick distance=5,
+	%minor x tick num=4,
+	%minor y tick num=4,
+	%/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Flicker \text{[}CDF\text{]},
+	xlabel=Flux \text{[}lm\text{]},
+%Legend
+	%
+			]
+\addplot [red,only marks]
+	table [col sep=comma, x=flux, y=cfd]
+	{../data/color_peter_bulb.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=flux, y=cfd]
+	{../data/color_peter_mini.csv};
+\addplot [only marks]
+	table [col sep=comma, x=flux, y=cfd]
+	{../data/color_peter_tubes.csv};
+\legend{Bulbs, Mini Bulbs, Tubes}
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
