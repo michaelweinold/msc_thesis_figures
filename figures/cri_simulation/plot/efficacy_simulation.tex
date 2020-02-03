@@ -1,0 +1,82 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=15cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\usetikzlibrary{calc}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=spd_cri70,
+	at={(0,0)},
+%Size
+	height=5cm,
+	width=4cm,
+%Domain
+	xmin=400,xmax=800,
+	ymin=0,ymax=1.05,
+%Ticks
+	%
+%Axis Labels
+	ylabel=Intensity \text{[}Arb.Units\text{]},
+	xlabel=Wavelength \text{[}nm\text{]},
+]
+\addplot [smooth] table [col sep=comma, x=wavelength, y=intensity]{../data/spd/nichia_NF2W757GR-V3.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=spd_cri97,
+	at={(spd_cri70.east)},
+	xshift=+1cm,
+	anchor=west,
+%Size
+	height=5cm,
+	width=4cm,
+%Domain
+	xmin=400,xmax=800,
+	ymin=0,ymax=1.05,
+%Ticks
+	%
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+]
+\addplot [smooth] table [col sep=comma, x=wavelength, y=intensity]{../data/spd/nichia_NF2W757G-F1.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=ref,
+	at={(spd_cri97.east)},
+	xshift=+1cm,
+	anchor=west,
+%Size
+	height=5cm,
+	width=4cm,
+%Domain
+	xmin=400,xmax=800,
+	ymin=0,ymax=1.05,
+%Ticks
+	%
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+]
+\addplot [smooth] table [col sep=comma, x=wavelength, y=intensity]{../data/spd/d65.csv};
+\end{axis}
+\begin{axis}
+\addplot graphics[] {../data/images/strawberries_ref};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
