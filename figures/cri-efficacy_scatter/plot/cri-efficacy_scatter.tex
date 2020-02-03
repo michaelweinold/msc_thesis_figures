@@ -33,18 +33,22 @@
 	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
 	{../data/2013-2014.csv};
 	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+	\node[] at (axis cs: 110,100) {2013-2014};
 \nextgroupplot [xmin=60,xmax=150]
 	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
 	{../data/2016.csv};
 	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+	\node[] at (axis cs: 110,100) {2016};
 \nextgroupplot [xmin=60,xmax=150]
 	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
 	{../data/2018.csv};
 	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+	\node[] at (axis cs: 110,100) {2018};
 \nextgroupplot [xmin=60,xmax=150]
 	\addplot [only marks] table [col sep=comma, x=eff, y=cri]
 	{../data/2020.csv};
 	\addplot [domain=60:150, blue] {-0.222*x+(100+120/9)};
+	\node[] at (axis cs: 110,100) {2019-2020};
 \end{groupplot}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
