@@ -24,7 +24,7 @@
 	width=4cm,
 %Domain
 	xmin=400,xmax=800,
-	ymin=0,ymax=1.05,
+	ymin=0,ymax=1.35,
 %Ticks
 	%
 %Axis Labels
@@ -38,16 +38,16 @@
 %Grouping
 	name=spd_cri97,
 	at={(spd_cri70.east)},
-	xshift=+1cm,
+	xshift=+0.7cm,
 	anchor=west,
 %Size
 	height=5cm,
 	width=4cm,
 %Domain
 	xmin=400,xmax=800,
-	ymin=0,ymax=1.05,
+	ymin=0,ymax=1.35,
 %Ticks
-	%
+	yticklabels={,,},
 %Axis Labels
 	xlabel=Wavelength \text{[}nm\text{]},
 ]
@@ -58,23 +58,125 @@
 %Grouping
 	name=ref,
 	at={(spd_cri97.east)},
-	xshift=+1cm,
+	xshift=+0.7cm,
 	anchor=west,
 %Size
 	height=5cm,
 	width=4cm,
 %Domain
 	xmin=400,xmax=800,
-	ymin=0,ymax=1.05,
+	ymin=0,ymax=1.35,
 %Ticks
-	%
+	yticklabels={,,},
 %Axis Labels
 	xlabel=Wavelength \text{[}nm\text{]},
 ]
 \addplot [smooth] table [col sep=comma, x=wavelength, y=intensity]{../data/spd/d65.csv};
 \end{axis}
-\begin{axis}
-\addplot graphics[] {../data/images/strawberries_ref};
+
+\begin{axis}	[
+%Grouping
+	name=vertumnus70,
+	at={(spd_cri70.west)},
+	yshift=+3.5cm,
+	anchor=west,
+%Size
+	width=4cm,
+	height=5cm,
+%Misc.
+	enlargelimits=false,
+	yticklabels={,,},
+	xticklabels={,,},
+	xlabel=\text{CRI=70},
+]
+	\addplot graphics[xmin=0,xmax=1,ymin=0,ymax=1] {../data/images/vertumnus_cri70.png};	
+\end{axis}
+
+\begin{axis}	[
+%Grouping
+	name=vertumnus97,
+	at={(spd_cri97.west)},
+	yshift=+3.5cm,
+	anchor=west,
+%Size
+	width=4cm,
+	height=5cm,
+%Misc.
+	enlargelimits=false,
+	yticklabels={,,},
+	xticklabels={,,},
+	xlabel=\text{CRI=97},
+]
+	\addplot graphics[xmin=0,xmax=1,ymin=0,ymax=1] {../data/images/vertumnus_cri97.png};	
+\end{axis}
+
+\begin{axis}	[
+%Grouping
+	name=vertumnusref,
+	at={(ref.west)},
+	yshift=+3.5cm,
+	anchor=west,
+%Size
+	width=4cm,
+	height=5cm,
+%Misc.
+	enlargelimits=false,
+	yticklabels={,,},
+	xticklabels={,,},
+	xlabel=Daylight Ref.,
+]
+	\addplot graphics[xmin=0,xmax=1,ymin=0,ymax=1] {../data/images/vertumnus_ref.png};	
+\end{axis}
+
+\begin{axis}	[
+%Grouping
+	name=straw70,
+	at={(vertumnus70.west)},
+	yshift=+3.5cm,
+	anchor=west,
+%Size
+	width=4cm,
+	height=5cm,
+%Misc.
+	enlargelimits=false,
+	yticklabels={,,},
+	xticklabels={,,},
+]
+	\addplot graphics[xmin=0,xmax=1,ymin=0,ymax=1] {../data/images/strawberries_cri70.png};
+\end{axis}
+
+\begin{axis}	[
+%Grouping
+	name=straw97,
+	at={(vertumnus97.west)},
+	yshift=+3.5cm,
+	anchor=west,
+%Size
+	width=4cm,
+	height=5cm,
+%Misc.
+	enlargelimits=false,
+	yticklabels={,,},
+	xticklabels={,,},
+]
+	\addplot graphics[xmin=0,xmax=1,ymin=0,ymax=1] {../data/images/strawberries_cri97.png};
+\end{axis}
+
+\begin{axis}	[
+%Grouping
+	name=straw97,
+	at={(vertumnusref.west)},
+	yshift=+3.5cm,
+	anchor=west,
+%Size
+	width=4cm,
+	height=5cm,
+%Misc.
+	enlargelimits=false,
+	yticklabels={,,},
+	xticklabels={,,},
+]
+	\addplot graphics[xmin=0,xmax=1,ymin=0,ymax=1] {../data/images/strawberries_ref.png};
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
