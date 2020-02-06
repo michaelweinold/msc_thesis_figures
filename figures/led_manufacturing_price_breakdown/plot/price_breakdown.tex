@@ -1,0 +1,89 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=6cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+			
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=high,
+	height=5cm,
+	width=10cm,
+%Type
+	ybar stacked,
+	bar width=15pt,
+	nodes near coords,
+%Domain
+	ymin=0,ymax=100,
+	xmin=2007,xmax=2021,
+%Axis Labels
+	ylabel=Rel. Manuf. Cost \text{[}\%\text{]},
+	/pgf/number format/1000 sep={},
+]
+\addplot [ybar,fill=green!20,draw=black!70]
+	table [col sep=comma, x=year, y=wafer]
+	{../data/high.csv};
+\addplot [ybar,fill=red!20,draw=black!70]
+	table [col sep=comma, x=year, y=epi]
+	{../data/high.csv};
+\addplot [ybar,fill=blue!20,draw=black!70]
+	table [col sep=comma, x=year, y=subst]
+	{../data/high.csv};
+\addplot [ybar,fill=violet!20,draw=black!70]
+	table [col sep=comma, x=year, y=phos]
+	{../data/high.csv};
+\addplot [ybar,fill=cyan!20,draw=black!70]
+	table [col sep=comma, x=year, y=pack]
+	{../data/high.csv};
+\end{axis}
+
+
+\begin{axis}[
+%Grouping
+	name=mid,
+	at={(high.west)},
+	yshift=-4cm,
+	anchor=west,
+	height=5cm,
+	width=10cm,
+%Type
+	ybar stacked,
+	bar width=15pt,
+	nodes near coords,
+%Domain
+	ymin=0,ymax=100,
+	xmin=2007,xmax=2021,
+%Axis Labels
+	ylabel=Rel. Manuf. Cost \text{[}\%\text{]},
+	/pgf/number format/1000 sep={},
+%Legend
+]
+\addplot [ybar,fill=green!20,draw=black!70]
+	table [col sep=comma, x=year, y=wafer]
+	{../data/mid.csv};
+\addplot [ybar,fill=red!20,draw=black!70]
+	table [col sep=comma, x=year, y=epi]
+	{../data/mid.csv};
+\addplot [ybar,fill=blue!20,draw=black!70]
+	table [col sep=comma, x=year, y=subst]
+	{../data/mid.csv};
+\addplot [ybar,fill=violet!20,draw=black!70]
+	table [col sep=comma, x=year, y=phos]
+	{../data/mid.csv};
+\addplot [ybar,fill=cyan!20,draw=black!70]
+	table [col sep=comma, x=year, y=pack]
+	{../data/mid.csv};
+\end{axis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

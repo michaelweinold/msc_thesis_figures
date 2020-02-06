@@ -1,0 +1,105 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=incand,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=300, xmax=800,
+%Ticks
+%	xtick distance=5,
+%	minor x tick num=4,
+%	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
+%	max space between ticks=20,
+%	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Intensity \text{[}Arb.Units\text{]},
+	xlabel=Wavelength \text{[}nm\text{]},
+			]
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/cie_incandescent.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=cfl,
+	at={(incand.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=300, xmax=800,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+			]
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/cie_cfl.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=rgb_led,
+	at={(cfl.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=300, xmax=800,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+			]
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/rgb_led.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=led,
+	at={(rgb_led.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=300, xmax=800,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+			]
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/pc_led.csv};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
