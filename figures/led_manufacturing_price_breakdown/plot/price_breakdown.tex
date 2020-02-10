@@ -28,6 +28,7 @@
 	xmin=2007,xmax=2021,
 %Axis Labels
 	ylabel=Rel. Manuf. Cost \text{[}\%\text{]},
+	xticklabels={,,},
 	/pgf/number format/1000 sep={},
 ]
 \addplot [ybar,fill=green!20,draw=black!70]
@@ -52,7 +53,7 @@
 %Grouping
 	name=mid,
 	at={(high.west)},
-	yshift=-4cm,
+	yshift=-3.75cm,
 	anchor=west,
 	height=5cm,
 	width=10cm,
@@ -67,6 +68,9 @@
 	ylabel=Rel. Manuf. Cost \text{[}\%\text{]},
 	/pgf/number format/1000 sep={},
 %Legend
+	legend entries={Wafer Processing,Epitaxy,Substrate,Phosphor,Packaging},
+	legend cell align={left},
+	legend pos=north west,
 ]
 \addplot [ybar,fill=green!20,draw=black!70]
 	table [col sep=comma, x=year, y=wafer]

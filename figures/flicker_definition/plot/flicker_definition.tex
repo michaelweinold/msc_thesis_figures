@@ -1,0 +1,45 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=incand,
+	height=5cm,
+	width=7cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=0.025, xmax=0.975,
+%Ticks
+	yticklabels={,,},
+	xticklabels={,,},
+%Axis Labels
+	ylabel=Intensity \text{[}Arb.Units\text{]},
+	xlabel=Time \text{[}Arb.Units\text{]},
+			]
+\addplot [smooth]
+	table [col sep=comma, x=t, y=intensity]
+	{../data/flicker_definition.csv};
+\addplot[mark=none, red] coordinates {(0,0.5) (1,0.5)};
+\draw [fill] (0.36803920097397325,0.9086786164655016
+) circle (1pt) node [right] {A (max. value)};
+\draw [fill] (0.5463779761976796, 0.24158259773013868
+) circle (1pt) node [right] {B (min. value)};
+\draw [fill] (0.75,0.55) node [center] {Average};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
