@@ -73,7 +73,7 @@
 %Axis Labels
 	xlabel=Wavelength \text{[}nm\text{]},
 			]
-\addplot []
+\addplot [smooth]
 	table [col sep=comma, x=wavelength, y=intensity]
 	{../data/rgb_led.csv};
 \end{axis}

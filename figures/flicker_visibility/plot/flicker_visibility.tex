@@ -1,0 +1,36 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Type
+	xmode=log,ymode=log,
+%Domain
+	xmin=1,xmax=3000,
+	ymin=0.1,ymax=100,
+%Grids
+	xmajorgrids=true,
+	xminorgrids=true,
+	yminorgrids=true,
+	ymajorgrids=true,
+%Labels
+	xlabel=Frequency \text{[}Hz\text{]},
+	ylabel=Modulation \text{[}\%\text{]},
+]
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

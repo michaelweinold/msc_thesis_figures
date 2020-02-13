@@ -1,0 +1,44 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+	xmin=1970,xmax=2020,
+	ymin=0,
+%Type
+	ybar stacked,
+	bar width=3pt,
+	axis on top,
+%Ticks
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel=Number of \\ Publications,
+%Legend
+	legend entries={Flicker and Fluorescent Lamps, Flicker and LED Lamps},
+	legend cell align={left},
+	legend pos=north west,
+			]
+\addplot [ybar,draw=green,fill=green!20]
+	table [col sep=comma, x=year, y=papers]
+	{../data/fluorescent.csv};
+\addplot [ybar,draw=blue,fill=blue!20]
+	table [col sep=comma, x=year, y=papers]
+	{../data/led.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
