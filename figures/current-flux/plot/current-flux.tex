@@ -1,0 +1,32 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+%
+%Ticks
+%
+%Axis Labels
+	xlabel=Current \text{[}mA\text{]},
+	ylabel=Flux \text{[}Arb.Units\text{]},
+			]
+\addplot []
+	table [col sep=comma, x=current, y=flux]
+	{../data/data.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
