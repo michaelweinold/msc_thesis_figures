@@ -1,0 +1,18 @@
+\documentclass[crop,tikz,border=2cm]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\usepackage{circuitikz}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{circuitikz}[]
+	\draw (0,0) to[isource] (0,3) -- (2,3)
+	to[R] (2,0) -- (0,0);
+\end{circuitikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

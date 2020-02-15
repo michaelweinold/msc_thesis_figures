@@ -14,6 +14,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
+%Grouping
+	name=current-voltage,
+	height=5cm,
+	width=5cm,
+%Domain
+	ymode=log,
+%Ticks
+%
+%Axis Labels
+	xlabel=Forward Voltage \text{[}V\text{]},
+	ylabel=Forward Current \text{[}mA\text{]},
+			]
+\addplot []
+	table [col sep=comma, x=voltage, y=current]
+	{../data/current-voltage.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=current-flux,
+	at={(current-voltage.west)},
+	anchor=west,
+	xshift=4.8cm,
+	height=5cm,
+	width=5cm,
 %Domain
 %
 %Ticks
@@ -24,7 +49,7 @@
 			]
 \addplot []
 	table [col sep=comma, x=current, y=flux]
-	{../data/data.csv};
+	{../data/current-flux.csv};
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
