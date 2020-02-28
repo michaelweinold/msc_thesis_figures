@@ -20,20 +20,21 @@
 	width=4cm,
 %Domain
 	ymin=0, ymax=1,
-	xmin=0, xmax=50,
+	xmin=0, xmax=100,
 %Ticks
-	xtick distance=10,
-	minor x tick num=4,
+%	xtick distance=10,
+%	minor x tick num=4,
 %	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
 %	max space between ticks=20,
 %	/pgf/number format/1000 sep={},
 %Axis Labels
+	xlabel style={align=center},
 	ylabel=Intensity \text{[}Arb.Units\text{]},
-	xlabel=Time \text{[}ms\text{]},
+	xlabel=Time \text{[}ms\text{]} \\ Incandescent,
 			]
 \addplot [smooth]
 	table [col sep=comma, x=t, y=intensity]
-	{../data/incandescent.csv};
+	{../data/incand.csv};
 \end{axis}
 
 \begin{axis}[
@@ -46,13 +47,14 @@
 	width=4cm,
 %Domain
 	ymin=0, ymax=1,
-	xmin=0, xmax=50,
+	xmin=0, xmax=100,
 %Ticks
-	xtick distance=10,
-	minor x tick num=4,
+%	xtick distance=10,
+%	minor x tick num=4,
 	yticklabels={,,},
 %Axis Labels
-	xlabel=Time \text{[}ms\text{]},
+	xlabel style={align=center},
+	xlabel=Time \text{[}ms\text{]} \\ Fluorescent,
 			]
 \addplot []
 	table [col sep=comma, x=t, y=intensity]
@@ -69,17 +71,18 @@
 	width=4cm,
 %Domain
 	ymin=0, ymax=1,
-	xmin=0, xmax=50,
+	xmin=0, xmax=100,
 %Ticks
-	xtick distance=10,
-	minor x tick num=4,
+%	xtick distance=25,
+%	minor x tick num=4,
 	yticklabels={,,},
 %Axis Labels
-	xlabel=Time \text{[}ms\text{]},
+	xlabel style={align=center},
+	xlabel=Time \text{[}ms\text{]} \\ LED,
 			]
 \addplot []
 	table [col sep=comma, x=t, y=intensity]
-	{../data/led.csv};
+	{../data/led_bad.csv};
 \end{axis}
 
 \begin{axis}[
@@ -92,17 +95,18 @@
 	width=4cm,
 %Domain
 	ymin=0, ymax=1,
-	xmin=0, xmax=50,
+	xmin=0, xmax=100,
 %Ticks
-	xtick distance=10,
-	minor x tick num=4,
+%	xtick distance=10,
+%	minor x tick num=4,
 	yticklabels={,,},
 %Axis Labels
-	xlabel=Time \text{[}ms\text{]},
+	xlabel style={align=center},
+	xlabel=Time \text{[}ms\text{]} \\ LED,
 			]
 \addplot []
 	table [col sep=comma, x=t, y=intensity]
-	{../data/led_driverless.csv};
+	{../data/led_good.csv};
 \end{axis}
 
 

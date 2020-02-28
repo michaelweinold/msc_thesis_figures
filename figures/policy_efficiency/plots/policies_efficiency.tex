@@ -36,14 +36,14 @@
 	legend entries={,,,,,Minimum Performance,Incandescent Performance,Halogen Performance,Average LED Lamp Performance},
 			]
 %2009 Regulation
-\addplot []
+\addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
 	{../data/2009_1.csv};
 \node[above,black] at (1300,7) {2009};
-\addplot []
+\addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
 	{../data/2009_2.csv};
-\addplot []
+\addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
 	{../data/2009_3.csv};
 \begin{comment}
@@ -61,16 +61,16 @@
        \draw[->](source)--(destination);
 \end{comment}
 %2012 Regulation
-\addplot []
+\addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
 	{../data/2012.csv};
 \node[above,black] at (1300,30) {2013};
-\addplot []
+\addplot [thick]
 	table [col sep=comma, x=flux, y=eff2]
 	{../data/2012.csv};
 \node[above,black] at (1300,56) {2016};
 %2020 Regulation
-\addplot []
+\addplot [thick]
 	table [col sep=comma, x=flux, y=eff]
 	{../data/2020.csv};
 \node[above,black] at (1300,100) {2020};
