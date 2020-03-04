@@ -1,0 +1,115 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\usepackage[official]{eurosym} %For € symbol in text
+\usetikzlibrary{pgfplots.statistics} %For boxplots
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=10cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+
+\begin{axis}[
+%Grouping
+	name=scatter,
+%Size
+	height=6cm,
+	width=10cm,
+%Domain
+	xmin=2008, xmax=2020,
+	%ymin=0, ymax=1,
+%Log
+	ymode=log,
+%Ticks
+	log ticks with fixed point,
+	xtick distance=5,
+	minor x tick num=4,
+	minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
+	legend entries={Consumer Watchdogs, US DOE Reports, US DOE Projections},
+	legend cell align={left},
+	legend pos=north east,
+	]
+\addplot [only marks]
+	table [col sep=comma, x=year, y=cpl]
+	{../data/dollar-all_years.csv};
+\addplot [thick, red]
+	table [col sep=comma, x=year, y=cpl]
+	{../data/dollar-doe_all_years.csv};
+\addplot [thick, orange, dashed]
+	table [col sep=comma, x=year, y=cpl]
+	{../data/dollar-doeprojection_all_years.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=boxplot,
+	at={(0,-0.8)},
+	anchor=north west,
+%Size
+	height=6cm,
+	width=10cm,
+%Domain
+	boxplot/draw direction=y,
+%Log
+	ymode=log,
+%Ticks
+	xticklabels={},
+	log ticks with fixed point,
+%Axis Labels
+	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
+%Legend
+	]
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2009.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2010.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2011.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2012.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2013.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2014.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2015.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2016.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2017.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2018.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/dollar-2019.csv};
+\end{axis}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
