@@ -17,22 +17,20 @@
 %Domain
 	xmin=2005, xmax=2020,
 %Ticks
-	xtick={2006,2008,2010,2012,2014,2016,2018,2020},
-	minor x tick num=1,
+	%xtick={2006,2008,2010,2012,2014,2016,2018,2020},
+	%minor x tick num=1,
 	minor y tick num=4,
 	/pgf/number format/1000 sep={},
 %Axis Labels
-	xlabel style = {align=center},
-	xlabel=$\text{CRI}>90$,
-	ylabel=Luminous Efficacy \text{[}lm/W\text{]},
+	ylabel=Color Rendering (CRI),
 %Legend
-	legend style={at={(0.02,0.98)}, anchor=north west}],
+	legend style={at={(0.02,0.02)}, anchor=south west}],
 ]
-\addplot [only marks, red]
-	table [col sep=comma, x=year, y=efficacy]
-	{../data/cri_greater_90.csv};
+\addplot [mark=*]
+	table [col sep=comma, x=year, y=cri]
+	{../data/best_performers.csv};
 \addplot [
-	red,
+	black,
 	only marks,
 	mark=star,
 	error bars/.cd,
@@ -41,14 +39,12 @@
 ] table [
 	col sep=comma,
 	x=year,
-	y=eff,
-	y error plus=max,
-	y error minus=min,
-] {../data/retail_cri_greater_90.csv};
-\addplot [domain=2007:2020, red] {11.319*x-22686};
+	y=average,
+	y error plus=err_plus,
+	y error minus=err_minus,
+] {../data/cri.csv};
 \legend{Best Performers,Average Lamps}
 \end{axis}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}
 \end{document}
