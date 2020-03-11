@@ -28,8 +28,9 @@
 %	max space between ticks=20,
 %	/pgf/number format/1000 sep={},
 %Axis Labels
+	xlabel style = {align=center},
 	ylabel=Intensity \text{[}Arb.Units\text{]},
-	xlabel=Wavelength \text{[}nm\text{]},
+	xlabel=Wavelength \text{[}nm\text{]} \\ Incandescent,
 			]
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
@@ -50,7 +51,8 @@
 %Ticks
 	yticklabels={,,},
 %Axis Labels
-	xlabel=Wavelength \text{[}nm\text{]},
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ Fluorescent,
 			]
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
@@ -71,7 +73,8 @@
 %Ticks
 	yticklabels={,,},
 %Axis Labels
-	xlabel=Wavelength \text{[}nm\text{]},
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ RGB LED,
 			]
 \addplot [smooth]
 	table [col sep=comma, x=wavelength, y=intensity]
@@ -92,7 +95,8 @@
 %Ticks
 	yticklabels={,,},
 %Axis Labels
-	xlabel=Wavelength \text{[}nm\text{]},
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ Phosphor LED,
 			]
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
