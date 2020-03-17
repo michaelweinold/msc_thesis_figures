@@ -32,9 +32,9 @@ legend style={at={(0.02,0.98)}, anchor=north west}],
 \addplot [only marks, blue]
 	table [col sep=comma, x=year, y=efficacy]
 	{../data/cri_smaller_90.csv};
-\legend{CRI$>$90,CRI$<$90}
+\legend{CRI$\geq$90,CRI$<$90}
 \addplot [domain=2007:2020, red] {11.319*x-22686};
-\addplot [domain=2005:2020, blue] {12.188*x-24360};
+\addplot [domain=2005:2020, blue] {11.892*x-23764};
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
