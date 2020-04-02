@@ -29,52 +29,49 @@
 %Domain
 	xmin=2000,xmax=2025,
 	ymin=0,ymax=100,
+	enlargelimits=false,
 %Axis ticks
 	xtick distance=5,
 %Axis labels
 	ylabel=LEE \text{[}\%\text{]},
 	/pgf/number format/1000 sep={},
 %Legend
-	legend entries={Classical Chip,Thin-Film,Flip-Chip,CSP Flip-Chip, DOE Targets},
+	legend entries={Classical Chip,Thin-Film,Flip-Chip,CSP Flip-Chip},
 	legend cell align={left},
 	legend pos=outer north east,
+	legend style={draw=none},
 ]
 \addplot [fill=red!20,draw=black!70] table [col sep=comma, x=year, y=classical]{../data/best.csv};
 \addplot [fill=orange!20,draw=black!70] table [col sep=comma, x=year, y=thinfilm]{../data/best.csv};
 \addplot [fill=blue!20,draw=black!70] table [col sep=comma, x=year, y=flipchip]{../data/best.csv};
-\addplot [fill=green!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv};
+\addplot [fill=teal!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv};
 \end{axis}
 
 \begin{axis}[
 %Grouping
-	name=overview,
+	name=doe,
 	at={(best.west)},
-	yshift=-4.2cm,
+	yshift=-3.3cm,
 	anchor=west,
-%Type
-	ybar,
-	ybar interval=0.5,
-	xtick=data,
 %Size
-	height=5cm,
+	height=3cm,
 	width=10cm,
 %Domain
-	xmin=2000,xmax=2025,
-	ymin=0,ymax=100,
+	xmin=2000,xmax=2020,
+	ymin=50,ymax=100,
 %Axis ticks
 	xtick distance=5,
 %Axis labels
 	ylabel=LEE \text{[}\%\text{]},
 	/pgf/number format/1000 sep={},
 %Legend
-	legend entries={Classical Chip,Thin-Film,Flip-Chip,CSP Flip-Chip, DOE Targets},
+	legend entries={DOE Targets},
 	legend cell align={left},
 	legend pos=outer north east,
+	legend style={draw=none},
 ]
-\addplot [fill=red!20,draw=black!70] table [col sep=comma, x=year, y=classical]{../data/best.csv};
-\addplot [fill=orange!20,draw=black!70] table [col sep=comma, x=year, y=thinfilm]{../data/best.csv};
-\addplot [fill=blue!20,draw=black!70] table [col sep=comma, x=year, y=flipchip]{../data/best.csv};
-\addplot [fill=green!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv};
+\addplot [] table [col sep=comma, x=year, y=lee]{../data/doe.csv};
+
 \end{axis}
 
 

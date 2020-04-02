@@ -1,0 +1,59 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Alignment
+	name=left,
+	height=5cm,
+	width=5cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=0, xmax=150,
+%Ticks
+	xtick distance=25,
+	%minor x tick num=24,
+	xtick={0,25,50,75,100,125},
+%Axis Labels
+	ylabel=LER $\text{[}$lm/W$\text{]}$,
+	xlabel=Peak FWHM $\text{[}$nm$\text{]}$,
+]
+\addplot []
+	table [col sep=comma, x=fwhm, y=ler]
+	{../data/fwhm.csv};
+\end{axis}
+
+\begin{axis}[
+%Alignment
+	name=right,
+	at={(left.west)},
+	xshift=3.75cm,
+	anchor=west,
+	height=5cm,
+	width=5cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=610, xmax=650,
+	yticklabels={,,},
+%Ticks
+	%xtick distance=5,
+	%minor x tick num=4,
+	%max space between ticks=20,
+%Axis Labels
+	xlabel=Peak Position $\text{[}$nm$\text{]}$,
+]
+\addplot []
+	table [col sep=comma, x=wavelength, y=ler]
+	{../data/wavelength.csv};
+\end{axis}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
