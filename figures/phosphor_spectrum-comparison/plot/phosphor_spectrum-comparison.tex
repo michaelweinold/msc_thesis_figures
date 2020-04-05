@@ -1,0 +1,108 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=rebel,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Axis Labels
+	xlabel style = {align=center},
+	ylabel=Intensity \text{[}Arb.Units\text{]},
+	xlabel=Wavelength \text{[}nm\text{]} \\ Philips Lumiramic,
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/lumileds_lumiramic.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=narrow,
+	at={(rebel.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ Philips Narrow,
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/luxeon_narrow.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=trigain,
+	at={(narrow.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ GE TriGain,
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/ge_trigain.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=qd,
+	at={(trigain.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ Osram QD,
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/osram_qd.csv};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
