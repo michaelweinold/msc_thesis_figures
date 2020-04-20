@@ -1,0 +1,139 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=8cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=2002,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=2,
+	xmin=100, xmax=500,
+%Ticks
+%	xtick distance=10,
+%	minor x tick num=4,
+%	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
+%	max space between ticks=20,
+%	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Intensity \text{[}Arb.Units\text{]},
+	xlabel=Current \text{[}mA\text{]},
+	title style={align=center},
+	title = {2002 \\ Luxeon I},
+			]
+\addplot []
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2002-real.csv};
+\addplot [orange]
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2002-ideal.csv};
+\addplot[mark=none, red, dashed] coordinates {(350,0) (350,4)};
+\node[] at (220,1.8) {D=32\%};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=2009,
+	at={(2002.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=2,
+	xmin=100, xmax=500,
+%Ticks
+%	xtick distance=10,
+%	minor x tick num=4,
+	yticklabels={,,},
+%Axis Labels
+	xlabel=Current \text{[}mA\text{]},
+	title style={align=center},
+	title = {2009 \\ Luxeon Rebel},
+			]
+\addplot []
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2009-real.csv};
+\addplot [orange]
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2009-ideal.csv};
+\addplot[mark=none, red, dashed] coordinates {(350,0) (350,4)};
+\node[] at (220,1.8) {D=22\%};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=2015,
+	at={(2009.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=2,
+	xmin=100, xmax=500,
+%Ticks
+%	xtick distance=10,
+%	minor x tick num=4,
+	yticklabels={,,},
+%Axis Labels
+	xlabel=Current \text{[}mA\text{]},
+	title style={align=center},
+	title = {2015 \\ Luxeon Rebel+},
+			]
+\addplot []
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2015-real.csv};
+\addplot [orange]
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2015-ideal.csv};
+\addplot[mark=none, red, dashed] coordinates {(350,0) (350,4)};
+\node[] at (220,1.8) {D=11\%};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=2019,
+	at={(2015.west)},
+	xshift=3cm,
+	anchor=west,
+	height=5cm,
+	width=4cm,
+%Domain
+	ymin=0, ymax=2,
+	xmin=100, xmax=500,
+%Ticks
+%	xtick distance=10,
+%	minor x tick num=4,
+	yticklabels={,,},
+%Axis Labels
+	xlabel=Current \text{[}mA\text{]},
+	title style={align=center},
+	title = {2019 \\ Luxeon Flip Chip},
+			]
+\addplot []
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2019-real.csv};
+\addplot [orange]
+	table [col sep=comma, x=i, y=flux]
+	{../data/lumileds_2019-ideal.csv};
+\addplot[mark=none, red, dashed] coordinates {(350,0) (350,4)};
+\node[] at (220,1.8) {D=11\%};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
