@@ -1,0 +1,38 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=4cm,
+			height=4cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+			
+\pgfdeclarelayer{foreground}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main,foreground}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+	%ymin=2.7, ymax=3.2,
+%Ticks
+	symbolic x coords={LG Innotek, Seoul Semi, Samsung, Osram, Lumileds},
+    xtick=data,
+    xticklabel style={rotate=-90},
+]
+\addplot [teal, only marks]
+	table [col sep=comma, x=company, y=csp]
+	{../data/companies_2020-abs.csv};
+\addplot [orange, only marks]
+	table [col sep=comma, x=company, y=tffc]
+	{../data/companies_2020-abs.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

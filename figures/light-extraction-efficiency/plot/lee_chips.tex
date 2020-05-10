@@ -27,9 +27,11 @@
 	ymin=0,ymax=100,
 %Axis ticks
 	xtick distance=5,
-	xticklabels={,,}
+	xticklabels={,,},
+	ytick={20,40,60,80,100},
 %Axis labels
-	ylabel=LEE \text{[}\%\text{]},
+	ylabel style = {align=center},
+	ylabel=Classical Chip,
 	/pgf/number format/1000 sep={},
 %Legend
 	legend entries={Ni/Au,Planar ITO,Text. ITO,PSS + Ni/Au, PSS + ITO, PSS + text. ITO, ZnO, Photonic Crystals},
@@ -61,9 +63,11 @@
 	ymin=0,ymax=100,
 %Axis ticks
 	xtick distance=5,
-	xticklabels={,,}
+	xticklabels={,,},
+	ytick={20,40,60,80,100},
 %Axis labels
-	ylabel=LEE \text{[}\%\text{]},
+	ylabel style = {align=center},
+	ylabel=Thin-Film Flip-Chip,
 %Legend
 	legend entries={Planar Surface, Text. Surface, Mirrors, PSS, Microlenses},
 	legend cell align={left},
@@ -91,8 +95,10 @@
 	ymin=0,ymax=100,
 %Axis ticks
 	xtick distance=5,
+	ytick={20,40,60,80,100},
 %Axis labels
-	ylabel=LEE \text{[}\%\text{]},
+	ylabel style = {align=center},
+	ylabel=LEE \text{[}\%\text{]} \\ Flip-Chip,
 	/pgf/number format/1000 sep={},
 %Legend
 	legend entries={CSP, PSS, Mirrors},

@@ -3,8 +3,6 @@
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=6cm,
 			xtick pos=left,
 			ytick pos=left
 			}
@@ -18,9 +16,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
+%Grouping
+	name=main,
+	at={(0,0)},
 %Domain
 	xmin=2000, xmax=2020,
-	ymin=2.5, ymax=4,
+	ymin=2.55, ymax=4,
+%Size
+	width=10cm,
+	height=7cm,
 %Ticks
 	xtick distance=2,
 	minor x tick num=1,
@@ -55,8 +59,34 @@
 	{../data/osram_vf_2014.csv};
 \addplot [domain=2000:2020] {2.67};
 \begin{pgfonlayer}{foreground}
-	\node[above,fill=white] at (2005.5,2.57) {$V_f_\text{ideal}$ at $\lambda=450$nm};
+	\node[above,fill=white] at (2005.5,2.57) {$V_f\text{ideal}$ at $\lambda=450$nm};
 \end{pgfonlayer}
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=inset,
+	at={(main.west)},
+	xshift=5.95cm,
+	yshift=1.95cm,
+	anchor=west,
+%Size
+	height=3cm,
+	width=4cm,
+%Domain
+	ymin=2.7, ymax=3.2,
+%Ticks
+	ytick={2.8,2.9,3,3.1},
+	symbolic x coords={LG Innotek, Seoul Semi, Samsung, Osram, Lumileds},
+    xtick=data,
+    xticklabel style={rotate=-90},
+]
+\addplot [teal, only marks]
+	table [col sep=comma, x=company, y=csp]
+	{../data/companies_2020-abs.csv};
+\addplot [orange, only marks]
+	table [col sep=comma, x=company, y=tffc]
+	{../data/companies_2020-abs.csv};
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

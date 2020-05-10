@@ -9,11 +9,44 @@
 			ytick pos=left
 			}
 
-\usetikzlibrary{calc}
+% See https://github.com/pgf-tikz/pgfplots/issues/42
+% and https://github.com/michaelweinold/TeX/wiki/Troubleshooting
 
 \begin{document}
 \begin{tikzpicture}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Size
+	height=5cm,
+	width=10cm,
+	axis line style={draw=none},
+	xtick style={draw=none},
+	ytick style={draw=none},
+	yticklabels={,,},
+	xticklabels={,,},
+%Legend
+	 %legend entries={Classical Chip,Thin-Film,Flip-Chip,CSP Flip-Chip},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addlegendimage{line legend, black}
+\addlegendentry{DOE Average}
+\addlegendimage{line legend, black, dashed}
+\addlegendentry{DOE Targets}
+\addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
+\addlegendentry{Classical Chip}
+\addlegendimage{/pgfplots/refstyle=bar2,xshift=0.5em}
+\addlegendentry{Thin-Film}
+\addlegendimage{/pgfplots/refstyle=bar3,xshift=0.5em}
+\addlegendentry{Flip-Chip}
+\addlegendimage{/pgfplots/refstyle=bar4,xshift=0.5em}
+\addlegendentry{CSP Flip-Chip}
+\addplot [white]
+	table [col sep=comma, x=year, y=lee]
+	{../data/doe.csv}; \label{lineplot}
+\end{axis}
 
 \begin{axis}[
 %Grouping
@@ -21,7 +54,7 @@
 	at={(0,0)},
 %Type
 	ybar,
-	ybar interval=0.5,
+	ybar interval=0.35,
 	xtick=data,
 %Size
 	height=5cm,
@@ -35,45 +68,17 @@
 %Axis labels
 	ylabel=LEE \text{[}\%\text{]},
 	/pgf/number format/1000 sep={},
-%Legend
-	legend entries={Classical Chip,Thin-Film,Flip-Chip,CSP Flip-Chip},
-	legend cell align={left},
-	legend pos=outer north east,
-	legend style={draw=none},
 ]
-\addplot [fill=red!20,draw=black!70] table [col sep=comma, x=year, y=classical]{../data/best.csv};
-\addplot [fill=orange!20,draw=black!70] table [col sep=comma, x=year, y=thinfilm]{../data/best.csv};
-\addplot [fill=blue!20,draw=black!70] table [col sep=comma, x=year, y=flipchip]{../data/best.csv};
-\addplot [fill=teal!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv};
+\addplot [ybar, ybar legend, fill=red!20,draw=black!70] table [col sep=comma, x=year, y=classical]{../data/best.csv}; \label{bar1}
+\addplot [ybar, ybar legend,fill=orange!20,draw=black!70] table [col sep=comma, x=year, y=thinfilm]{../data/best.csv}; \label{bar2}
+\addplot [ybar, ybar legend,fill=blue!20,draw=black!70] table [col sep=comma, x=year, y=flipchip]{../data/best.csv}; \label{bar3}
+\addplot [ybar, ybar legend,fill=teal!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv}; \label{bar4}
+% DOE Targets
+\draw [] (axis cs: 2005,80) -- (axis cs: 2010,80);
+\draw [] (axis cs: 2010,85) -- (axis cs: 2015,85);
+\draw [] (axis cs: 2015,87) -- (axis cs: 2020,87);
+\draw [dashed] (axis cs: 2020,90) -- (axis cs: 2025,90);
 \end{axis}
-
-\begin{axis}[
-%Grouping
-	name=doe,
-	at={(best.west)},
-	yshift=-3.3cm,
-	anchor=west,
-%Size
-	height=3cm,
-	width=10cm,
-%Domain
-	xmin=2000,xmax=2020,
-	ymin=50,ymax=100,
-%Axis ticks
-	xtick distance=5,
-%Axis labels
-	ylabel=LEE \text{[}\%\text{]},
-	/pgf/number format/1000 sep={},
-%Legend
-	legend entries={DOE Targets},
-	legend cell align={left},
-	legend pos=outer north east,
-	legend style={draw=none},
-]
-\addplot [] table [col sep=comma, x=year, y=lee]{../data/doe.csv};
-
-\end{axis}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}

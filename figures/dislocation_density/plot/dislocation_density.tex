@@ -14,8 +14,8 @@
 \begin{axis}[
 %Grouping
 	name=left,
-	height=8cm,
-	width=2cm,
+	height=7cm,
+	width=2.5cm,
 %Domain
 	xmin=1983, xmax=1987,
 	ymin=1E5,ymax=2E11,
@@ -66,9 +66,9 @@
 %Grouping
 	name=right,
 	at={(left.west)},
-	xshift=0.5cm,
+	xshift=1.2cm,
 	anchor=west,
-	height=8cm,
+	height=7cm,
 	width=8cm,
 %Domain
 	xmin=1995, xmax=2020,
@@ -118,7 +118,8 @@
 	table [col sep=comma, x=year, y=av]
 	{../data/atomiclayer.csv};
 % Industry Range
-\draw (2010,1E8) rectangle (2020,5E8);
+\draw [] (axis cs: 2012,1E8) -- (axis cs: 2020,1E8);
+\draw [] (axis cs: 2012,5E8) -- (axis cs: 2020,5E8);
 \node[below,black] at (2015,1E8) {Industry Range};
 \end{axis}
 

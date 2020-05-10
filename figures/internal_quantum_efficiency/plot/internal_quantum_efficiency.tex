@@ -1,0 +1,107 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	height=8cm,
+	width=10cm,
+%Domain
+	xmin=1995, xmax=2020,
+	ymin=0,ymax=100,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	xlabel style = {align=center},
+	ylabel=Internal Quantum Efficiency \text{[}\%\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+	legend entries={DOE Average, DOE Targets,PL Measurement,,EL Measurement,ABC Model,,Ideality Factor,Technique not reported},
+			]
+	]
+\addplot [black]
+	table [col sep=comma, x=year, y=iqe]
+	{../data/iqe_doe.csv};
+\addplot [black, dashed]
+	table [col sep=comma, x=year, y=iqe]
+	{../data/iqe_doe-projection.csv};
+% PL
+\addplot [only marks, black]
+	table [col sep=comma, x=year, y=iqe]
+	{../data/pl.csv};
+\addplot [
+	black,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	only marks,
+	col sep=comma,
+	x=year,
+	y=av,
+	y error plus=max,
+	y error minus=min,
+] {../data/range_pl.csv};
+% EL
+\addplot [only marks, gray]
+	table [col sep=comma, x=year, y=iqe]
+	{../data/el.csv};
+% ABC
+\addplot [only marks, blue]
+	table [col sep=comma, x=year, y=iqe]
+	{../data/abc.csv};
+\addplot [
+	blue,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	only marks,
+	col sep=comma,
+	x=year,
+	y=av,
+	y error plus=max,
+	y error minus=min,
+] {../data/range_abc.csv};
+% New Measurement Technique
+\addplot [only marks, red]
+	table [col sep=comma, x=year, y=iqe]
+	{../data/ideality.csv};
+% Other
+\addplot [only marks, orange]
+	table [col sep=comma, x=year, y=iqe]
+	{../data/other.csv};
+\addplot [
+	orange,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	only marks,
+	col sep=comma,
+	x=year,
+	y=av,
+	y error plus=max,
+	y error minus=min,
+] {../data/range_other.csv};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
