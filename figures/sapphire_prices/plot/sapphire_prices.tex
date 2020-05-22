@@ -1,0 +1,70 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	height=8cm,
+	width=10cm,
+%Domain
+	xmin=2000, xmax=2020,
+	ymin=0,ymax=50,
+	ymode=log,
+	log ticks with fixed point,
+%Ticks
+	ytick={1,10,20,30,40},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	ylabel= Price \text{[}\$(2020)/wafer\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+	legend entries={2" (NPS); Monocrystal,4" (NPS); Monocrystal,2" (NPS); Market Average, 2" (PSS); Market Average,,4" (PSS); Market Average,,6" (PSS); Market Average},
+]
+\addplot [blue, only marks, mark=o]
+	table [col sep=comma, x=year, y=price]
+	{../data/2-nps-monocrystal.csv};
+\addplot [orange, only marks, mark=o]
+	table [col sep=comma, x=year, y=price]
+	{../data/4-nps-monocrystal.csv};
+\addplot [teal]
+	table [col sep=comma, x=year, y=price]
+	{../data/2-nps-yole.csv};
+\addplot [blue] 
+	table [col sep=comma, x=year, y=price]
+	{../data/2-pss-yole.csv};
+\addplot [blue, dashed]
+	table [col sep=comma, x=year, y=price]
+	{../data/forecast_2-pss-yole.csv};
+\addplot [orange] 
+	table [col sep=comma, x=year, y=price]
+	{../data/4-pss-yole.csv};
+\addplot [orange, dashed]
+	table [col sep=comma, x=year, y=price]
+	{../data/forecast_4-pss-yole.csv};
+\addplot [red] 
+	table [col sep=comma, x=year, y=price]
+	{../data/6-pss-yole.csv};
+\addplot [red, dashed]
+	table [col sep=comma, x=year, y=price]
+	{../data/forecast_6-pss-yole.csv};
+
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
