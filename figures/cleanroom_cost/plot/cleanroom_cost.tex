@@ -1,0 +1,43 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	height=8cm,
+	width=10cm,
+%Domain
+	xmin=1990, xmax=2020,
+	ymin=0,ymax=1000,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	ylabel={Price $[$\$(2020)/m$^2 \times$ year$]$},
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [only marks]
+	table [col sep=comma, x=year, y=cost]
+	{../data/cost.csv};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
+\includegraphics{electricity_price}
