@@ -1,0 +1,87 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=7cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+	xmin=2000,xmax=2020,
+	ymin=0,ymax=4000,
+%Ticks
+	%xtick distance=5,
+	%minor x tick num=4,
+	/pgf/number format/1000 sep={},
+	%xticklabels={2012,2013,2014,2015,2016,2017,2018,2019},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel=Number of Patents,
+%Stacking
+	stack plots=y,
+	every axis plot/.append style={
+            % add the fill color to each `\addplot`
+            % (`.` is an abbreviation for the "current color")
+            fill=.,
+        },
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+	legend entries={Nichia (JP), Toyoda Gosei (JP), Lumileds (US/EU), Cree (US), Osram (EU), Seoul Semi (KR), LG Innotek (KR), Epistar (TW), Everlight (TW), Jufei (CN), San'an (CN), Nationstar (CN), Changelight (CN)},
+			]
+\addplot [gray]
+	table [col sep=comma, x=year, y=Nichia]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [lightgray]
+	table [col sep=comma, x=year, y=Toyoda]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [cyan]
+	table [col sep=comma, x=year, y=Lumileds]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [teal]
+	table [col sep=comma, x=year, y=Brightlux]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [blue]
+	table [col sep=comma, x=year, y=Cree]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [orange]
+	table [col sep=comma, x=year, y=Osram]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [lime]
+	table [col sep=comma, x=year, y=Seoul]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [green]
+	table [col sep=comma, x=year, y=LG]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [pink]
+	table [col sep=comma, x=year, y=Epistar]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [brown]
+	table [col sep=comma, x=year, y=Everlight]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [purple]
+	table [col sep=comma, x=year, y=Jufei]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [red]
+	table [col sep=comma, x=year, y=Sanan]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [magenta]
+	table [col sep=comma, x=year, y=Nationstar]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [violet]
+	table [col sep=comma, x=year, y=Changelight]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

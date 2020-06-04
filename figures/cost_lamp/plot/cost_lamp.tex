@@ -19,81 +19,94 @@
 	
 
 \begin{axis}[
-	%Grouping
+%Grouping
 	name=scatter,
-	%Size
+%Size
 	height=6cm,
 	width=10cm,
-	%Domain
+%Domain
 	xmin=2008, xmax=2020,
-	ymin=0, ymax=1,
-	%Log
+	%ymin=0, ymax=1,
+%Log
 	ymode=log,
-	%Ticks
+%Ticks
 	log ticks with fixed point,
 	xtick distance=5,
 	minor x tick num=4,
 	minor y tick num=4,
 	/pgf/number format/1000 sep={},
-	%Axis Labels
-	ylabel=Cost/Flux \text{[}\euro(2020)/lm\text{]}
+%Axis Labels
+	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
+	legend entries={Consumer Watchdogs, US DOE Reports, US DOE Projections},
+	legend cell align={left},
+	legend pos=north east,
+	legend style={draw=none},
 	]
 \addplot [only marks]
 	table [col sep=comma, x=year, y=cpl]
-	{../data/cpl.csv};
+	{../data/dollar-all_years.csv};
+\addplot [thick, red]
+	table [col sep=comma, x=year, y=cpl]
+	{../data/dollar-doe_all_years.csv};
+\addplot [thick, orange, dashed]
+	table [col sep=comma, x=year, y=cpl]
+	{../data/dollar-doeprojection_all_years.csv};
 \end{axis}
 
 \begin{axis}[
-	%Grouping
+%Grouping
 	name=boxplot,
 	at={(0,-0.8)},
 	anchor=north west,
-	%Size
+%Size
 	height=6cm,
 	width=10cm,
-	%Domain
+%Domain
 	boxplot/draw direction=y,
-	%Log
+%Log
 	ymode=log,
-	%Ticks
+%Ticks
 	xticklabels={},
 	log ticks with fixed point,
-	%Axis Labels
-	ylabel=Cost/Flux \text{[}\euro(2020)/lm\text{]}
+%Axis Labels
+	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
+%Legend
 	]
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2009.csv};
+	{../data/dollar-2009.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2010.csv};
+	{../data/dollar-2010.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2011.csv};
+	{../data/dollar-2011.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2012.csv};
+	{../data/dollar-2012.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2013.csv};
+	{../data/dollar-2013.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2014.csv};
+	{../data/dollar-2014.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2015.csv};
+	{../data/dollar-2015.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2016.csv};
+	{../data/dollar-2016.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2017.csv};
+	{../data/dollar-2017.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2018.csv};
+	{../data/dollar-2018.csv};
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
-	{../data/2019.csv};
+	{../data/dollar-2019.csv};
+\addplot [orange, domain=1:10] {2.28};
+\addplot [blue, domain=1:10] {10};
 \end{axis}
 
 
