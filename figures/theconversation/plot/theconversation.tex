@@ -1,0 +1,192 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\usepackage[official]{eurosym} %For € symbol in text
+\usetikzlibrary{pgfplots.statistics} %For boxplots
+
+\pgfplotsset{compat=newest,
+			width=10cm,
+			height=10cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+
+\begin{axis}[
+%Grouping
+	name=price,
+%Size
+	height=6cm,
+	width=10cm,
+%Domain
+	boxplot/draw direction=y,
+%Log
+	ymode=log,
+%Ticks
+	xticklabels={},
+	log ticks with fixed point,
+%Axis Labels
+	ylabel=Cost/Flux \text{[}\euro(2020)/lm\text{]}
+	]
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2009.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2010.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2011.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2012.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2013.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2014.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2015.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2016.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2017.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2018.csv};
+\addplot [boxplot]
+	table [col sep=comma, y index=0]
+	{../data/2019.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=market,
+	at={(0,-1)},
+%Domain
+	xmin=1,xmax=33,
+	ymin=0,ymax=100,
+%Ticks
+	xtick distance=5,
+	minor x tick num=4,
+	/pgf/number format/1000 sep={},
+	xticklabels={2012,2013,2014,2015,2016,2017,2018,2019},
+%Size
+	height=5cm,
+	width=10cm,
+%Axis Labels
+	ylabel style={align=center},
+	ylabel=Lamp Shipments \\ Market Share \text{[}\%\text{]},
+%Stacking
+	stack plots=y,
+	every axis plot/.append style={
+            % add the fill color to each `\addplot`
+            % (`.` is an abbreviation for the "current color")
+            fill=.,
+        },
+			]
+\addplot [red]
+	table [col sep=comma, x=id, y=Incandescent]
+	{../data/nema_shipments.csv} \closedcycle;
+\addplot [green]
+	table [col sep=comma, x=id, y=CFL]
+	{../data/nema_shipments.csv} \closedcycle;
+\addplot [blue]
+	table [col sep=comma, x=id, y=LED]
+	{../data/nema_shipments.csv} \closedcycle;
+\addplot [orange]
+	table [col sep=comma, x=id, y=Halogen]
+	{../data/nema_shipments.csv} \closedcycle;
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=patents,
+	at={(0,-1)},
+	anchor=north west,
+%Size
+	height=6cm,
+	width=10cm,
+%Domain
+	xmin=2009,xmax=2020,
+	ymin=0,ymax=4000,
+%Ticks
+	%xtick distance=5,
+	%minor x tick num=4,
+	/pgf/number format/1000 sep={},
+	%xticklabels={2012,2013,2014,2015,2016,2017,2018,2019},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel=Number of Patents,
+%Stacking
+	stack plots=y,
+	every axis plot/.append style={
+            % add the fill color to each `\addplot`
+            % (`.` is an abbreviation for the "current color")
+            fill=.,
+        },
+%Legend
+	legend cell align={left},
+	legend pos= north west,
+	legend style={draw=none},
+	legend entries={Japan, , USA, , , EU, Korea, , Taiwan, ,  China, , , },
+			]
+\addplot [lightgray, area legend]
+	table [col sep=comma, x=year, y=Nichia]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [lightgray, area legend]
+	table [col sep=comma, x=year, y=Toyoda]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [teal, area legend]
+	table [col sep=comma, x=year, y=Lumileds]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [teal, area legend]
+	table [col sep=comma, x=year, y=Brightlux]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [teal, area legend]
+	table [col sep=comma, x=year, y=Cree]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [orange, area legend]
+	table [col sep=comma, x=year, y=Osram]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [green, area legend]
+	table [col sep=comma, x=year, y=Seoul]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [green, area legend]
+	table [col sep=comma, x=year, y=LG]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [blue, area legend]
+	table [col sep=comma, x=year, y=Epistar]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [blue, area legend]
+	table [col sep=comma, x=year, y=Everlight]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [red, area legend]
+	table [col sep=comma, x=year, y=Jufei]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [red, area legend]
+	table [col sep=comma, x=year, y=Sanan]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [red, area legend]
+	table [col sep=comma, x=year, y=Nationstar]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\addplot [red, area legend]
+	table [col sep=comma, x=year, y=Changelight]
+	{../data/ssl-patent_meta.csv} \closedcycle;
+\end{axis}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

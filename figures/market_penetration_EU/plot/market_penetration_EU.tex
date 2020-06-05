@@ -1,0 +1,62 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Domain
+	xmin=1990,xmax=2020,
+	ymin=0,ymax=16000,
+%Ticks
+	xtick distance=5,
+	minor x tick num=4,
+	/pgf/number format/1000 sep={},
+	ytick={5000,10000,15000},
+	yticklabels={5000,10000,15000},
+%Size
+	height=5.5cm,
+	width=10cm,
+%Axis Labels
+	ylabel style={align=center},
+	ylabel=Million Installed Lamps,
+	scaled y ticks=false,
+%Axis
+	axis on top=true,
+%Stacking
+	stack plots=y,
+	every axis plot/.append style={
+            % add the fill color to each `\addplot`
+            % (`.` is an abbreviation for the "current color")
+            fill=.,
+        },
+%Legend
+	legend pos=north west,
+	legend entries={LED,Fluorescent,Incandescent,Halogen},
+	legend cell align={left},
+	legend style={draw=none},
+			]
+\addplot [area legend, fill=green!20,draw=green!70]
+	table [col sep=comma, x=year, y=LED]
+	{../data/EU2020.csv} \closedcycle;
+\addplot [area legend, fill=blue!20,draw=blue!70]
+	table [col sep=comma, x=year, y=FL]
+	{../data/EU2020.csv} \closedcycle;
+\addplot [area legend, fill=red!20,draw=red!70]
+	table [col sep=comma, x=year, y=GLS]
+	{../data/EU2020.csv} \closedcycle;
+\addplot [area legend, fill=purple!20,draw=purple!70]
+	table [col sep=comma, x=year, y=HL]
+	{../data/EU2020.csv} \closedcycle;
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
