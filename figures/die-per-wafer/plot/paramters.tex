@@ -1,0 +1,73 @@
+\documentclass[crop]{standalone}
+
+\usepackage[dvipsnames]{xcolor} % For additional colors, must be loaded before tikz
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=right,
+	anchor=south west,
+%Size
+	height=5cm,
+	width=6cm,
+%Domain
+	xmin=2000,xmax=2022,
+	ymin=0,
+%Type
+	axis on top,
+%Ticks
+    scaled y ticks = false,
+	yticklabels={1,2,3,4,5},
+	ytick={1,2,3,4,5},
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel={mm},
+%Legend
+	legend entries={Exclusion Zone, Street Width},
+	legend cell align={left},
+	legend pos=south west,
+]
+\addplot []
+	table [col sep=comma, x=year, y=exclusion]
+	{../data/exclusion.csv};
+\addplot [red]
+	table [col sep=comma, x=year, y=width]
+	{../data/exclusion.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=right,
+	anchor=south west,
+%Size
+	height=5cm,
+	width=6cm,
+%Color
+	red,
+%Axis
+	axis y line*=right,
+	axis x line=none,
+%Axis Labels
+	ylabel style={align=center},
+	ylabel={$\mu$m},
+]
+\addplot [red]
+	table [col sep=comma, x=year, y=width]
+	{../data/width.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}

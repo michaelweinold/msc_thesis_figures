@@ -1,0 +1,59 @@
+\documentclass[crop]{standalone}
+
+\usepackage[dvipsnames]{xcolor} % For additional colors, must be loaded before tikz
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=top,
+	at={(0,0)},
+%Size
+	height=5cm,
+	width=6cm,
+%Domain
+	xmin=2000,xmax=2022,
+	ymin=0,
+%Type
+	ybar stacked,
+	bar width=15pt,
+	axis on top,
+%Ticks
+     scaled y ticks = false,
+	xtick={2003,2012,2020},
+	xticklabels={2003,2012,2020},
+	%yticklabels={20,40,60,80,100},
+	%ytick={20,40,60,80,100},
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel={Die/Wafer},
+%Legend
+	legend entries={Wafer Size, Exclusion Zone, Street Width},
+	legend cell align={left},
+	legend pos=north west,
+			]
+\addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!30]
+	table [col sep=comma, x=year, y=wafer-only]
+	{../data/die-per-wafer.csv};
+\addplot [ybar,draw=CadetBlue,fill=CadetBlue!30]
+	table [col sep=comma, x=year, y=wafer-plus-exclusion]
+	{../data/die-per-wafer.csv};
+\addplot [ybar,draw=Blue,fill=Blue!30]
+	table [col sep=comma, x=year, y=wafer-plus-exclusion-plus-width]
+	{../data/die-per-wafer.csv};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
