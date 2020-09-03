@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -13,8 +13,9 @@
 
 \begin{axis}[
 %Grouping
-	height=8cm,
-	width=10cm,
+    scale only axis=false, %so that dimensions are total fogure dimensions (not only axis)
+	height=200pt,
+	width=380pt,
 %Domain
 	xmin=2000, xmax=2020,
 	%ymin=0,ymax=100,
@@ -29,7 +30,7 @@
 	ylabel= Price \text{[}\$(2020)/kg\text{]},
 %Legend
 	legend cell align={left},
-	legend pos=outer north east,
+	legend pos=north west,
 	legend style={draw=none},
 	legend entries={Au,Al,Pt,Zn,W,Ti,Cr,Cu},
 ]
