@@ -7,15 +7,17 @@
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
-    scale only axis=false, %so that dimensions are total fogure dimensions (not only axis)
-	height=200pt,
-	width=380pt,
+    scale only axis=false, %axis+label dimensions (without legend)
+	height=150pt,
+	width=418pt,
 %Domain
 	xmin=2000, xmax=2020,
 	%ymin=0,ymax=100,
@@ -60,7 +62,59 @@
 	{../data/cu.csv};
 \end{axis}
 
+\end{tikzpicture}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+    scale only axis=false, %so that dimensions are total fogure dimensions (not only axis)
+	height={\dimexpr 300pt-\ht\temp},
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000, xmax=2020,
+	%ymin=0,ymax=100,
+	ymode=log,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	ylabel= Price \text{[}\$(2020)/kg\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=north west,
+	legend style={draw=none},
+	legend entries={Au,Al,Pt,Zn,W,Ti,Cr,Cu},
+]
+\addplot [orange]
+	table [col sep=comma, x=year, y=price]
+	{../data/au.csv};
+\addplot [brown]
+	table [col sep=comma, x=year, y=price]
+	{../data/al.csv};
+\addplot [blue]
+	table [col sep=comma, x=year, y=price]
+	{../data/pt.csv};
+\addplot [red]
+	table [col sep=comma, x=year, y=price]
+	{../data/zn.csv};
+\addplot [black]
+	table [col sep=comma, x=year, y=price]
+	{../data/w.csv};
+\addplot [teal]
+	table [col sep=comma, x=year, y=price]
+	{../data/ti.csv};
+\addplot [gray]
+	table [col sep=comma, x=year, y=price]
+	{../data/cr.csv};
+\addplot [red]
+	table [col sep=comma, x=year, y=price]
+	{../data/cu.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}
