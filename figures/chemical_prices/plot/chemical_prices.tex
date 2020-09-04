@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -7,14 +7,17 @@
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
-	height=8cm,
-	width=10cm,
+	height=150pt,
+	width=418pt,
 %Domain
 	xmin=2000, xmax=2020,
 	%ymin=0,ymax=100,
@@ -29,7 +32,7 @@
 	ylabel= Price \text{[}\$(2020)/kg\text{]},
 %Legend
 	legend cell align={left},
-	legend pos=outer north east,
+	legend pos=north west,
 	legend style={draw=none},
 	legend entries={H, NH$_3$},
 ]
@@ -41,7 +44,41 @@
 	{../data/ammonia.csv};
 \end{axis}
 
+\end{tikzpicture}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+    scale only axis=false,
+	height={\dimexpr 300pt-\ht\temp},
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000, xmax=2020,
+	%ymin=0,ymax=100,
+	ymode=log,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	ylabel= Price \text{[}\$(2020)/kg\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=north west,
+	legend style={draw=none},
+	legend entries={H, NH$_3$},
+]
+\addplot [blue]
+	table [col sep=comma, x=year, y=price]
+	{../data/hydrogen.csv};
+\addplot [brown]
+	table [col sep=comma, x=year, y=price]
+	{../data/ammonia.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

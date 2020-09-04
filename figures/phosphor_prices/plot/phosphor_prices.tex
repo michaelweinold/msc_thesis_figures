@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -11,15 +11,16 @@
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
-	name=left,
-	height=8cm,
-	width=10cm,
+	height=150pt,
+	width=418pt,
 %Domain
 	xmin=2000, xmax=2020,
 	ymin=0,ymax=100,
@@ -30,18 +31,48 @@
 	/pgf/number format/1000 sep={},
 %Axis
 %Axis Labels
-	ylabel={Relative Phosphor Price (2007 Level)},
+    ylabel style={align=center},
+	ylabel={YAG:Ce Phosphor Price \\ \text{[}\% of 2007 Price\text{]} },
 %Legend
 	legend cell align={left},
 	legend pos=outer north east,
 	legend style={draw=none},
 ]
-\addplot []
+\addplot [smooth]
 	table [col sep=comma, x=year, y=price]
 	{../data/phosphor.csv};
 \end{axis}
 
+\end{tikzpicture}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	height={\dimexpr 300pt-\ht\temp},
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000, xmax=2020,
+	ymin=0,ymax=100,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+    ylabel style={align=center},
+	ylabel={YAG:Ce Phosphor Price \\ \text{[}\% of 2007 Price\text{]} },
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [smooth]
+	table [col sep=comma, x=year, y=price]
+	{../data/phosphor.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}
