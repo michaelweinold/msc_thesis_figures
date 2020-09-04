@@ -1,0 +1,47 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\usetikzlibrary{pgfplots.groupplots}
+
+\pgfplotsset{compat=newest,
+			width=12cm,
+			height=12cm,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=left,
+	height=8cm,
+	width=10cm,
+%Domain
+	xmin=2000, xmax=2020,
+	ymin=0,ymax=100,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	ylabel={Relative Phosphor Price (2007 Level)},
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot []
+	table [col sep=comma, x=year, y=price]
+	{../data/phosphor.csv};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
