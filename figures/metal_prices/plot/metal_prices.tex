@@ -34,7 +34,7 @@
 	legend cell align={left},
 	legend pos=north west,
 	legend style={draw=none},
-	legend entries={Au,Al,Pt,Zn,W,Ti,Cr,Cu},
+	legend entries={Au,Al,Pt,Zn,W,Ti,Cr,Cu,Ag},
 ]
 \addplot [orange]
 	table [col sep=comma, x=year, y=price]
@@ -60,6 +60,9 @@
 \addplot [red]
 	table [col sep=comma, x=year, y=price]
 	{../data/cu.csv};
+\addplot [black]
+	table [col sep=comma, x=year, y=price]
+	{../data/ag.csv};
 \end{axis}
 
 \end{tikzpicture}}
@@ -87,7 +90,7 @@
 	legend cell align={left},
 	legend pos=north west,
 	legend style={draw=none},
-	legend entries={Au,Al,Pt,Zn,W,Ti,Cr,Cu},
+	legend entries={Au,Al,Pt,Zn,W,Ti,Cr,Cu,Ag},
 ]
 \addplot [orange]
 	table [col sep=comma, x=year, y=price]
@@ -113,6 +116,9 @@
 \addplot [red]
 	table [col sep=comma, x=year, y=price]
 	{../data/cu.csv};
+\addplot [black]
+	table [col sep=comma, x=year, y=price]
+	{../data/ag.csv};
 \end{axis}
 
 \end{tikzpicture}
