@@ -11,13 +11,15 @@
 
 \begin{document}
 
+\savebox{\temp}{
 \begin{tikzpicture}
 
 \begin{axis}[
 %Grouping
     name=electricity,
 	height=150pt,
-	width=170pt,
+	width=150pt,
+	scale only axis=false,
 %Domain
 	xmin=2000, xmax=2020,
 	ymin=0,ymax=0.1,
@@ -43,10 +45,72 @@
 %Grouping
     name=cleanroom,
 	height=150pt,
-	width=170pt,
+	width=150pt,
 	at={(electricity.west)},
-	xshift=185pt,
+	xshift=200pt,
 	anchor=west,
+	scale only axis=false,
+%Domain
+	xmin=1990, xmax=2020,
+	ymin=0,ymax=1000,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	ylabel={Price $[$\$(2020)/m$^2 \times$ year$]$},
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [only marks]
+	table [col sep=comma, x=year, y=cost]
+	{../data/cost.csv};
+\end{axis}
+
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+    name=electricity,
+	height={\dimexpr 300pt-\ht\temp},
+	width={\dimexpr 150pt+418pt-\wd\temp},
+	scale only axis=false,
+%Domain
+	xmin=2000, xmax=2020,
+	ymin=0,ymax=0.1,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	ylabel= Price \text{[}\$(2020)/kWh\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot []
+	table [col sep=comma, x=year, y=price]
+	{../data/price.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+    name=cleanroom,
+	height={\dimexpr 300pt-\ht\temp},
+	width={\dimexpr 150pt+418pt-\wd\temp},
+	at={(electricity.west)},
+	xshift=200pt,
+	anchor=west,
+	scale only axis=false,
 %Domain
 	xmin=1990, xmax=2020,
 	ymin=0,ymax=1000,
@@ -69,4 +133,5 @@
 \end{axis}
 
 \end{tikzpicture}
+
 \end{document}
