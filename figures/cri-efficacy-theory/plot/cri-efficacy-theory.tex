@@ -1,23 +1,25 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=8cm,
 			xtick pos=left,
 			ytick pos=left
 			}
+			
+\newsavebox{\temp}
 
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
 	name=left,
-	height=5cm,
-	width=5cm,
+	height=150pt,
+	width=150pt,
+	scale only axis=false,
 %Domain
 	ymin=0, ymax=500,
 	xmin=1200, xmax=10000,
@@ -51,10 +53,11 @@
 %Grouping
 	name=right,
 	at={(left.west)},
-	xshift=4cm,
+	xshift=200pt,
 	anchor=west,
-	height=5cm,
-	width=5cm,
+	height=150pt,
+	width=150pt,
+	scale only axis=false,
 %Domain
 	ymin=0, ymax=500,
 	xmin=0, xmax=100,
@@ -78,6 +81,77 @@
 	{../data/efficacy-cri.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=left,
+	height={\dimexpr 300pt-\ht\temp},
+	width={\dimexpr 150pt+418pt-\wd\temp},
+	scale only axis=false,
+%Domain
+	ymin=0, ymax=500,
+	xmin=1200, xmax=10000,
+%Ticks
+	ytick={100,200,300,400,500},
+	/pgf/number format/1000 sep={},
+	xtick = {2000,5000,8000},
+%Axis Labels
+	scaled x ticks = false,
+	xlabel style={align=center},
+	ylabel style={align=center},
+	ylabel=Maximum Theoretical \\ Luminous Efficacy \text{[}lm/W\text{]},
+	xlabel=Color Temperature \text{[}K\text{]},
+%Legend
+	legend entries={CRI=70, CRI=80, CRI=90},
+	legend cell align={left},
+	legend pos=south west,
+			]
+\addplot [smooth, orange]
+	table [col sep=comma, x=cct, y=70]
+	{../data/efficacy-cct.csv};
+\addplot [smooth, red]
+	table [col sep=comma, x=cct, y=80]
+	{../data/efficacy-cct.csv};
+\addplot [smooth, magenta]
+	table [col sep=comma, x=cct, y=90]
+	{../data/efficacy-cct.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=right,
+	at={(left.west)},
+	xshift=200pt,
+	anchor=west,
+	height={\dimexpr 300pt-\ht\temp},
+	width={\dimexpr 150pt+418pt-\wd\temp},
+	scale only axis=false,
+%Domain
+	ymin=0, ymax=500,
+	xmin=0, xmax=100,
+%Ticks
+%	xtick distance=10,
+%	minor x tick num=4,
+	yticklabels={,,},
+%Axis Labels
+	xlabel style={align=center},
+	xlabel=CRI,
+%Legend
+	legend entries={CCT=3500K, CCT=6500K},
+	legend cell align={left},
+	legend pos=south west,
+			]
+\addplot [red, smooth]
+	table [col sep=comma, x=cri, y=3500]
+	{../data/efficacy-cri.csv};
+\addplot [blue, smooth]
+	table [col sep=comma, x=cri, y=5500]
+	{../data/efficacy-cri.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

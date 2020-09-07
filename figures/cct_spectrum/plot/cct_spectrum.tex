@@ -1,19 +1,23 @@
-\documentclass{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=3cm,
 			xtick pos=left,
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
+%Dimensions
+    width=418pt,
+    height=80pt,
 %Ticks
 	scaled y ticks = false,
 	scaled x ticks = false,
@@ -29,6 +33,29 @@
 \addplot graphics [xmin=1000,xmax=12000,ymin=0,ymax=1] {../data/cct_spectrum.pdf};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Dimensions
+    width={\dimexpr 836pt-\wd\temp},
+    height=80pt,
+%Ticks
+	scaled y ticks = false,
+	scaled x ticks = false,
+	yticklabels={,,},
+	tick label style={rotate=90},
+	xtick={1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000},
+	xticklabels={1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000},
+%Axis Labels
+	xlabel=Colour Temperature \text{[}K\text{]},
+%Misc.
+	enlargelimits=false,
+]
+\addplot graphics [xmin=1000,xmax=12000,ymin=0,ymax=1] {../data/cct_spectrum.pdf};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}
