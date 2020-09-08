@@ -1,0 +1,79 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\newsavebox{\temp}
+
+\begin{document}
+
+\savebox{\temp}{
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+    scale only axis=false, %axis+label dimensions (without legend)
+	height=150pt,
+	width=418pt,
+%Domain
+	ymin=0,ymax=1,
+	xmin=380,xmax=780,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Axis
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+	ylabel=Intensity \text{[}Arb. Units\text{]},
+]
+\addplot [thick]
+	table [col sep=comma, x=nm, y=L]
+	{../data/data.csv};
+\addplot [thick]
+	table [col sep=comma, x=nm, y=M]
+	{../data/data.csv};
+\addplot [thick]
+	table [col sep=comma, x=nm, y=S]
+	{../data/data.csv};
+\end{axis}
+
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+    scale only axis=false, %axis+label dimensions (without legend)
+	height=150pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	ymin=0,ymax=1,
+	xmin=380,xmax=780,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Axis
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+	ylabel=Intensity \text{[}Arb. Units\text{]},
+]
+\addplot [thick]
+	table [col sep=comma, x=nm, y=L]
+	{../data/data.csv};
+\addplot [thick]
+	table [col sep=comma, x=nm, y=M]
+	{../data/data.csv};
+\addplot [thick]
+	table [col sep=comma, x=nm, y=S]
+	{../data/data.csv};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
