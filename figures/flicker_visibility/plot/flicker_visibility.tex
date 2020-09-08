@@ -1,22 +1,26 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=8cm,
 			xtick pos=left,
 			ytick pos=left
 			}
 			
 \usepgfplotslibrary{fillbetween}
 
+\newsavebox{\temp}
 
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
+%Position
+    name=left,
+    width=250pt,
+    height=220pt,
 %Type
 	xmode=log,ymode=log,
 %Domain
@@ -55,6 +59,117 @@
 \addplot [blue, no marks, thick, smooth] table [col sep=comma, x=frequency, y=pst1] {../data/pst1.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{axis}[
+%Position
+    name=right,
+    at={(left.west)},
+	xshift=200pt,
+	anchor=west,
+	width=220pt,
+	height=220pt,
+%Type
+	xmode=log,
+%Domain
+	xmin=1,xmax=1000,
+	ymin=0,ymax=1,
+%Grids
+%	xmajorgrids=true,
+%	xminorgrids=true,
+%	yminorgrids=true,
+%	ymajorgrids=true,
+%Ticks
+	log ticks with fixed point,
+%Labels
+	xlabel=Frequency \text{[}Hz\text{]},
+	ylabel=Rel. Sensitivity \text{[}Arb.Units\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=north west,
+	legend entries={},
+]
+\addplot [red, no marks, thick, smooth] table [col sep=comma, x=frequency, y=sensitivity]
+	{../data/weight.csv};
+\end{axis}
+
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Position
+    name=left,
+    width={\dimexpr 220pt+418pt-\wd\temp},
+    height=220pt,
+%Type
+	xmode=log,ymode=log,
+%Domain
+	xmin=1,xmax=3000,
+	ymin=0.1,ymax=100,
+%Grids
+	xmajorgrids=true,
+	xminorgrids=true,
+	yminorgrids=true,
+	ymajorgrids=true,
+%Ticks
+	log ticks with fixed point,
+%Labels
+	xlabel=Frequency \text{[}Hz\text{]},
+	ylabel=Modulation \text{[}\%\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=north west,
+	legend entries={,,,,,IEEE No Risk,,,,IEEE Low Risk,ASSIST,SVM,P$_\text{st}^{\text{LM}}$=1},
+]
+\addplot+ [no marks, black, name path=bottom_1] coordinates {(10,0.1) (100,0.1)};
+\addplot+ [no marks, black, name path=bottom_2] coordinates {(100,0.1) (3000,0.1)};
+\addplot+ [no marks,green, thick, name path=lower_1] coordinates {(10,0.1) (100,1)};
+\addplot+ [no marks,green, thick, name path=lower_2] coordinates {(100,3) (3000,100)};
+\addplot[fill opacity=0.1, green] fill between[of=lower_1 and bottom_1];
+\addplot+ [fill opacity=0.1, green] fill between[of=lower_2 and bottom_2];
+\addplot+ [solid, no marks, orange, thick, name path=upper_1] coordinates {(10,0.25) (100,02.6)};
+\addplot[fill opacity=0.1, orange] fill between[of=lower_1 and upper_1];
+\addplot+ [solid, no marks, orange, thick, name path=upper_2] coordinates {(100,7.8) (3000,260)};
+\addplot+ [fill opacity=0.1, orange] fill between[of=lower_2 and upper_2];
+%SVM
+\addplot [red, no marks, thick] table [col sep=comma, x=frequency, y=svm]
+	{../data/svm.csv};
+\addplot [purple, no marks, thick, smooth] table [col sep=comma, x=frequency, y=assist]
+	{../data/assist.csv};
+\addplot [blue, no marks, thick, smooth] table [col sep=comma, x=frequency, y=pst1] {../data/pst1.csv};
+\end{axis}
+
+\begin{axis}[
+%Position
+    name=right,
+    at={(left.west)},
+	xshift=200pt,
+	anchor=west,
+	width={\dimexpr 220pt+418pt-\wd\temp},
+	height=220pt,
+%Type
+	xmode=log,
+%Domain
+	xmin=1,xmax=1000,
+	ymin=0,ymax=1,
+%Grids
+%	xmajorgrids=true,
+%	xminorgrids=true,
+%	yminorgrids=true,
+%	ymajorgrids=true,
+%Ticks
+	log ticks with fixed point,
+%Labels
+	xlabel=Frequency \text{[}Hz\text{]},
+	ylabel=Rel. Sensitivity \text{[}Arb.Units\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=north west,
+	legend entries={},
+]
+\addplot [red, no marks, thick, smooth] table [col sep=comma, x=frequency, y=sensitivity]
+	{../data/weight.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

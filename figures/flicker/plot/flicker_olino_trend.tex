@@ -1,44 +1,116 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=8cm,
 			xtick pos=left,
 			ytick pos=left
 			}
+			
+\newsavebox{\temp}
 
 \usepgfplotslibrary{dateplot}
 
 \begin{document}
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{axis}[
+%Position
+    name=left,
+    height=200pt,
+    width=220pt,
 %Domain
-	ymax=1.1,
-	%xmax=20000,
+	ymax=140,
+	ymin=-5,
+	xmin=2015-07-30,
 %Ticks
-	%xtick distance=5,
-	%minor x tick num=4,
-	%minor y tick num=4,
+	date coordinates in=x,
+	xtick={2016-01-01,2017-01-01,2018-01-01,2019-01-01,2020-01-01},
+	%xticklabel style={rotate=90, anchor=near xticklabel},
+	xticklabel={\year},
+%Axis Labels
+	ylabel=Flicker \text{[}CDF\text{]},
+]
+\addplot [only marks]
+	table [col sep=comma, x=date, y=cdf]
+	{../data/lichtpeter/bulbs_trend.csv};
+\end{axis}
+
+\begin{axis}[
+%Position
+    name=right,
+    at={(left.west)},
+	xshift=210pt,
+	anchor=west,
+	width=220pt,
+	height=200pt,
+%Domain
+    ymin=-0.04,
+	ymax=1.04,
+	xmin=2009-12-30,
+%Ticks
+    date coordinates in=x,
 	xtick={2010-01-01,2015-01-01,2020-01-01},
-	xticklabel={2010,2015,2020},
-	xticklabel style={rotate=90, anchor=near xticklabel},
+	xticklabel={\year},
 %Axis Labels
 	ylabel=Flicker \text{[}IMI\text{]},
-%Legend
-	%
-%Dates
-	date coordinates in=x,
-			]
+]
 \addplot [only marks]
 	table [col sep=comma, x=date, y=imi]
 	{../data/olino/all_trend.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Position
+    name=left,
+    height=200pt,
+    width={\dimexpr 220pt+418pt-\wd\temp},
+%Domain
+	ymax=140,
+	ymin=-5,
+	xmin=2015-07-30,
+%Ticks
+	date coordinates in=x,
+	xtick={2016-01-01,2017-01-01,2018-01-01,2019-01-01,2020-01-01},
+	%xticklabel style={rotate=90, anchor=near xticklabel},
+	xticklabel={\year},
+%Axis Labels
+	ylabel=Flicker \text{[}CDF\text{]},
+]
+\addplot [only marks]
+	table [col sep=comma, x=date, y=cdf]
+	{../data/lichtpeter/bulbs_trend.csv};
+\end{axis}
+
+\begin{axis}[
+%Position
+    name=right,
+    at={(left.west)},
+	xshift=210pt,
+	anchor=west,
+	height=200pt,
+	width={\dimexpr 220pt+418pt-\wd\temp},
+%Domain
+    ymin=-0.04,
+	ymax=1.04,
+	xmin=2009-12-30,
+%Ticks
+    date coordinates in=x,
+	xtick={2010-01-01,2015-01-01,2020-01-01},
+	xticklabel={\year},
+%Axis Labels
+	ylabel=Flicker \text{[}IMI\text{]},
+]
+\addplot [only marks]
+	table [col sep=comma, x=date, y=imi]
+	{../data/olino/all_trend.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}
