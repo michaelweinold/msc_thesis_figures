@@ -16,9 +16,10 @@
 
 \begin{axis}[
 %Grouping
+    name=left,
     scale only axis=false, %axis+label dimensions (without legend)
 	height=150pt,
-	width=418pt,
+	width=220pt,
 %Domain
 	ymin=0,ymax=1,
 	xmin=380,xmax=780,
@@ -40,6 +41,32 @@
 \addplot [thick]
 	table [col sep=comma, x=nm, y=S]
 	{../data/data.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+    name=right,
+    scale only axis=false,
+    at={(left.west)},
+	xshift=200pt,
+	anchor=west,
+	height=150pt,
+	width=220pt,
+%Domain
+	ymin=0,ymax=1,
+	xmin=380,xmax=780,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Axis
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+	ylabel=Sensitivity \text{[}Arb. Units\text{]},
+]
+\addplot [thick]
+	table [col sep=comma, x=nm, y=lf]
+	{../data/photopic.csv};
 \end{axis}
 
 \end{tikzpicture}}
@@ -48,9 +75,10 @@
 
 \begin{axis}[
 %Grouping
-    scale only axis=false, %axis+label dimensions (without legend)
+    name=left,
+    scale only axis=false,
 	height=150pt,
-	width={\dimexpr 836pt-\wd\temp},
+	width={\dimexpr 200pt+418pt-\wd\temp},
 %Domain
 	ymin=0,ymax=1,
 	xmin=380,xmax=780,
@@ -63,17 +91,42 @@
 	xlabel=Wavelength \text{[}nm\text{]},
 	ylabel=Intensity \text{[}Arb. Units\text{]},
 ]
-\addplot [thick]
+\addplot [thick, blue]
 	table [col sep=comma, x=nm, y=L]
 	{../data/data.csv};
-\addplot [thick]
+\addplot [thick, green]
 	table [col sep=comma, x=nm, y=M]
 	{../data/data.csv};
-\addplot [thick]
+\addplot [thick, red]
 	table [col sep=comma, x=nm, y=S]
 	{../data/data.csv};
 \end{axis}
 
+\begin{axis}[
+%Grouping
+    name=right,
+    scale only axis=false, %axis+label dimensions (without legend)
+    at={(left.west)},
+	xshift=200pt,
+	anchor=west,
+	height=150pt,
+	width={\dimexpr 200pt+418pt-\wd\temp},
+%Domain
+	ymin=0,ymax=1,
+	xmin=380,xmax=780,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Axis
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+	ylabel=Sensitivity \text{[}Arb. Units\text{]},
+]
+\addplot [thick]
+	table [col sep=comma, x=nm, y=lf]
+	{../data/photopic.csv};
+\end{axis}
 \end{tikzpicture}
 
 \end{document}
