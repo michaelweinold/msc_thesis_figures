@@ -1,0 +1,94 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\definecolor{TCS01}{RGB}{232,167,176}
+\definecolor{TCS02}{RGB}{204,177,132}
+\definecolor{TCS03}{RGB}{171,193,97}
+\definecolor{TCS04}{RGB}{111,197,159}
+\definecolor{TCS05}{RGB}{127,194,223}
+\definecolor{TCS06}{RGB}{143,182,255}
+\definecolor{TCS07}{RGB}{204,165,255}
+\definecolor{TCS08}{RGB}{238,163,239}
+\definecolor{TCS09}{RGB}{233,33,76}
+\definecolor{TCS10}{RGB}{255,244,86}
+\definecolor{TCS11}{RGB}{12,172,138}
+\definecolor{TCS12}{RGB}{0,91,192}
+\definecolor{TCS13}{RGB}{255,232,218}
+\definecolor{TCS14}{RGB}{108,125,79}
+
+\newsavebox{\temp}
+
+\begin{document}
+%\savebox{\temp}{
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+    scale only axis=false, %axis+label dimensions (without legend)
+	height=150pt,
+	width=418pt,
+%Domain
+	ymin=0,ymax=1,
+	xmin=380,xmax=780,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Axis
+%Axis Labels
+	xlabel=Wavelength \text{[}nm\text{]},
+	ylabel=Reflectivity \text{[}\%/100\text{]},
+]
+\addplot [thick, color=TCS01]
+	table [col sep=comma, x=nm, y=TCS01]
+	{../data/data.csv};
+\addplot [thick, color=TCS02]
+	table [col sep=comma, x=nm, y=TCS02]
+	{../data/data.csv};
+\addplot [thick, color=TCS03]
+	table [col sep=comma, x=nm, y=TCS03]
+	{../data/data.csv};
+\addplot [thick, color=TCS04]
+	table [col sep=comma, x=nm, y=TCS04]
+	{../data/data.csv};
+\addplot [thick, color=TCS05]
+	table [col sep=comma, x=nm, y=TCS05]
+	{../data/data.csv};
+\addplot [thick, color=TCS06]
+	table [col sep=comma, x=nm, y=TCS06]
+	{../data/data.csv};
+\addplot [thick, color=TCS07]
+	table [col sep=comma, x=nm, y=TCS07]
+	{../data/data.csv};
+\addplot [thick, color=TCS08]
+	table [col sep=comma, x=nm, y=TCS08]
+	{../data/data.csv};
+\addplot [thick, color=TCS09]
+	table [col sep=comma, x=nm, y=TCS09]
+	{../data/data.csv};
+\addplot [thick, color=TCS10]
+	table [col sep=comma, x=nm, y=TCS10]
+	{../data/data.csv};
+\addplot [thick, color=TCS11]
+	table [col sep=comma, x=nm, y=TCS11]
+	{../data/data.csv};
+\addplot [thick, color=TCS12]
+	table [col sep=comma, x=nm, y=TCS12]
+	{../data/data.csv};
+\addplot [thick, color=TCS13]
+	table [col sep=comma, x=nm, y=TCS13]
+	{../data/data.csv};
+\addplot [thick, color=TCS14]
+	table [col sep=comma, x=nm, y=TCS14]
+	{../data/data.csv};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
