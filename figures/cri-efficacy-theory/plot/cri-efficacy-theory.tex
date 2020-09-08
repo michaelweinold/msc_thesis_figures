@@ -18,7 +18,7 @@
 %Grouping
 	name=left,
 	height=150pt,
-	width=150pt,
+	width=220pt,
 	scale only axis=false,
 %Domain
 	ymin=0, ymax=500,
@@ -56,7 +56,7 @@
 	xshift=200pt,
 	anchor=west,
 	height=150pt,
-	width=150pt,
+	width=220pt,
 	scale only axis=false,
 %Domain
 	ymin=0, ymax=500,
@@ -89,7 +89,7 @@
 %Grouping
 	name=left,
 	height={\dimexpr 300pt-\ht\temp},
-	width={\dimexpr 150pt+418pt-\wd\temp},
+	width={\dimexpr 200pt+418pt-\wd\temp},
 	scale only axis=false,
 %Domain
 	ymin=0, ymax=500,
@@ -127,7 +127,7 @@
 	xshift=200pt,
 	anchor=west,
 	height={\dimexpr 300pt-\ht\temp},
-	width={\dimexpr 150pt+418pt-\wd\temp},
+	width={\dimexpr 200pt+418pt-\wd\temp},
 	scale only axis=false,
 %Domain
 	ymin=0, ymax=500,
@@ -135,9 +135,12 @@
 %Ticks
 %	xtick distance=10,
 %	minor x tick num=4,
-	yticklabels={,,},
+	ytick={100,200,300,400,500},
 %Axis Labels
+	scaled x ticks = false,
 	xlabel style={align=center},
+	ylabel style={align=center},
+	ylabel=Maximum Theoretical \\ Luminous Efficacy \text{[}lm/W\text{]},
 	xlabel=CRI,
 %Legend
 	legend entries={CCT=3500K, CCT=6500K},
