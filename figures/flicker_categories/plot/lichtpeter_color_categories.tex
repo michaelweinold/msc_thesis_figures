@@ -1,22 +1,23 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=8cm,
 			xtick pos=left,
 			ytick pos=left
 			}
 
 \begin{document}
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
-%Domain
-	%
+%Position
+	height=200pt,
+	width=220pt,
 %Ticks
+    xmode=log,
+    xmin=50,
+    ymin=-5,
 	%xtick distance=5,
 	%minor x tick num=4,
 	%minor y tick num=4,
@@ -24,9 +25,7 @@
 %Axis Labels
 	ylabel=Flicker \text{[}CDF\text{]},
 	xlabel=Flux \text{[}lm\text{]},
-%Legend
-	%
-			]
+]
 \addplot [red,only marks]
 	table [col sep=comma, x=flux, y=cfd]
 	{../data/color_peter_bulb.csv};
@@ -39,6 +38,5 @@
 \legend{Bulbs, Mini Bulbs, Tubes}
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}
 \end{document}
