@@ -134,7 +134,9 @@
 \addplot [orange]
 	table [col sep=comma, x=year, y=vf]
 	{../data/osram_vf_2014.csv};
-\addplot [domain=2008:2020] {2.67};
+\addplot [domain=2000:2001.5] {2.67};
+\addplot [domain=2007.4:2020] {2.67};
+\addplot [domain=2005:2006.3] {2.67};
 \begin{pgfonlayer}{foreground}
 	\node[above,fill=white] at (2014.5,2.59) {$V_f$ ideal at $\lambda=450$nm};
 \end{pgfonlayer}
