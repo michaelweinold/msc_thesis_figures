@@ -37,7 +37,7 @@
     bar width=23pt,
 %Size
     width=595pt,
-    height=400pt,
+    height=350pt,
 %Domain
     enlarge x limits=0.04,
     ymin=0, ymax=1,
@@ -127,7 +127,7 @@
     enlarge x limits=0.04,
 %Size
     width=595pt,
-    height=400pt,
+    height=350pt,
 %Domain
     ymin=0, ymax=1,
 %Ticks and Labels
@@ -146,7 +146,7 @@
     enlarge x limits=0.04,
 %Size
     width=595pt,
-    height=400pt,
+    height=350pt,
 %Domain
     ymin=0, ymax=1,
 %Ticks and Labels
@@ -158,6 +158,7 @@
     nodes near coords={\labela},
 ]
 \addplot [scatter, only marks, no markers] table [col sep=comma, x expr = \coordindex, y=y] {../data/2010/labels2.csv};
+\node[draw=black,anchor=east,align=right] at (canvas cs:x=522.5pt,y=284pt) {Percentages indicate losses of remaining energy at point of loss channel. Absolute losses in W below. \\ Percentages for \textcolor{red}{red}, \textcolor{teal}{green} and \textcolor{blue}{blue} loss channels indicate losses of remaining \textcolor{red}{R}/\textcolor{teal}{G}/\textcolor{blue}{B} light energy.};
 \end{axis}
 
 \end{tikzpicture}
