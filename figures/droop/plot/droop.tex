@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -7,14 +7,17 @@
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
-	height=8cm,
-	width=10cm,
+	height=150pt,
+	width=418pt,
 %Domain
 	xmin=2000, xmax=2020,
 	ymin=0,ymax=40,
@@ -29,7 +32,7 @@
 	ylabel=Efficiency Droop at 350mA \text{[}\%\text{]},
 %Legend
 	legend cell align={left},
-	legend pos=outer north east,
+	legend pos=south west,
 	legend style={draw=none},
 	legend entries={DOE Average, DOE Targets,Classical Chip,Thin-Film Flip-Chip, CSP Flip-Chip},
 			]
@@ -54,7 +57,54 @@
 	{../data/fc.csv};
 \end{axis}
 
+\end{tikzpicture}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	height=150pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000, xmax=2020,
+	ymin=0,ymax=40,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+%Axis Labels
+	xlabel style = {align=center},
+	ylabel=Efficiency Droop at 350mA \text{[}\%\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=south west,
+	legend style={draw=none},
+	legend entries={DOE Average, DOE Targets,Classical Chip,Thin-Film Flip-Chip, CSP Flip-Chip},
+			]
+	]
+\addplot [black]
+	table [col sep=comma, x=year, y=droop]
+	{../data/doe.csv};
+\addplot [black, dashed]
+	table [col sep=comma, x=year, y=droop]
+	{../data/doe_targets.csv};
+% Classical
+\addplot [red, only marks]
+	table [col sep=comma, x=year, y=droop]
+	{../data/classical.csv};
+% TFFC
+\addplot [orange, only marks]
+	table [col sep=comma, x=year, y=droop]
+	{../data/tffc.csv};
+% FC
+\addplot [teal, only marks]
+	table [col sep=comma, x=year, y=droop]
+	{../data/fc.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

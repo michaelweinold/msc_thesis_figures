@@ -1,16 +1,16 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \begin{document}
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{axis}[
 %Grouping
 	name=rebel,
 	height=5cm,
-	width=4cm,
+	width=4.4cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
@@ -31,10 +31,10 @@
 %Grouping
 	name=narrow,
 	at={(rebel.west)},
-	xshift=3cm,
+	xshift=3.5cm,
 	anchor=west,
 	height=5cm,
-	width=4cm,
+	width=4.4cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
@@ -56,10 +56,10 @@
 %Grouping
 	name=trigain,
 	at={(narrow.west)},
-	xshift=3cm,
+	xshift=3.5cm,
 	anchor=west,
 	height=5cm,
-	width=4cm,
+	width=4.4cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
@@ -81,10 +81,10 @@
 %Grouping
 	name=qd,
 	at={(trigain.west)},
-	xshift=3cm,
+	xshift=3.5cm,
 	anchor=west,
 	height=5cm,
-	width=4cm,
+	width=4.4cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
