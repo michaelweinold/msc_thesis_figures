@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -11,17 +11,20 @@
 
 \usetikzlibrary{calc}
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
 	name=classical,
 	at={(0,0)},
 %Size
-	height=5cm,
-	width=10cm,
+	height=150pt,
+	width=418pt,
 %Domain
 	xmin=2000,xmax=2020,
 	ymin=0,ymax=100,
@@ -53,11 +56,11 @@
 %Grouping
 	name=thin,
 	at={(classical.west)},
-	yshift=-3.6cm,
+	yshift=-3.8cm,
 	anchor=west,
 %Size
-	height=5cm,
-	width=10cm,
+	height=150pt,
+	width=418pt,
 %Domain
 	xmin=2000,xmax=2020,
 	ymin=0,ymax=100,
@@ -85,11 +88,11 @@
 %Grouping
 	name=flip,
 	at={(thin.west)},
-	yshift=-3.6cm,
+	yshift=-3.8cm,
 	anchor=west,
 %Size
-	height=5cm,
-	width=10cm,
+	height=150pt,
+	width=418pt,
 %Domain
 	xmin=2000,xmax=2020,
 	ymin=0,ymax=100,
@@ -111,6 +114,106 @@
 \addplot [blue, only marks, mark=triangle] table [col sep=comma, x=year, y=lee]{../data/flip_mirror.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=classical,
+	at={(0,0)},
+%Size
+	height=150pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000,xmax=2020,
+	ymin=0,ymax=100,
+%Axis ticks
+	xtick distance=5,
+	xticklabels={,,},
+	ytick={20,40,60,80,100},
+%Axis labels
+	ylabel style = {align=center},
+	ylabel=Classical Chip,
+	/pgf/number format/1000 sep={},
+%Legend
+	legend entries={Ni/Au,Planar ITO,Text. ITO,PSS + Ni/Au, PSS + ITO, PSS + text. ITO, ZnO, Photonic Crystals},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [red, only marks, mark=o] table [col sep=comma, x=year, y=lee]{../data/classical_niau.csv};
+\addplot [red, only marks, mark=halfcircle] table [col sep=comma, x=year, y=lee]{../data/classical_planar-ito.csv};
+\addplot [red, only marks, mark=otimes] table [col sep=comma, x=year, y=lee]{../data/classical_textured-ito.csv};
+\addplot [red, only marks, mark=diamond] table [col sep=comma, x=year, y=lee]{../data/classical_pss+niau.csv};
+\addplot [red, only marks, mark=halfdiamond*] table [col sep=comma, x=year, y=lee]{../data/classical_pss+ito.csv};
+\addplot [red, only marks, mark=diamond*] table [col sep=comma, x=year, y=lee]{../data/classical_pss+patterned-ito.csv};
+\addplot [red, only marks, mark=triangle] table [col sep=comma, x=year, y=lee]{../data/classical_zno.csv};
+\addplot [red, only marks, mark=square*] table [col sep=comma, x=year, y=lee]{../data/classical_pc.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=thin,
+	at={(classical.west)},
+	yshift=-3.8cm,
+	anchor=west,
+%Size
+	height=150pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000,xmax=2020,
+	ymin=0,ymax=100,
+%Axis ticks
+	xtick distance=5,
+	xticklabels={,,},
+	ytick={20,40,60,80,100},
+%Axis labels
+	ylabel style = {align=center},
+	ylabel=Thin-Film Flip-Chip,
+%Legend
+	legend entries={Planar Surface, Text. Surface, Mirrors, PSS, Microlenses},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [orange, only marks, mark=o] table [col sep=comma, x=year, y=lee]{../data/thin_planar.csv};
+\addplot [orange, only marks, mark=otimes] table [col sep=comma, x=year, y=lee]{../data/thin_textured.csv};
+\addplot [orange, only marks, mark=triangle] table [col sep=comma, x=year, y=lee]{../data/thin_mirror.csv};
+\addplot [orange, only marks, mark=diamond] table [col sep=comma, x=year, y=lee]{../data/thin_pss.csv};
+\addplot [orange, only marks, mark=pentagon*] table [col sep=comma, x=year, y=lee]{../data/thin_micro.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=flip,
+	at={(thin.west)},
+	yshift=-3.8cm,
+	anchor=west,
+%Size
+	height=150pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000,xmax=2020,
+	ymin=0,ymax=100,
+%Axis ticks
+	xtick distance=5,
+	ytick={20,40,60,80,100},
+%Axis labels
+	ylabel style = {align=center},
+	ylabel=LEE \text{[}\%\text{]} \\ Flip-Chip,
+	/pgf/number format/1000 sep={},
+%Legend
+	legend entries={CSP, PSS, Mirrors},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [teal, only marks, mark=10-pointed star] table [col sep=comma, x=year, y=lee]{../data/flip_csp.csv};
+\addplot [blue, only marks, mark=diamond] table [col sep=comma, x=year, y=lee]{../data/flip_pss.csv};
+\addplot [blue, only marks, mark=triangle] table [col sep=comma, x=year, y=lee]{../data/flip_mirror.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}
