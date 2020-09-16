@@ -154,6 +154,35 @@
 
 \begin{axis}[
 %Grouping
+	at={(0,0)},
+%Size
+	height=150pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000,xmax=2020,
+	ymin=0,ymax=100,
+%Axis ticks
+	xtick distance=5,
+	xticklabels={,,},
+	ytick={20,40,60,80,100},
+%Axis labels
+	ylabel style = {align=center},
+	ylabel=Classical Chip,
+	/pgf/number format/1000 sep={},
+%Legend
+	legend entries={Simulation, Experiment Direct, Experiment Estimated},
+	legend cell align={left},
+	legend pos=south east,
+	legend style={draw=none},
+]
+\addplot [black, only marks, mark=o,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/classical_simulated.csv};
+\addplot [black, only marks, mark=square,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/classical_direct.csv};
+\addplot [black, only marks, mark=triangle,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/classical_estimated.csv};
+\end{axis}
+
+
+\begin{axis}[
+%Grouping
 	name=thin,
 	at={(classical.west)},
 	yshift=-3.8cm,
@@ -182,6 +211,9 @@
 \addplot [orange, only marks, mark=triangle] table [col sep=comma, x=year, y=lee]{../data/thin_mirror.csv};
 \addplot [orange, only marks, mark=diamond] table [col sep=comma, x=year, y=lee]{../data/thin_pss.csv};
 \addplot [orange, only marks, mark=pentagon*] table [col sep=comma, x=year, y=lee]{../data/thin_micro.csv};
+\addplot [black, only marks, mark=o,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/thin_simulated.csv};
+\addplot [black, only marks, mark=square,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/thin_direct.csv};
+\addplot [black, only marks, mark=triangle,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/thin_estimated.csv};
 \end{axis}
 
 \begin{axis}[
@@ -212,6 +244,9 @@
 \addplot [teal, only marks, mark=10-pointed star] table [col sep=comma, x=year, y=lee]{../data/flip_csp.csv};
 \addplot [blue, only marks, mark=diamond] table [col sep=comma, x=year, y=lee]{../data/flip_pss.csv};
 \addplot [blue, only marks, mark=triangle] table [col sep=comma, x=year, y=lee]{../data/flip_mirror.csv};
+\addplot [black, only marks, mark=o,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/flip_simulated.csv};
+\addplot [black, only marks, mark=square,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/flip_direct.csv};
+\addplot [black, only marks, mark=triangle,mark options={scale=2}] table [col sep=comma, x=year, y=lee]{../data/flip_estimated.csv};
 \end{axis}
 
 \end{tikzpicture}
