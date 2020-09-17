@@ -8,16 +8,66 @@
 
 \begin{axis}[
 %Grouping
-	name=rebel,
+	name=top-left,
 	height=5cm,
-	width=4.4cm,
+	width=5.7cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
 %Axis Labels
 	xlabel style = {align=center},
 	ylabel=Intensity \text{[}Arb.Units\text{]},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Philips Lumiramic,
+	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce (1998),
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/nichia_1998_first.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=top-center,
+	at={(top-left.west)},
+	xshift=4.55cm,
+	anchor=west,
+	height=5cm,
+	width=5.7cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ \ch{M_2Si_5N_8}+\ch{MSi_2O_2N_2} (2004),
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/lumileds_2004_red.csv};
+\end{axis}
+
+
+\begin{axis}[
+%Grouping
+	name=top-right,
+	at={(top-center.west)},
+	xshift=4.55cm,
+	anchor=west,
+	height=5cm,
+	width=5.7cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Axis Labels
+	xlabel style = {align=center},
+	yticklabels={,,},
+	xlabel=Wavelength \text{[}nm\text{]} \\ Lumiramic,
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
@@ -29,20 +79,19 @@
 
 \begin{axis}[
 %Grouping
-	name=narrow,
-	at={(rebel.west)},
-	xshift=3.5cm,
+	name=bottom-left,
+	at={(top-left.west)},
+	yshift=-5cm,
 	anchor=west,
 	height=5cm,
-	width=4.4cm,
+	width=5.7cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
-%Ticks
-	yticklabels={,,},
 %Axis Labels
+	ylabel=Intensity \text{[}Arb.Units\text{]},
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Philips Narrow,
+	xlabel=Wavelength \text{[}nm\text{]} \\ Lumileds Narrow,
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
@@ -54,12 +103,12 @@
 
 \begin{axis}[
 %Grouping
-	name=trigain,
-	at={(narrow.west)},
-	xshift=3.5cm,
+	name=bottom-center,
+	at={(bottom-left.west)},
+	xshift=4.55cm,
 	anchor=west,
 	height=5cm,
-	width=4.4cm,
+	width=5.7cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
@@ -67,32 +116,7 @@
 	yticklabels={,,},
 %Axis Labels
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ GE TriGain,
-			]
-\addplot [red]
-	table [col sep=comma, x=wavelength, y=sensitivity]
-	{../data/luminosity.csv};
-\addplot []
-	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/ge_trigain.csv};
-\end{axis}
-
-\begin{axis}[
-%Grouping
-	name=qd,
-	at={(trigain.west)},
-	xshift=3.5cm,
-	anchor=west,
-	height=5cm,
-	width=4.4cm,
-%Domain
-	ymin=0, ymax=1,
-	xmin=400, xmax=750,
-%Ticks
-	yticklabels={,,},
-%Axis Labels
-	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Osram QD,
+	xlabel=Wavelength \text{[}nm\text{]} \\ (G/Y)+(R)QD (2019),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
@@ -102,7 +126,31 @@
 	{../data/osram_qd.csv};
 \end{axis}
 
+\begin{axis}[
+%Grouping
+	name=bottom-right,
+	at={(bottom-center.west)},
+	xshift=4.55cm,
+	anchor=west,
+	height=5cm,
+	width=5.7cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Ticks
+	yticklabels={,,},
+%Axis Labels
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ (G/Y)+PFS (2013),
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/ge_trigain.csv};
+\end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \end{tikzpicture}
 \end{document}
