@@ -17,14 +17,14 @@
 %Axis Labels
 	xlabel style = {align=center},
 	ylabel=Intensity \text{[}Arb.Units\text{]},
-	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce (1998),
+	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce$^{3+}$ (1998),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/nichia_1998_first.csv};
+	{../data/sources/1998_nichia_yag.csv};
 \end{axis}
 
 \begin{axis}[
@@ -42,14 +42,14 @@
 	yticklabels={,,},
 %Axis Labels
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ \ch{M_2Si_5N_8}+\ch{MSi_2O_2N_2} (2004),
+	xlabel=Wavelength \text{[}nm\text{]} \\ Y$^\star$+\ch{M_2Si_5N_8:Eu^{2+}} (2004),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/lumileds_2004_red.csv};
+	{../data/sources/2004_lumileds_Eu.csv};
 \end{axis}
 
 
@@ -67,14 +67,14 @@
 %Axis Labels
 	xlabel style = {align=center},
 	yticklabels={,,},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Lumiramic,
+	xlabel=Wavelength \text{[}nm\text{]} \\ G$^\dagger$+O$^\ddagger$+SLA (2013),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/lumileds_lumiramic.csv};
+	{../data/sources/2014_lumileds_sla.csv};
 \end{axis}
 
 \begin{axis}[
@@ -91,14 +91,14 @@
 %Axis Labels
 	ylabel=Intensity \text{[}Arb.Units\text{]},
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Lumileds Narrow,
+	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce$^{3+}$+PFS (2013),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/luxeon_narrow.csv};
+	{../data/ge_trigain.csv};
 \end{axis}
 
 \begin{axis}[
@@ -116,14 +116,23 @@
 	yticklabels={,,},
 %Axis Labels
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ (G/Y)+(R)QD (2019),
+	xlabel={Wavelength \text{[}nm\text{]} \\ ?+(R)QD (2017/19)},
+%Legend
+%Legend
+	legend cell align=left,
+	legend pos=north west,
+	legend style={draw=none},
+	legend entries={,2017,2019},
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
+\addplot [dashed]
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/sources/2017_lumileds_qd.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/osram_qd.csv};
+	{../data/sources/2019_osram_qd.csv};
 \end{axis}
 
 \begin{axis}[
@@ -141,15 +150,19 @@
 	yticklabels={,,},
 %Axis Labels
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce+PFS (2013),
+	xlabel=Wavelength \text{[}nm\text{]} \\ ?+SALON (2019),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/ge_trigain.csv};
+	{../data/sources/2019_osram_salon.csv};
 \end{axis}
+
+%$^\dagger$\ch{Lu_3Al_5O_{12}:Ce^{3+}}
+%$^\ddagger$\ch{(Ba,Sr)_2Si_5N_8:Eu^{2+}}
+%§^\star$$\beta$-SiAlON:Eu$^{2+}$
 
 
 \end{tikzpicture}
