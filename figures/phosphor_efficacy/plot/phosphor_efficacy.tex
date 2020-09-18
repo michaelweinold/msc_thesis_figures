@@ -1,0 +1,72 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+
+\newsavebox{\temp}
+
+\begin{document}
+
+\savebox{\temp}{
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	height=220pt,
+	width=418pt,
+%Domain
+	xmin=80, xmax=100,
+	ymin=280,ymax=350,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Axis Labels
+	xlabel={Color Rendering Performance \text{[}CRI\text{]} },
+	ylabel=Efficacy \text{[}lm/W\text{]},
+%Labels
+    visualization depends on={value \thisrow{label} \as \labela},
+    visualization depends on={value \thisrow{year} \as \labelb},
+    nodes near coords={\labelb \\ \labela},
+    %nodes near coords align={horizontal},
+    every node near coord/.append style={align=center,text width=1.5cm, yshift=+2pt,fill=white}
+]
+\addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy.csv};
+\end{axis}
+
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	height=220pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=80, xmax=100,
+	ymin=280,ymax=350,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Axis Labels
+	xlabel={Color Rendering Performance \text{[}CRI\text{]} },
+	ylabel=Efficacy \text{[}lm/W\text{]},
+%Labels
+    visualization depends on={value \thisrow{label} \as \labela},
+    visualization depends on={value \thisrow{year} \as \labelb},
+    nodes near coords={\labelb \\ \labela},
+    %nodes near coords align={horizontal},
+    every node near coord/.append style={align=center,text width=1.5cm, yshift=+2pt,fill=white}
+]
+\addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy.csv};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
