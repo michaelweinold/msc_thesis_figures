@@ -15,30 +15,59 @@
 
 \begin{axis}[
 %Grouping
-	height=150pt,
+	height=350pt,
 	width=418pt,
 %Domain
-	xmin=2000, xmax=2020,
-	ymax=50,
+	xmin=1850,
+	xmax=2020,
+	ymax=1000,
 	ymode=log,
 	log ticks with fixed point,
 %Ticks
-	ytick={1,10,20,30,40},
 	/pgf/number format/1000 sep={},
 %Axis Labels
-	ylabel= Price \text{[}\$(2020)/wafer\text{]},
+	ylabel= Efficacy \text{[}lm/W\text{]},
 %Legend
 	legend cell align=left,
-	legend pos=south west,
+	legend pos=south east,
 	legend style={draw=none},
-	legend entries={},
+	legend entries={,Fire,, Incandescent,,HID},
 ]
-\addplot [blue, only marks, mark=o]
-	table [col sep=comma, x=year, y=price]
-	{../data/2-nps-monocrystal.csv};
-\addplot [orange, only marks, mark=o]
-	table [col sep=comma, x=year, y=price]
-	{../data/4-nps-monocrystal.csv};
+\addplot [domain=1850:2020] {408};
+\node[above,fill=white,anchor=west] at (1860,405) {Max. Efficacy K=408lm/W at CRI=90};
+\addplot [red, only marks]
+	table [col sep=comma, x=year, y=ler]
+	{../data/fire.csv};
+\addplot [red, smooth, dashed]
+	table [col sep=comma, x=year, y=data]
+	{../data/fire_trend.csv};
+\node[anchor=west] at (1850,0.035) {Fatwood};
+\node[anchor=west] at (1858,0.068) {Candles};
+\node[anchor=west] at (1882,0.19) {Oil Lamps};
+\node[anchor=west] at (1900,0.6) {Welsbach Mantle Gas Lantern};
+\addplot [orange, only marks]
+	table [col sep=comma, x=year, y=ler]
+	{../data/incandescent.csv};
+\addplot [orange, smooth, dashed]
+	table [col sep=comma, x=year, y=data]
+	{../data/incandescent_trend.csv};
+\node[anchor=west] at (1860,4) {Carbon Filament};
+\node[anchor=west] at (1873,13) {Tungsten Filament};
+\addplot [yellow, only marks]
+	table [col sep=comma, x=year, y=ler]
+	{../data/hid.csv};
+\addplot [yellow, smooth, dashed]
+	table [col sep=comma, x=year, y=data]
+	{../data/hid_trend.csv};
+\addplot [red, smooth, dashed]
+	table [col sep=comma, x=year, y=data]
+	{../data/red_trend.csv};
+\addplot [teal, smooth, dashed]
+	table [col sep=comma, x=year, y=data]
+	{../data/green_trend.csv};
+\addplot [blue, smooth, dashed]
+	table [col sep=comma, x=year, y=data]
+	{../data/blue_trend.csv};
 \end{axis}
 \end{tikzpicture}
 
