@@ -1,23 +1,24 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=6cm,
 			xtick pos=left,
 			ytick pos=left
 			}
+			
+\newsavebox{\temp}
 
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
 	name=high,
-	height=5cm,
-	width=10cm,
+	height=4.8cm,
+	width=418pt,
 %Type
 	ybar stacked,
 	bar width=15pt,
@@ -66,8 +67,8 @@
 	at={(high.west)},
 	yshift=-3.9cm,
 	anchor=west,
-	height=5cm,
-	width=10cm,
+	height=4.8cm,
+	width=418pt,
 %Type
 	ybar stacked,
 	bar width=15pt,
@@ -110,8 +111,8 @@
 	at={(high.west)},
 	yshift=-3.9cm,
 	anchor=west,
-	height=5cm,
-	width=10cm,
+	height=4.8cm,
+	width=418pt,
 	axis y line*=right,
 	axis x line=none,
 %Type
@@ -121,18 +122,146 @@
 	ymin=0,ymax=100,
 	xmin=2007,xmax=2021,
 %Axis Labels
-	ylabel style = {align=center},
+	ylabel style = {align=center, red},
 	ylabel=Lamp Cost / Flux \\ \text{[}\$(2020)/klm\text{]},
 	/pgf/number format/1000 sep={},
+	xtick pos=top,
 %Legend
-	legend entries={DOE SSL Reports},
-	legend cell align={left},
-	legend pos=north east,
+%	legend entries={DOE SSL Reports},
+%	legend cell align={left},
+%	legend pos=north east,
 ]
 \addplot [red]
 	table [col sep=comma, x=year, y=cpl]
 	{../data/cost_doe.csv};
 \end{axis}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=high,
+	height=4.8cm,
+	width={\dimexpr 836pt-\wd\temp},
+%Type
+	ybar stacked,
+	bar width=15pt,
+	nodes near coords,
+	axis on top,
+%Domain
+	ymin=0,ymax=100,
+	xmin=2007,xmax=2021,
+%Axis Labels
+	ylabel style = {align=center},
+	ylabel=Rel. Manuf. Cost \\ \text{[}\%\text{]},
+	%xticklabels={,,},
+	/pgf/number format/1000 sep={},
+%Legend
+	legend entries={Driver, Mechanical, Package, Overhead, Optics, Electrical, Assembly},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [ybar,fill=red!20,draw=black!70]
+	table [col sep=comma, x=year, y=driver]
+	{../data/cost-breakdown_relative.csv};
+\addplot [ybar,fill=orange!20,draw=black!70]
+	table [col sep=comma, x=year, y=mech]
+	{../data/cost-breakdown_relative.csv};
+\addplot [ybar,fill=blue!20,draw=black!70]
+	table [col sep=comma, x=year, y=package]
+	{../data/cost-breakdown_relative.csv};
+\addplot [ybar,fill=gray!20,draw=black!70]
+	table [col sep=comma, x=year, y=overhead]
+	{../data/cost-breakdown_relative.csv};
+\addplot [ybar,fill=yellow!20,draw=black!70]
+	table [col sep=comma, x=year, y=optics]
+	{../data/cost-breakdown_relative.csv};
+\addplot [ybar,fill=brown!20,draw=black!70]
+	table [col sep=comma, x=year, y=electrical]
+	{../data/cost-breakdown_relative.csv};
+\addplot [ybar,fill=green!20,draw=black!70]
+	table [col sep=comma, x=year, y=assembly]
+	{../data/cost-breakdown_relative.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=mid,
+	at={(high.west)},
+	yshift=-3.9cm,
+	anchor=west,
+	height=4.8cm,
+	width={\dimexpr 836pt-\wd\temp},
+%Type
+	ybar stacked,
+	bar width=15pt,
+	axis on top,
+%Domain
+	ymin=0,ymax=100,
+	xmin=2007,xmax=2021,
+%Axis Labels
+	ylabel style = {align=center},
+	ylabel=Rel. Manuf. Cost \\ $\times$ Lamp Cost \text{[}\%\text{]},
+	xticklabels={,,},
+	/pgf/number format/1000 sep={},
+]
+\addplot [ybar,fill=red!20,draw=black!70]
+	table [col sep=comma, x=year, y=driver]
+	{../data/cost-breakdown_absolute.csv};
+\addplot [ybar,fill=orange!20,draw=black!70]
+	table [col sep=comma, x=year, y=mech]
+	{../data/cost-breakdown_absolute.csv};
+\addplot [ybar,fill=blue!20,draw=black!70]
+	table [col sep=comma, x=year, y=package]
+	{../data/cost-breakdown_absolute.csv};
+\addplot [ybar,fill=gray!20,draw=black!70]
+	table [col sep=comma, x=year, y=overhead]
+	{../data/cost-breakdown_absolute.csv};
+\addplot [ybar,fill=yellow!20,draw=black!70]
+	table [col sep=comma, x=year, y=optics]
+	{../data/cost-breakdown_absolute.csv};
+\addplot [ybar,fill=brown!20,draw=black!70]
+	table [col sep=comma, x=year, y=electrical]
+	{../data/cost-breakdown_absolute.csv};
+\addplot [ybar,fill=green!20,draw=black!70]
+	table [col sep=comma, x=year, y=assembly]
+	{../data/cost-breakdown_absolute.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=mid2,
+	at={(high.west)},
+	yshift=-3.9cm,
+	anchor=west,
+	height=4.8cm,
+	width={\dimexpr 836pt-\wd\temp},
+	axis y line*=right,
+	axis x line=none,
+%Type
+	log ticks with fixed point,
+	axis on top,
+%Domain
+	ymin=0,ymax=100,
+	xmin=2007,xmax=2021,
+%Axis Labels
+	ylabel style = {align=center, red},
+	ylabel=Lamp Cost / Flux \\ \text{[}\$(2020)/klm\text{]},
+	/pgf/number format/1000 sep={},
+	xtick pos=top,
+%Legend
+%	legend entries={DOE SSL Reports},
+%	legend cell align={left},
+%	legend pos=north east,
+]
+\addplot [red]
+	table [col sep=comma, x=year, y=cpl]
+	{../data/cost_doe.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

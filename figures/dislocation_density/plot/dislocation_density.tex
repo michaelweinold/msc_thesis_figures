@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -7,15 +7,18 @@
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
 	name=left,
-	height=7cm,
-	width=2.5cm,
+	height=150pt,
+	width=70pt,
 %Domain
 	xmin=1983, xmax=1987,
 	ymin=1E5,ymax=2E11,
@@ -28,8 +31,8 @@
 	ymode=log,
 	scaled y ticks = false,
 %Axis Labels
-	xlabel style = {align=center},
-	ylabel=Threading Dislocation Density \text{[}cm$^{-2}$\text{]},
+	ylabel style = {align=center},
+	ylabel=Threading Dislocation \\ Density \text{[}cm$^{-2}$\text{]},
 ]
 % Planar
 \addplot [
@@ -66,10 +69,10 @@
 %Grouping
 	name=right,
 	at={(left.west)},
-	xshift=1.2cm,
+	xshift=30pt,
 	anchor=west,
-	height=7cm,
-	width=8cm,
+	height=150pt,
+	width=350pt,
 %Domain
 	xmin=1995, xmax=2020,
 	ymin=1E5,ymax=2E11,
@@ -124,6 +127,123 @@
 \end{axis}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=left,
+	height=150pt,
+	width=70pt,
+%Domain
+	xmin=1983, xmax=1987,
+	ymin=1E5,ymax=2E11,
+%Ticks
+	xtick={1985},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis
+	ymode=log,
+	scaled y ticks = false,
+%Axis Labels
+	ylabel style = {align=center},
+	ylabel=Threading Dislocation \\ Density \text{[}cm$^{-2}$\text{]},
+]
+% Planar
+\addplot [
+	violet,
+	mark=0,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=year,
+	y=av,
+	y error plus=max,
+	y error minus=min,
+] {../data/planar.csv};
+% Buffer Layer (AlN)
+\addplot [
+	blue,
+	only marks,
+	mark=0,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=year,
+	y=av,
+	y error plus=max,
+	y error minus=min,
+] {../data/buffer-AlN.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=right,
+	at={(left.west)},
+	xshift=30pt,
+	anchor=west,
+	height=150pt,
+	width={\dimexpr 770pt-\wd\temp},
+%Domain
+	xmin=1995, xmax=2020,
+	ymin=1E5,ymax=2E11,
+%Ticks
+	xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+	/pgf/number format/1000 sep={},
+	yticklabels={,,},
+%Axis
+	ymode=log,
+	scaled y ticks = false,
+%Legend
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+	legend entries={Direct Growth, Buffer Layer (AlN),Buffer Layer (GaN), Cantilever, PSS, Buffer Layer (SiN), Buffer Layer (Atomic Dep.)},
+			]
+	]
+% Planar
+\addplot [violet,only marks]
+	table [col sep=comma, x=year, y=av]
+	{../data/planar.csv};
+% Buffer Layer (AlN)
+\addplot [blue,only marks]
+	table [col sep=comma, x=year, y=av]
+	{../data/buffer-AlN_2.csv};
+% Buffer Layer (GaN)
+\addplot [red,only marks]
+	table [col sep=comma, x=year, y=av]
+	{../data/buffer-GaN.csv};
+%Cantilever
+\addplot [green,only marks]
+	table [col sep=comma, x=year, y=av]
+	{../data/cantilever.csv};
+%PSS
+\addplot [orange,only marks]
+	table [col sep=comma, x=year, y=av]
+	{../data/pss.csv};
+% Buffer Layer (SiN)
+\addplot [black,only marks]
+	table [col sep=comma, x=year, y=av]
+	{../data/buffer-SiN.csv};
+% Buffer Layer (by Atomic Layer Dep.)
+\addplot [brown,only marks]
+	table [col sep=comma, x=year, y=av]
+	{../data/atomiclayer.csv};
+% Industry Range
+\draw [] (axis cs: 2012,1E8) -- (axis cs: 2020,1E8);
+\draw [] (axis cs: 2012,5E8) -- (axis cs: 2020,5E8);
+\node[below,black] at (2015,1E8) {Industry Range};
+\end{axis}
+
 \end{tikzpicture}
+
+
 \end{document}

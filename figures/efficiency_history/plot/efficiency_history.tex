@@ -1,0 +1,46 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+			
+\newsavebox{\temp}
+
+\begin{document}
+%\savebox{\temp}{
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	height=150pt,
+	width=418pt,
+%Domain
+	xmin=2000, xmax=2020,
+	ymax=50,
+	ymode=log,
+	log ticks with fixed point,
+%Ticks
+	ytick={1,10,20,30,40},
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel= Price \text{[}\$(2020)/wafer\text{]},
+%Legend
+	legend cell align=left,
+	legend pos=south west,
+	legend style={draw=none},
+	legend entries={},
+]
+\addplot [blue, only marks, mark=o]
+	table [col sep=comma, x=year, y=price]
+	{../data/2-nps-monocrystal.csv};
+\addplot [orange, only marks, mark=o]
+	table [col sep=comma, x=year, y=price]
+	{../data/4-nps-monocrystal.csv};
+\end{axis}
+\end{tikzpicture}
+
+
+\end{document}

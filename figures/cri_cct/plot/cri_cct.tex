@@ -1,0 +1,61 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\usetikzlibrary{pgfplots.statistics} %For boxplots
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\newsavebox{\temp}
+
+\begin{document}
+
+%\savebox{\temp}{
+\begin{tikzpicture}
+
+\begin{axis}[
+%Position
+    name=categories,
+    %at={(peter.north west)},
+	%anchor=west,
+	height=258pt,
+	width=200pt,
+	%xshift=220pt,
+%Ticks
+    xmin=2000,xmax=7500,
+    ymin=72,ymax=100,
+	%xtick distance=5,
+	%minor x tick num=4,
+	%minor y tick num=4,
+	%/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Color Rendering \text{[}CRI\text{]},
+	xlabel=Color Temperature \text{[}CCT\text{]},
+]
+\addplot [yellow,only marks, mark options={scale=3}]
+	table [col sep=comma, x=cct, y=cri]
+	{../data/below5k.csv};
+\addplot [orange,only marks, mark options={scale=2}]
+	table [col sep=comma, x=cct, y=cri]
+	{../data/below4k.csv};
+\addplot [red,only marks]
+	table [col sep=comma, x=cct, y=cri]
+	{../data/below3k.csv};
+\addplot [cyan,only marks, mark options={scale=0.5}]
+	table [col sep=comma, x=cct, y=cri]
+	{../data/below2k.csv};
+\addplot [blue,only marks, mark options={scale=0.25}]
+	table [col sep=comma, x=cct, y=cri]
+	{../data/below1k.csv};
+\legend{$<$5klm, $<$4klm, $<$3klm, $<$2klm, $<$1klm}
+\addplot [blue, domain=1000:7500] {75};
+\addplot [blue, domain=1000:7500] {80};
+\node[blue, anchor=west] at (2800,77.4) {Average Range for CFL};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}

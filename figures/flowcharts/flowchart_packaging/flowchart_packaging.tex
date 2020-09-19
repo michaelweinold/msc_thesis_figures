@@ -1,0 +1,75 @@
+\documentclass[12pt,a4paper]{standalone}
+
+\usepackage{tabularx} %For tables with flexible column width
+\usepackage{amsmath} %For basic functionality
+\usepackage{tikz} %For drawing arrows etc.
+\usetikzlibrary{tikzmark} %For tikz coordinate management
+
+%pgfplot
+\usepackage{./supplementary/header/header_pgfplot_standalone}
+
+% Table Setup
+\renewcommand\tabularxcolumn[1]{m{#1}}% for vertical centering text in X column
+
+\begin{document}
+\minipage{\textwidth} %Otherwise table will not render in standalone package
+
+	\begin{tabularx}{\textwidth}{ c|X|X| }
+		\hline
+		Process Step & Relevant Parameters & Visual Representation \\
+		\hline
+		% Wire Bonding
+			\fbox{\parbox{20mm}{
+				\centering
+				Wire
+				Bonding
+			}} \tikzmark{b}\tikzmark{a}
+		&
+			\begin{tikzpicture}
+				\begin{axis}[
+				%Dimensions
+					width=30mm,
+					height=60mm,
+				%Domain
+					ymin=0.01, ymax=1000000,
+					xmin=2000, xmax=2020,
+					ymode=log,
+				%Ticks
+					xtick distance=5,
+					minor x tick num=4,
+					ytick={0.1,1,10,100,1000,10000,100000,1000000},
+					max space between ticks=20,
+					/pgf/number format/1000 sep={},
+				%Axis Labels
+					ylabel=Flux/Package \text{[}klm\text{]},
+							]
+				\addplot [only marks]
+					table [col sep=comma, x=year, y=flux]
+					{./graphs/test/data/white_flux.csv};
+				\end{axis}
+			\end{tikzpicture}
+
+		&
+			\includegraphics[width=50mm, height=25mm]{./images/test.pdf} \\
+		\hline
+		%Phosphor Deposition
+			\fbox{\parbox{20mm}{
+				\centering
+				Phosphor
+				Deposition
+			}} \tikzmark{b}
+		&
+			Figure goes here
+		&
+			\includegraphics[width=50mm, height=25mm]{./images/test.pdf} \\
+		\hline
+		
+	\end{tabularx}
+	
+	\begin{tikzpicture}[overlay, remember picture, yshift=.25\baselineskip, shorten >=.5pt, shorten <=.5pt]
+    	\draw [->] ({pic cs:a}) to ({pic cs:b});
+  	\end{tikzpicture}
+
+
+\endminipage %Otherwise table will not render in standalone package
+\end{document}

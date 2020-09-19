@@ -1,40 +1,40 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \begin{document}
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{axis}[
 %Grouping
-	name=rebel,
+	name=top-left,
 	height=5cm,
-	width=4cm,
+	width=5.7cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
 %Axis Labels
 	xlabel style = {align=center},
 	ylabel=Intensity \text{[}Arb.Units\text{]},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Philips Lumiramic,
+	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce$^{3+}$ (1998),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/lumileds_lumiramic.csv};
+	{../data/sources/1998_nichia_yag.csv};
 \end{axis}
 
 \begin{axis}[
 %Grouping
-	name=narrow,
-	at={(rebel.west)},
-	xshift=3cm,
+	name=top-center,
+	at={(top-left.west)},
+	xshift=4.55cm,
 	anchor=west,
 	height=5cm,
-	width=4cm,
+	width=5.7cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
@@ -42,24 +42,73 @@
 	yticklabels={,,},
 %Axis Labels
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Philips Narrow,
+	xlabel=Wavelength \text{[}nm\text{]} \\ Y$^\star$+\ch{M_2Si_5N_8:Eu^{2+}} (2004),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/luxeon_narrow.csv};
+	{../data/sources/2004_lumileds_Eu.csv};
+\end{axis}
+
+
+\begin{axis}[
+%Grouping
+	name=top-right,
+	at={(top-center.west)},
+	xshift=4.55cm,
+	anchor=west,
+	height=5cm,
+	width=5.7cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Axis Labels
+	xlabel style = {align=center},
+	yticklabels={,,},
+	xlabel=Wavelength \text{[}nm\text{]} \\ G$^\dagger$+O$^\ddagger$+SLA (2013),
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/sources/2014_lumileds_sla.csv};
 \end{axis}
 
 \begin{axis}[
 %Grouping
-	name=trigain,
-	at={(narrow.west)},
-	xshift=3cm,
+	name=bottom-left,
+	at={(top-left.west)},
+	yshift=-5cm,
 	anchor=west,
 	height=5cm,
-	width=4cm,
+	width=5.7cm,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Axis Labels
+	ylabel=Intensity \text{[}Arb.Units\text{]},
+	xlabel style = {align=center},
+	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce$^{3+}$+PFS (2013),
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/sources/2015_ge_pfs.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=bottom-center,
+	at={(bottom-left.west)},
+	xshift=4.55cm,
+	anchor=west,
+	height=5cm,
+	width=5.7cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
@@ -67,24 +116,33 @@
 	yticklabels={,,},
 %Axis Labels
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ GE TriGain,
+	xlabel={Wavelength \text{[}nm\text{]} \\ ?+(R)QD (2017/19)},
+%Legend
+%Legend
+	legend cell align=left,
+	legend pos=north west,
+	legend style={draw=none},
+	legend entries={,2017,2019},
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
+\addplot [dashed]
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/sources/2017_lumileds_qd.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/ge_trigain.csv};
+	{../data/sources/2019_osram_qd.csv};
 \end{axis}
 
 \begin{axis}[
 %Grouping
-	name=qd,
-	at={(trigain.west)},
-	xshift=3cm,
+	name=bottom-right,
+	at={(bottom-center.west)},
+	xshift=4.55cm,
 	anchor=west,
 	height=5cm,
-	width=4cm,
+	width=5.7cm,
 %Domain
 	ymin=0, ymax=1,
 	xmin=400, xmax=750,
@@ -92,17 +150,20 @@
 	yticklabels={,,},
 %Axis Labels
 	xlabel style = {align=center},
-	xlabel=Wavelength \text{[}nm\text{]} \\ Osram QD,
+	xlabel=Wavelength \text{[}nm\text{]} \\ ?+SALON (2019),
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
 	{../data/luminosity.csv};
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
-	{../data/osram_qd.csv};
+	{../data/sources/2019_osram_salon.csv};
 \end{axis}
 
+%$^\dagger$\ch{Lu_3Al_5O_{12}:Ce^{3+}}
+%$^\ddagger$\ch{(Ba,Sr)_2Si_5N_8:Eu^{2+}}
+%§^\star$$\beta$-SiAlON:Eu$^{2+}$
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \end{tikzpicture}
 \end{document}

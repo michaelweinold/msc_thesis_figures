@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -13,33 +13,24 @@
 
 \begin{document}
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{axis}[
 %Domain
-	%ymax=1.1,
-	%xmax=20000,
+	ymax=140,
+	ymin=-5,
+	xmin=2015-07-30,
 %Ticks
-	%xtick distance=5,
-	%minor x tick num=4,
-	%minor y tick num=4,
-	date ZERO=2015-01-01,
+	date coordinates in=x,
 	xtick={2016-01-01,2017-01-01,2018-01-01,2019-01-01,2020-01-01},
-	xticklabel={2016,2017,2018,2019,2020},
-	xticklabel style={rotate=90, anchor=near xticklabel},
+	%xticklabel style={rotate=90, anchor=near xticklabel},
+	xticklabel={\year},
 %Axis Labels
 	ylabel=Flicker \text{[}CDF\text{]},
-%Legend
-	%
-%Dates
-	date coordinates in=x,
-			]
+]
 \addplot [only marks]
-	table [col sep=comma, x=date, y=imcdfi]
+	table [col sep=comma, x=date, y=cdf]
 	{../data/lichtpeter/bulbs_trend.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}
 \end{document}

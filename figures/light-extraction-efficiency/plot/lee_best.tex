@@ -1,10 +1,8 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=15cm,
-			height=8cm,
 			xtick pos=left,
 			ytick pos=left
 			}
@@ -12,14 +10,17 @@
 % See https://github.com/pgf-tikz/pgfplots/issues/42
 % and https://github.com/michaelweinold/TeX/wiki/Troubleshooting
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Size
-	height=5cm,
-	width=10cm,
+	height=140pt,
+	width=418pt,
 	axis line style={draw=none},
 	xtick style={draw=none},
 	ytick style={draw=none},
@@ -47,7 +48,6 @@
 	table [col sep=comma, x=year, y=lee]
 	{../data/doe.csv}; \label{lineplot}
 \end{axis}
-
 \begin{axis}[
 %Grouping
 	name=best,
@@ -57,8 +57,8 @@
 	ybar interval=0.35,
 	xtick=data,
 %Size
-	height=5cm,
-	width=10cm,
+	height=140pt,
+	width=418pt,
 %Domain
 	xmin=2000,xmax=2025,
 	ymin=0,ymax=100,
@@ -80,6 +80,73 @@
 \draw [dashed] (axis cs: 2020,90) -- (axis cs: 2025,90);
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Size
+	height=140pt,
+	width={\dimexpr 836pt-\wd\temp},
+	axis line style={draw=none},
+	xtick style={draw=none},
+	ytick style={draw=none},
+	yticklabels={,,},
+	xticklabels={,,},
+%Legend
+	 %legend entries={Classical Chip,Thin-Film,Flip-Chip,CSP Flip-Chip},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addlegendimage{line legend, black}
+\addlegendentry{DOE Average}
+\addlegendimage{line legend, black, dashed}
+\addlegendentry{DOE Targets}
+\addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
+\addlegendentry{Classical Chip}
+\addlegendimage{/pgfplots/refstyle=bar2,xshift=0.5em}
+\addlegendentry{Thin-Film}
+\addlegendimage{/pgfplots/refstyle=bar3,xshift=0.5em}
+\addlegendentry{Flip-Chip}
+\addlegendimage{/pgfplots/refstyle=bar4,xshift=0.5em}
+\addlegendentry{CSP Flip-Chip}
+\addplot [white]
+	table [col sep=comma, x=year, y=lee]
+	{../data/doe.csv}; \label{lineplot}
+\end{axis}
+\begin{axis}[
+%Grouping
+	name=best,
+	at={(0,0)},
+%Type
+	ybar,
+	ybar interval=0.35,
+	xtick=data,
+%Size
+	height=140pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2000,xmax=2025,
+	ymin=0,ymax=100,
+	enlargelimits=false,
+%Axis ticks
+	xtick distance=5,
+%Axis labels
+	ylabel=LEE \text{[}\%\text{]},
+	/pgf/number format/1000 sep={},
+]
+\addplot [ybar, ybar legend, fill=red!20,draw=black!70] table [col sep=comma, x=year, y=classical]{../data/best.csv}; \label{bar1}
+\addplot [ybar, ybar legend,fill=orange!20,draw=black!70] table [col sep=comma, x=year, y=thinfilm]{../data/best.csv}; \label{bar2}
+\addplot [ybar, ybar legend,fill=blue!20,draw=black!70] table [col sep=comma, x=year, y=flipchip]{../data/best.csv}; \label{bar3}
+\addplot [ybar, ybar legend,fill=teal!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv}; \label{bar4}
+% DOE Targets
+\draw [] (axis cs: 2005,80) -- (axis cs: 2010,80);
+\draw [] (axis cs: 2010,85) -- (axis cs: 2015,85);
+\draw [] (axis cs: 2015,87) -- (axis cs: 2020,87);
+\draw [dashed] (axis cs: 2020,90) -- (axis cs: 2025,90);
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

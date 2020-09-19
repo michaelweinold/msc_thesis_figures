@@ -1,38 +1,36 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
-\usepackage[official]{eurosym} %For € symbol in text
 \usetikzlibrary{pgfplots.statistics} %For boxplots
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=10cm,
 			xtick pos=left,
 			ytick pos=left
 			}
 
-\begin{document}
-\begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\temp}
 
-	
+\begin{document}
+
+%\savebox{\temp}{
+\begin{tikzpicture}
 
 \begin{axis}[
-	%Grouping
+%Grouping
 	name=olino,
-	%Size
-	height=6cm,
-	width=10cm,
-	%Domain
-	ymin=-0.2,ymax=1.22,
-	%Labels
-	%Boxplot	
+%Size
+	height=150pt,
+	width=220pt,
+%Domain
+	ymin=-0.04,ymax=1.05,
+%Labels
+%Boxplot	
 	boxplot/draw direction=y,
 	ylabel=Flicker \text{[}IMI\text{]},
 	xtick={1,2,3,4,5,6},
 	xticklabels={},
-	]
+]
 \addplot [boxplot]
 	table [col sep=comma, y index=0]
 	{../data/olino_panel.csv};
@@ -54,22 +52,23 @@
 \end{axis}
 
 \begin{axis}[
-	%Grouping
+%Grouping
 	name=peter,
 	at={(0,-2.3)},
 	anchor=north west,
-	%Size
-	height=6cm,
-	width=10cm,
-	%Domain
-	ymin=-20,ymax=150,
-	%Labels
-	%Boxplot	
+%Size
+	height=150pt,
+	width=220pt,
+%Domain
+	ymin=-5,ymax=140,
+%Labels
+%Boxplot	
 	boxplot/draw direction=y,
 	ylabel=Flicker \text{[}CDF\text{]},
+	xlabel={Luminaire Type},
 	xtick={1,2,3,4,5,6},
 	xticklabels={Panel,Strip,Bulb,Spot,High,Tube},
-	]
+]
 \addplot [boxplot,draw=white]
 	table [col sep=comma, y index=0]
 	{../data/peter_strip.csv};
@@ -90,6 +89,37 @@
 	{../data/peter_tube.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{axis}[
+%Position
+    name=boxplots,
+    at={(peter.north west)},
+	anchor=west,
+	height=258pt,
+	width=200pt,
+	xshift=220pt,
+%Ticks
+    xmode=log,
+    xmin=50,
+    ymin=-5,
+	%xtick distance=5,
+	%minor x tick num=4,
+	%minor y tick num=4,
+	%/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Flicker \text{[}CDF\text{]},
+	xlabel=Flux \text{[}lm\text{]},
+]
+\addplot [red,only marks]
+	table [col sep=comma, x=flux, y=cfd]
+	{../data/color_peter_bulb.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=flux, y=cfd]
+	{../data/color_peter_mini.csv};
+\addplot [only marks]
+	table [col sep=comma, x=flux, y=cfd]
+	{../data/color_peter_tubes.csv};
+\legend{Bulbs, Mini Bulbs, Tubes}
+\end{axis}
+
 \end{tikzpicture}
 \end{document}
