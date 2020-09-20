@@ -17,7 +17,7 @@
 
 \begin{axis}[
 %Grouping
-	height=220pt,
+	height=180pt,
 	width=418pt,
 %Domain
 	xmin=80, xmax=100,
@@ -36,7 +36,7 @@
     %nodes near coords align={horizontal},
     every node near coord/.append style={align=center,text width=1.5cm, yshift=+2pt,fill=white}
 ]
-\addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy.csv};
+\addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy-toplabels.csv};
 \end{axis}
 
 \end{tikzpicture}}
@@ -45,26 +45,46 @@
 
 \begin{axis}[
 %Grouping
-	height=220pt,
+	height=180pt,
 	width={\dimexpr 836pt-\wd\temp},
 %Domain
 	xmin=80, xmax=100,
-	ymin=280,ymax=350,
+	ymin=280,ymax=345,
+%Ticks
+	%xtick={2000,2005,2010,2015,2020},
+	%minor x tick num=1,
+	%minor y tick num=4,
+%Labels
+    visualization depends on={value \thisrow{label} \as \labela},
+    visualization depends on={value \thisrow{year} \as \labelb},
+    nodes near coords={\labelb \\ \labela},
+    %nodes near coords align={horizontal},
+    every node near coord/.append style={align=center,text width=1.5cm, yshift=-29.5pt,fill=none}
+]
+\addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy-bottomlabels.csv};
+\end{axis}
+\begin{axis}[
+%Grouping
+	height=180pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=80, xmax=100,
+	ymin=280,ymax=345,
 %Ticks
 	%xtick={2000,2005,2010,2015,2020},
 	%minor x tick num=1,
 	%minor y tick num=4,
 %Axis Labels
 	xlabel={Color Rendering Performance \text{[}CRI\text{]} },
-	ylabel=Luminous Efficacy of Radiation \text{[}lm/W$_{opt}$\text{]},
+	ylabel=LER \text{[}lm/W$_{opt}$\text{]},
 %Labels
     visualization depends on={value \thisrow{label} \as \labela},
     visualization depends on={value \thisrow{year} \as \labelb},
     nodes near coords={\labelb \\ \labela},
     %nodes near coords align={horizontal},
-    every node near coord/.append style={align=center,text width=1.5cm, yshift=+2pt,fill=white}
+    every node near coord/.append style={align=center,text width=1.5cm, yshift=+2pt,fill=none}
 ]
-\addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy.csv};
+\addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy-toplabels.csv};
 \end{axis}
 
 \end{tikzpicture}

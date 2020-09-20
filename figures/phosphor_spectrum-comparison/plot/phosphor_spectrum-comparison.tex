@@ -17,7 +17,11 @@
 %Axis Labels
 	xlabel style = {align=center},
 	ylabel=Intensity \text{[}Arb.Units\text{]},
-	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce$^{3+}$ (1998),
+	xlabel=Wavelength \text{[}nm\text{]} \\ YAG:Ce$^{3+}$ (1998); YGAG (2002),
+%Legend
+	legend cell align=left,
+	legend style={at={(0.255,0)},anchor=south west,draw=none,fill=none},
+	legend entries={,1996,2002},
 			]
 \addplot [red]
 	table [col sep=comma, x=wavelength, y=sensitivity]
@@ -25,6 +29,9 @@
 \addplot []
 	table [col sep=comma, x=wavelength, y=intensity]
 	{../data/sources/1998_nichia_yag.csv};
+\addplot [dashed]
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/sources/2002_lumileds_ygag.csv};
 \end{axis}
 
 \begin{axis}[
@@ -120,8 +127,7 @@
 %Legend
 %Legend
 	legend cell align=left,
-	legend pos=north west,
-	legend style={draw=none},
+	legend style={at={(0.255,0)},anchor=south west,draw=none,fill=none},
 	legend entries={,2017,2019},
 			]
 \addplot [red]
