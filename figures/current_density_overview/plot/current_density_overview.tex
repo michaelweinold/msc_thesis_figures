@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -7,15 +7,18 @@
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
 	name=main,
-	height=5cm,
-	width=10cm,
+	height=130pt,
+	width=418pt,
 %Domain
 	ymin=100,ymax=2000,
 	xmin=0.1,xmax=10,
@@ -41,10 +44,10 @@
 %Grouping
 	name=mid,
 	at={(main.west)},
-	yshift=-3.3cm,
+	yshift=-3cm,
 	anchor=west,
-	height=2cm,
-	width=10cm,
+	height=60pt,
+	width=418pt,
 %Domain
 	ymin=0.5,ymax=1.5,
 	xmin=100,xmax=1500,
@@ -64,7 +67,63 @@
 \addplot [red, only marks] table [col sep=comma, y=y, x=currdens]{../data/density_classical.csv};
 \end{axis}
 
+\end{tikzpicture}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=main,
+	height=130pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	ymin=100,ymax=2000,
+	xmin=0.1,xmax=10,
+%Axis Labels
+	ylabel style = {align=center},
+	ylabel=Max. Current \text{[}mA\text{]},
+	xlabel=Chip Area \text{[}mm$^2$\text{]},
+	%xticklabels={,,},
+%Legend
+	legend pos=north east,
+	legend entries={Classical, TFFC, FC, CSP-FC},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [red, only marks] table [col sep=comma, x=area, y=current]{../data/data_classical.csv};
+\addplot [orange, only marks] table [col sep=comma, x=area, y=current]{../data/data_tffc.csv};
+\addplot [blue, only marks] table [col sep=comma, x=area, y=current]{../data/data_fc.csv};
+\addplot [teal, only marks] table [col sep=comma, x=area, y=current]{../data/data_csp.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=mid,
+	at={(main.west)},
+	yshift=-3cm,
+	anchor=west,
+	height=60pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	ymin=0.5,ymax=1.5,
+	xmin=100,xmax=1500,
+%Axis Labels
+	xlabel=Current Density \text{[}mA/mm$^2$\text{]},
+	yticklabels={,,},
+	ytick=\empty,
+%Legend
+%	legend entries={Driver, Mechanical, Package, Overhead, Optics, Electrical, Assembly},
+%	legend cell align={left},
+%	legend pos=outer north east,
+%	legend style={draw=none},
+]
+\addplot [orange, only marks] table [col sep=comma, y=y, x=currdens]{../data/density_tffc.csv};
+\addplot [teal, only marks] table [col sep=comma, y=y, x=currdens]{../data/density_csp.csv};
+\addplot [blue, only marks] table [col sep=comma, y=y, x=currdens]{../data/density_fc.csv};
+\addplot [red, only marks] table [col sep=comma, y=y, x=currdens]{../data/density_classical.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

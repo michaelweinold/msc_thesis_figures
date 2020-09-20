@@ -71,22 +71,22 @@
     y filter/.code = {\ifnum\coordindex>12 \def\pgfmathresult{0}\fi},
     draw = none,
     fill = none
-] table [col sep=comma, x expr = \coordindex, y = accumyprev] {../data/2016/2016.csv};
+] table [col sep=comma, x expr = \coordindex, y = accumyprev] {../data/2020/2020.csv};
 
-\addplot[fill=yellow,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/2016/2016.csv};
-\addplot[fill=lightgray,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/2016/2016.csv};
-\addplot[fill=gray,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/2016/2016.csv};
-\addplot[fill=darkgray,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 3, meta index = 3] {../data/2016/2016.csv};
-\addplot[fill=orange,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 4, meta index = 4] {../data/2016/2016.csv};
-\addplot[fill=blue,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 5, meta index = 5] {../data/2016/2016.csv};
-\addplot[fill=red,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 6, meta index = 6] {../data/2016/2016.csv};
-\addplot[fill=red,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 7, meta index = 7] {../data/2016/2016.csv};
-\addplot[fill=red,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 8, meta index = 8] {../data/2016/2016.csv};
-\addplot[fill=green,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 9, meta index = 9] {../data/2016/2016.csv};
-\addplot[fill=green,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 10, meta index = 10] {../data/2016/2016.csv};
-\addplot[fill=green,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 11, meta index = 11] {../data/2016/2016.csv};
-\addplot[fill=white,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 12, meta index = 12] {../data/2016/2016.csv};
-\addplot[fill=yellow,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 13, meta index = 13] {../data/2016/2016.csv};
+\addplot[fill=yellow,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/2020/2020.csv};
+\addplot[fill=lightgray,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/2020/2020.csv};
+\addplot[fill=gray,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/2020/2020.csv};
+\addplot[fill=darkgray,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 3, meta index = 3] {../data/2020/2020.csv};
+\addplot[fill=orange,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 4, meta index = 4] {../data/2020/2020.csv};
+\addplot[fill=blue,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 5, meta index = 5] {../data/2020/2020.csv};
+\addplot[fill=red,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 6, meta index = 6] {../data/2020/2020.csv};
+\addplot[fill=red,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 7, meta index = 7] {../data/2020/2020.csv};
+\addplot[fill=red,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 8, meta index = 8] {../data/2020/2020.csv};
+\addplot[fill=green,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 9, meta index = 9] {../data/2020/2020.csv};
+\addplot[fill=green,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 10, meta index = 10] {../data/2020/2020.csv};
+\addplot[fill=green,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 11, meta index = 11] {../data/2020/2020.csv};
+\addplot[fill=white,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 12, meta index = 12] {../data/2020/2020.csv};
+\addplot[fill=yellow,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 13, meta index = 13] {../data/2020/2020.csv};
 
 % The connecting line. Uses a bit of magic to typeset the ranges
   \addplot [
@@ -118,7 +118,7 @@
             \dostuff
         }
     },
-  ] table [col sep=comma, x expr = \coordindex, y expr = 0] {../data/2016/2016.csv};
+  ] table [col sep=comma, x expr = \coordindex, y expr = 0] {../data/2020/2020.csv};
 
 \end{axis}
 
@@ -138,7 +138,7 @@
     visualization depends on={value \thisrow{label} \as \labela},
     nodes near coords={\labela},
 ]
-\addplot [scatter, only marks, no markers] table [col sep=comma, x expr = \coordindex, y=y] {../data/2016/labels1.csv};
+\addplot [scatter, only marks, no markers] table [col sep=comma, x expr = \coordindex, y=y] {../data/2020/labels1.csv};
 \end{axis}
 
 \begin{axis}[
@@ -157,7 +157,7 @@
     visualization depends on={value \thisrow{label} \as \labela},
     nodes near coords={\labela},
 ]
-\addplot [scatter, only marks, no markers] table [col sep=comma, x expr = \coordindex, y=y] {../data/2016/labels2.csv};
+\addplot [scatter, only marks, no markers] table [col sep=comma, x expr = \coordindex, y=y] {../data/2020/labels2.csv};
 \node[draw=black,anchor=west,align=left] at (canvas cs:x=20pt,y=20pt) {Percentages indicate losses of remaining energy at point of loss channel. Absolute losses in W below. \\ Percentages for \textcolor{red}{red}, \textcolor{teal}{green} and \textcolor{blue}{blue} loss channels indicate losses of remaining \textcolor{red}{R}/\textcolor{teal}{G}/\textcolor{blue}{B} light energy.};
 \end{axis}
 
