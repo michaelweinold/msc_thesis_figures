@@ -1,0 +1,134 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left,
+			}
+			
+\newsavebox{\temp}
+
+\begin{document}
+\savebox{\temp}{
+\begin{tikzpicture}
+
+\begin{axis}[
+%Position
+    name=left,
+    height=200pt,
+    width=220pt,
+%Domain
+	xmin=2010,xmax=2020,
+%Ticks
+    /pgf/number format/1000 sep={},
+	%xticklabel style={rotate=90, anchor=near xticklabel},
+%Axis Labels
+	ylabel=Energy \text{[}TWh/year\text{]},
+	xlabel={EU},
+%Legend
+	legend cell align=left,
+	legend pos=north west,
+	legend style={draw=none,fill=none},
+	legend entries={LED Savings, PV Production},
+]
+\addplot [smooth, blue, no markers]
+	table [col sep=comma, x=year, y=led]
+	{../data/eu.csv};
+\addplot [smooth, orange, no markers]
+	table [col sep=comma, x=year, y=pv]
+	{../data/eu.csv};
+\end{axis}
+
+\begin{axis}[
+%Position
+    name=right,
+    at={(left.west)},
+	xshift=200pt,
+	anchor=west,
+    height=200pt,
+    width=220pt,
+%Domain
+	xmin=2010,xmax=2020,
+%Ticks
+    /pgf/number format/1000 sep={},
+	%xticklabel style={rotate=90, anchor=near xticklabel},
+%Axis Labels
+    xlabel={USA},
+%Legend
+	legend cell align=left,
+	legend pos=north west,
+	legend style={draw=none,fill=none},
+	legend entries={LED Savings, PV Production},
+]
+\addplot [smooth, blue, no markers]
+	table [col sep=comma, x=year, y=led]
+	{../data/eu.csv};
+\addplot [smooth, orange, no markers]
+	table [col sep=comma, x=year, y=pv]
+	{../data/eu.csv};
+\end{axis}
+
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Position
+    name=left,
+    height=200pt,
+    width={\dimexpr 220pt+418pt-\wd\temp},
+%Domain
+	xmin=2010,xmax=2020,
+%Ticks
+    /pgf/number format/1000 sep={},
+	%xticklabel style={rotate=90, anchor=near xticklabel},
+%Axis Labels
+	ylabel=Energy \text{[}TWh/year\text{]},
+	xlabel={EU},
+%Legend
+	legend cell align=left,
+	legend pos=north west,
+	legend style={draw=none,fill=none},
+	legend entries={LED Savings, PV Production},
+]
+\addplot [smooth, blue, no markers]
+	table [col sep=comma, x=year, y=led]
+	{../data/eu.csv};
+\addplot [smooth, orange, no markers]
+	table [col sep=comma, x=year, y=pv]
+	{../data/eu.csv};
+\end{axis}
+
+\begin{axis}[
+%Position
+    name=right,
+    at={(left.west)},
+	xshift=200pt,
+	anchor=west,
+    height=200pt,
+    width={\dimexpr 220pt+418pt-\wd\temp},
+%Domain
+	xmin=2010,xmax=2020,
+%Ticks
+    /pgf/number format/1000 sep={},
+	%xticklabel style={rotate=90, anchor=near xticklabel},
+%Axis Labels
+    xlabel={USA},
+%Legend
+	legend cell align=left,
+	legend pos=north west,
+	legend style={draw=none,fill=none},
+	legend entries={LED Savings, PV Production},
+]
+\addplot [smooth, blue, no markers]
+	table [col sep=comma, x=year, y=led]
+	{../data/eu.csv};
+\addplot [smooth, orange, no markers]
+	table [col sep=comma, x=year, y=pv]
+	{../data/eu.csv};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
