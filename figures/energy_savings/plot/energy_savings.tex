@@ -16,7 +16,7 @@
 \begin{axis}[
 %Position
     name=left,
-    height=200pt,
+    height=135pt,
     width=220pt,
 %Domain
 	xmin=2010,xmax=2020,
@@ -46,7 +46,7 @@
     at={(left.west)},
 	xshift=200pt,
 	anchor=west,
-    height=200pt,
+    height=135pt,
     width=220pt,
 %Domain
 	xmin=2010,xmax=2020,
@@ -76,10 +76,11 @@
 \begin{axis}[
 %Position
     name=left,
-    height=200pt,
+    height=135pt,
     width={\dimexpr 220pt+418pt-\wd\temp},
 %Domain
 	xmin=2010,xmax=2020,
+	ymin=0,ymax=150,
 %Ticks
     /pgf/number format/1000 sep={},
 	%xticklabel style={rotate=90, anchor=near xticklabel},
@@ -106,10 +107,11 @@
     at={(left.west)},
 	xshift=200pt,
 	anchor=west,
-    height=200pt,
+    height=135pt,
     width={\dimexpr 220pt+418pt-\wd\temp},
 %Domain
 	xmin=2010,xmax=2020,
+	ymin=0,ymax=450,
 %Ticks
     /pgf/number format/1000 sep={},
 	%xticklabel style={rotate=90, anchor=near xticklabel},
@@ -123,10 +125,10 @@
 ]
 \addplot [ blue, no markers]
 	table [col sep=comma, x=year, y=led]
-	{../data/eu.csv};
+	{../data/usa.csv};
 \addplot [ orange, no markers]
 	table [col sep=comma, x=year, y=pv]
-	{../data/eu.csv};
+	{../data/usa.csv};
 \end{axis}
 
 \end{tikzpicture}
