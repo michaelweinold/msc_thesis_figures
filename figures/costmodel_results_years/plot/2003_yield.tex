@@ -17,16 +17,16 @@
 	at={(0,0)},
 %Size
 	height=150pt,
-	width=418pt,
+	width=538pt,
 %Domain
-	%xmin=2000,xmax=2022,
+	xmin=1,xmax=20,
 	ymin=0,ymax=1,
 %Type
 	%ybar stacked,
 	bar width=15pt,
 	axis on top,
 %Ticks
-    enlarge x limits=0.04,
+    enlarge x limits=0.0,
     scaled y ticks = false,
 	xtick=data,
 	xticklabels={,,},
@@ -40,13 +40,13 @@
     axis on top,
 %Legend
 	legend cell align={left},
-	legend style={at={(axis cs:0.8,0.13)},anchor=south west}
+	legend style={at={(axis cs:0.8,0.13)},anchor=south west},
 			]
 \addlegendimage{line legend, red}
 \addlegendentry{Total Yield}
 \addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
 \addlegendentry{Step Yield}
-%
+
 \addplot [ybar,ybar legend,draw=blue,fill=blue!30]
 	table [col sep=comma, x=index, y=yield]
 	{../data/2003_yield.csv}; \label{bar1}
@@ -62,16 +62,16 @@
 	at={(0,0)},
 %Size
 	height=150pt,
-	width=418pt,
+	width=538pt,
 %Domain
-	%xmin=2000,xmax=2022,
+	xmin=1,xmax=20,
 	ymin=0,ymax=1,
 %Type
 	%ybar stacked,
 	bar width=15pt,
 	axis on top,
 %Ticks
-    enlarge x limits=0.04,
+    enlarge x limits=0.0,
     scaled y ticks = false,
 	xtick=data,
 	xticklabels={,,},
@@ -83,6 +83,26 @@
     nodes near coords={$\times$\labela},
 %General
     axis on top,
+%Bottom Labels
+    xticklabel style={rotate=90, align=right, anchor=east},
+    xticklabels = { Epitaxy,
+                    Wafer Inspection,
+                    Dry Deposition,
+                    Litho (Stepper),
+                    Litho (Mask),
+                    Dry Etch,
+                    ITO Depn.,
+                    N-Metal,
+                    P-Metal,
+                    Contact Metal,
+                    Generic Metal,
+                    Wafer Bonding,
+                    Wafer LLO,
+                    Backgrinding,
+                    CMP,
+                    Dicing,
+                    Probe Test,
+                    TOTAL},
     ]
 \addplot [no markers, only marks]
 	table [col sep=comma, x=index, y=labelheight]
