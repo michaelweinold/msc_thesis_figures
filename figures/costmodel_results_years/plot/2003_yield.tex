@@ -1,0 +1,93 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+\begin{document}
+\begin{tikzpicture}
+
+
+\begin{axis}[
+%Grouping
+	name=bottom,
+	at={(0,0)},
+%Size
+	height=150pt,
+	width=418pt,
+%Domain
+	%xmin=2000,xmax=2022,
+	ymin=0,ymax=1,
+%Type
+	%ybar stacked,
+	bar width=15pt,
+	axis on top,
+%Ticks
+    enlarge x limits=0.04,
+    scaled y ticks = false,
+	xtick=data,
+	xticklabels={,,},
+	yticklabels={0,25,50,75,100},
+	ytick={0,0.25,0.5,0.75,1},
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel = Yield \text{[}\%\text{]},
+%General
+    axis on top,
+%Legend
+	legend cell align={left},
+	legend style={at={(axis cs:0.8,0.13)},anchor=south west}
+			]
+\addlegendimage{line legend, red}
+\addlegendentry{Total Yield}
+\addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
+\addlegendentry{Step Yield}
+%
+\addplot [ybar,ybar legend,draw=blue,fill=blue!30]
+	table [col sep=comma, x=index, y=yield]
+	{../data/2003_yield.csv}; \label{bar1}
+\addplot [no markers, red]
+	table [col sep=comma, x=index, y=cumyield]
+	{../data/2003_yield.csv};
+\end{axis}
+
+%Labels only
+\begin{axis}[
+%Grouping
+	name=bottom,
+	at={(0,0)},
+%Size
+	height=150pt,
+	width=418pt,
+%Domain
+	%xmin=2000,xmax=2022,
+	ymin=0,ymax=1,
+%Type
+	%ybar stacked,
+	bar width=15pt,
+	axis on top,
+%Ticks
+    enlarge x limits=0.04,
+    scaled y ticks = false,
+	xtick=data,
+	xticklabels={,,},
+	yticklabels={,,},
+	ytick={0,0.25,0.5,0.75,1},
+	/pgf/number format/1000 sep={},
+%Other Labels
+    visualization depends on={value \thisrow{repeats} \as \labela},
+    nodes near coords={$\times$\labela},
+%General
+    axis on top,
+    ]
+\addplot [no markers, only marks]
+	table [col sep=comma, x=index, y=labelheight]
+	{../data/2003_yield.csv};
+\end{axis}
+
+\end{tikzpicture}
+\end{document}
