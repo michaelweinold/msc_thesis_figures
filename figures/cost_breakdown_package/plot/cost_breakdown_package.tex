@@ -1,4 +1,4 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
@@ -12,7 +12,6 @@
 
 \begin{document}
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
@@ -72,7 +71,7 @@
 	xmin=2007,xmax=2021,
 %Axis Labels
 	ylabel style = {align=center},
-	ylabel=Rel. Manuf. Cost \\ $\times$ Pack. Cost / Flux\text{[}\%\text{]},
+	ylabel=Rel. Manuf. Cost \\$\times$ Pack. Cost / Flux\text{[}\%\text{]},
 	%xticklabels={,,},
 	/pgf/number format/1000 sep={},
 ]
@@ -124,6 +123,5 @@
 	{../data/cost_warm_package.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}
 \end{document}
