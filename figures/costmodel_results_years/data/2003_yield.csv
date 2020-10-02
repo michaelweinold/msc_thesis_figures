@@ -16,4 +16,4 @@ index,step,yield,cumyield,tmp_repeats,repeats,labelheight
 15,GaN_CMP,0.95,0.427944311,1,$\times$1,0
 16,Wafer Dicing,0.95,0.406547095,1,$\times$1,0
 17,Wafer_Probe_Test,0.95,0.386219741,1,$\times$1,0
-18,Sum,,,0,,0
+18,Sum,,0.386219741,0,,0
