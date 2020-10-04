@@ -29,8 +29,9 @@
 	xmin=2003,xmax=2020,
 %Axis Labels
     ylabel style={align=center},
-    ylabel = {\% of Manuf. Cost \\ U.S. DoE SSL Rep.},
+    ylabel = {\% of Manuf. Cost \\ \textit{U.S. DoE SSL Rep.}},
 	xticklabels={,,},
+	yticklabels={,,20,40,60,80,100},
 	/pgf/number format/1000 sep={},
 %Legend
 	legend entries={,,,,,Wafer Processing,Epitaxy,Substrate,Phosphor,Packaging},
@@ -92,9 +93,8 @@
 	xmin=2003,xmax=2020,
 %Axis Labels
     ylabel style={align=center},
-    ylabel = {  \\ Cost Model},
+    ylabel = {  \\ \textit{Cost Model}},
 	%xticklabels={,,},
-	yticklabels={,,20,40,60,80,100},
 	/pgf/number format/1000 sep={},
 ]
 \addplot [ybar,fill=green!20,draw=black!70]
