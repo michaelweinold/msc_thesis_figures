@@ -97,6 +97,10 @@
 \addlegendentry{Epitaxy}
 \addlegendimage{/pgfplots/refstyle=greenbar,xshift=0.5em}
 \addlegendentry{Wafer Processing}
+\addlegendimage{line legend, red}
+\addlegendentry{Total Yield}
+\addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
+\addlegendentry{Step Yield}
 ]
 % The first plot sets the "baseline":
 % Uses the sum of all previous y values,
@@ -217,15 +221,7 @@
 %Axis Labels
 	ylabel style={align=center},
 	ylabel = {Yield [\%]},
-%Legend
-    legend pos=north east,
-	legend cell align={left},
 			]
-\addlegendimage{line legend, red}
-\addlegendentry{Total Yield}
-\addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
-\addlegendentry{Step Yield}
-
 \addplot [ybar,ybar legend,draw=blue,fill=blue!30]
 	table [col sep=comma, x=index, y=yield]
 	{../data/2003_yield.csv}; \label{bar1}
