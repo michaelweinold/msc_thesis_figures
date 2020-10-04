@@ -1,0 +1,49 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left,
+			}
+
+\newsavebox{\temp}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Position
+    name=left,
+    height=150pt,
+    width=220pt,
+%Domain
+	xmin=0,xmax=4,
+	ymin=-12,ymax=+12,
+%Ticks
+	xtick={1,2,3},
+	tick label style={rotate=90, align=center},
+	xticklabels={   Yield,
+	                Utilization,
+	                Metal \\ Prices},
+%Axis Labels
+	ylabel={$\Delta$ Manuf. Cost [\$(2020)]},
+]
+\addplot [black, domain=0:4] {0};
+\addplot [
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=index,
+	y=zero,
+	y error plus=upper,
+	y error minus=lower,
+] {../data/costmodel_sensitivity.csv};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
