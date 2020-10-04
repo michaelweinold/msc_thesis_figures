@@ -30,6 +30,7 @@
         					\prevrow{14}+
         					\prevrow{15}+
         					\prevrow{16}+
+        					\prevrow{17}+
         					\pgfmathaccuma}
     }
 }
@@ -49,10 +50,10 @@
     height=200pt,
 %Domain
     enlarge x limits=0.03,
-    ymin=0, ymax=200,
-    xmin=0,xmax=17,
+    ymin=0, ymax=300,
+    xmin=0,xmax=18,
 %Ticks and Labels
-    xtick = data,
+    xmajorticks=false,
     xticklabels={,,},
     ytick={0,50,100,150,200},
     yticklabels={,50,100,150,200},
@@ -73,8 +74,8 @@
     height=200pt,
 %Domain
     enlarge x limits=0.03,
-    ymin=0, ymax=200,
-    xmin=0,xmax=17,
+    ymin=0, ymax=300,
+    xmin=0,xmax=18,
 %???
     %point meta = explicit,
 %Ticks and Labels
@@ -85,20 +86,30 @@
 %Axes and Labels
     axis on top,
     ylabel = {Manufacturing Cost [\$(2020)]},
+%Legend
+    legend pos=north west,
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+			]
+\addlegendimage{/pgfplots/refstyle=violetbar,xshift=0.5em}
+\addlegendentry{Substrate}
+\addlegendimage{/pgfplots/refstyle=redbar,xshift=0.5em}
+\addlegendentry{Epitaxy}
+\addlegendimage{/pgfplots/refstyle=greenbar,xshift=0.5em}
+\addlegendentry{Wafer Processing}
 ]
 % The first plot sets the "baseline":
 % Uses the sum of all previous y values,
 % except for the last bar, where it becomes 0
 % \ifnum\coordindex>n where n is total number of columns minus two
 \addplot[
-    y filter/.code = {\ifnum\coordindex>16 \def\pgfmathresult{0}\fi},
+    y filter/.code = {\ifnum\coordindex>17 \def\pgfmathresult{0}\fi},
     draw = none,
     fill = none
 ] table [col sep=comma, x expr = \coordindex, y = accumyprev] {../data/2003.csv};
-
-\addplot[fill=red!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/2003.csv};
-\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/2003.csv};
-\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/2003.csv};
+\addplot[ybar legend,fill=violet!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/2003.csv}; \label{violetbar}
+\addplot[ybar legend,fill=red!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/2003.csv}; \label{redbar}
+\addplot[ybar legend,fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/2003.csv}; \label{greenbar}
 \addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 3, meta index = 3] {../data/2003.csv};
 \addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 4, meta index = 4] {../data/2003.csv};
 \addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 5, meta index = 5] {../data/2003.csv};
@@ -114,6 +125,7 @@
 \addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 15, meta index = 15] {../data/2003.csv};
 \addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 16, meta index = 16] {../data/2003.csv};
 \addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 17, meta index = 17] {../data/2003.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 18, meta index = 18] {../data/2003.csv};
 % Plots the connecting lines
 % Number of \thisrow{} is number of connecting lines
 % Number of \thisrow{} is total number of columns minus one
@@ -140,7 +152,8 @@
                 \thisrowno{14}+
                 \thisrowno{15}+
                 \thisrowno{16}+
-                \thisrowno{17}
+                \thisrowno{17}+
+                \thisrowno{18}
             }
             \edef\dostuff{
                 \noexpand\def\noexpand\pgfplotspointmeta{%
@@ -187,7 +200,7 @@
 	height=110pt,
 	width=595pt,
 %Domain
-	xmin=1,xmax=18,
+	xmin=1,xmax=19,
 	ymin=0,ymax=1,
 %Type
 	%ybar stacked,
@@ -205,8 +218,8 @@
 	ylabel style={align=center},
 	ylabel = {Yield [\%]},
 %Legend
+    legend pos=north east,
 	legend cell align={left},
-	legend style={at={(axis cs:0.8,0.2)},anchor=south west},
 			]
 \addlegendimage{line legend, red}
 \addlegendentry{Total Yield}
@@ -233,7 +246,7 @@
     width=595pt,
     height=110pt,
 %Domain
-	xmin=1,xmax=18,
+	xmin=1,xmax=19,
 	ymin=0,ymax=1,
 %Type
 	%ybar stacked,
@@ -254,7 +267,8 @@
     axis on top,
 %Bottom Labels
     xticklabel style={rotate=90, align=right, anchor=east},
-    xticklabels = { Epitaxy,
+    xticklabels = { Substrate,
+                    Epitaxy,
                     Wafer \\ Inspection,
                     Dry \\ Deposition,
                     Litho \\ (Stepper),
@@ -292,6 +306,7 @@
 	ymin=0, ymax=200,
     xmin=1,xmax=18,
 %Ticks and Labels
+    xmajorticks=false,
     xticklabels={,,},
     yticklabels={,,},
     xtick = data,
@@ -299,7 +314,7 @@
     visualization depends on={value \thisrow{label} \as \labela},
     nodes near coords={\labela},
 ]
-\addplot [scatter, only marks, no markers] table [col sep=comma, x=index, y=position] {../data/2003_labels1.csv};
+%\addplot [scatter, only marks, no markers] table [col sep=comma, x=index, y=position] {../data/2003_labels1.csv};
 \end{axis}
     
 \end{tikzpicture}
