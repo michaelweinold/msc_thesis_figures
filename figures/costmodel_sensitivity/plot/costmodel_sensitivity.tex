@@ -15,22 +15,30 @@
 
 \begin{axis}[
 %Position
-    name=left,
-    height=150pt,
-    width=220pt,
+    height=170pt,
+    width=418pt,
 %Domain
-	xmin=0,xmax=4,
-	ymin=-12,ymax=+12,
+	xmin=0,xmax=13,
+	ymin=-30,ymax=30,
 %Ticks
-	xtick={1,2,3},
+	xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
 	tick label style={rotate=90, align=center},
-	xticklabels={   Yield,
-	                Utilization,
-	                Metal \\ Prices},
+	xticklabels={   Cleanroom Cost,
+	                Manhours,
+	                Equipment Price,
+	                Overall Yield,
+	                Yield Sav. from Insp.,
+	                Wafer Size,
+	                Edge Exclusion,
+	                Street Width,
+	                Metal Prices,
+	                Electricity Price,
+	                Substrate Price,
+	                Phosphor Price},
 %Axis Labels
-	ylabel={$\Delta$ Manuf. Cost [\$(2020)]},
+	ylabel={$\Delta$ Manuf. Cost [\% of \$(2020)]},
 ]
-\addplot [black, domain=0:4] {0};
+\addplot [black, domain=0:15] {0};
 \addplot [
 	error bars/.cd,
 	y dir=both, y explicit,
@@ -42,6 +50,8 @@
 	y error plus=upper,
 	y error minus=lower,
 ] {../data/costmodel_sensitivity.csv};
+\node[fill=white] at (4,-23) {-62\%};
+\node[fill=white] at (6,-23) {-1014\%};
 \end{axis}
 
 \end{tikzpicture}
