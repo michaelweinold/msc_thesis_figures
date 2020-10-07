@@ -1,0 +1,100 @@
+\documentclass[crop]{standalone}
+
+\usepackage{verbatim}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\usepackage[]{xcolor}
+
+\pgfplotsset{compat=1.8} %v=1.8 required for this plot
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=top,
+	at={(0,0)},
+ %Plot Type
+    ybar stacked,
+    bar width=15pt,
+%Size
+    width=595pt,
+    height=200pt,
+%Domain
+    enlarge x limits=0.03,
+    ymin=0,
+    %ymax=300,
+    %xmin=0,xmax=18,
+%???
+    %point meta = explicit,
+%Ticks and Labels
+    xtick = data,
+    xticklabels={,,},
+    %ytick={0,50,100,150,200},
+    %yticklabels={,50,100,150,200},
+%Axes and Labels
+    axis on top,
+    ylabel = {Manufacturing Cost [\$(2020)]},
+%Legend
+    legend pos=north east,
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+			]
+\addlegendimage{/pgfplots/refstyle=greenbar,xshift=0.5em}
+\addlegendentry{Wafer Processing}
+\addlegendimage{/pgfplots/refstyle=redbar,xshift=0.5em}
+\addlegendentry{Epitaxy}
+\addlegendimage{/pgfplots/refstyle=bluebar,xshift=0.5em}
+\addlegendentry{Substrate}
+\addlegendimage{/pgfplots/refstyle=violetbar,xshift=0.5em}
+\addlegendentry{Phosphor}
+\addlegendimage{/pgfplots/refstyle=cyanbar,xshift=0.5em}
+\addlegendentry{Packaging}
+]
+\addplot[ybar legend,fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/contribution.csv}; \label{greenbar}
+\addplot[ybar legend,fill=red!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/contribution.csv}; \label{redbar}
+\addplot[ybar legend,fill=blue!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/contribution.csv}; \label{bluebar}.
+\addplot[ybar legend,fill=violet!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 3, meta index = 3] {../data/contribution.csv}; \label{violetbar}
+\addplot[ybar legend,fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 4, meta index = 4] {../data/contribution.csv}; \label{cyanbar}
+%Invisible column
+\addplot[ybar,draw = none,fill = none,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 5, meta index = 5] {../data/contribution.csv};
+%
+\addplot[ybar legend,fill=yellow,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 6, meta index = 6] {../data/contribution.csv};
+\addplot[ybar legend,fill=yellow,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 7, meta index = 7] {../data/contribution.csv};
+\addplot[ybar legend,fill=yellow,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 8, meta index = 8] {../data/contribution.csv};
+% Plots the connecting lines
+% Number of \thisrow{} is number of connecting lines
+% Number of \thisrow{} is total number of columns minus one
+  \addplot [
+    const plot, black,
+    point meta = {
+        TeX code symbolic = {
+            \pgfkeys{/pgf/fpu/output format=fixed}
+            \pgfmathtruncatemacro\upperbound{
+                \thisrowno{0}+
+                \thisrowno{1}+
+                \thisrowno{2}+
+                \thisrowno{3}+
+                \thisrowno{4}+
+                \thisrowno{5}+
+                \thisrowno{6}+
+                \thisrowno{7}
+            }
+            \edef\dostuff{
+                \noexpand\def\noexpand\pgfplotspointmeta{%
+                    \thisrowno{0}--\upperbound%
+                }
+            }%
+            \dostuff
+        }
+    },
+  ] table [col sep=comma, x expr = \coordindex, y expr = 0] {../data/contribution.csv};
+
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
