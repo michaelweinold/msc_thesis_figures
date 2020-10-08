@@ -19,7 +19,7 @@
     width=418pt,
 %Domain
 	xmin=0,xmax=14,
-	ymin=-30,ymax=36,
+	ymin=-36,ymax=30,
 %Ticks
 	xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
 	ytick={-30,-20,-10,0,10,20,30},
@@ -28,7 +28,7 @@
 	                Manhours,
 	                Equipment Price,
 	                Overall Yield,
-	                Yield Sav. from Insp.,
+	                Yield Sav. \\ from Insp.,
 	                Throughput,
 	                Wafer Size,
 	                Edge Exclusion,
@@ -41,10 +41,10 @@
 %Axis Labels
 	ylabel={$\Delta$ Manuf. Cost [\% of \$(2020)]},
 ]
-\draw (0.3,27) rectangle (3.4,34) node[pos=.5] {Economy of Scale};
-\draw (3.6,27) rectangle (6.4,34) node[pos=.5] {Equip. Perf.};
-\draw (6.6,27) rectangle (9.4,34) node[pos=.5] {Wafer Size};
-\draw (9.6,27) rectangle (13.4,34) node[pos=.5] {Resource Prices};
+\draw (0.3,-27) rectangle (3.4,-34) node[pos=.5] {Economy of Scale};
+\draw (3.6,-27) rectangle (6.4,-34) node[pos=.5] {Equip. Perf.};
+\draw (6.6,-27) rectangle (9.4,-34) node[pos=.5] {Wafer Size};
+\draw (9.6,-27) rectangle (13.4,-34) node[pos=.5] {Resource Prices};
 \addplot [black, domain=0:15] {0};
 \addplot [
 	error bars/.cd,
@@ -57,8 +57,8 @@
 	y error plus=upper,
 	y error minus=lower,
 ] {../data/2013.csv};
-\node[fill=white] at (4,-23) {-62\%};
-\node[fill=white] at (7,-23) {-1014\%};
+\node[fill=white] at (4,23) {+62\%};
+\node[fill=white] at (7,23) {+1014\%};
 \end{axis}
 
 \end{tikzpicture}
