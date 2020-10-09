@@ -62,7 +62,7 @@
 	y=zero,
 	y error plus=upper_par,
 	y error minus=lower_par,
-] {../data/2003.csv};
+] {../data/2012.csv};
 \addplot [blue, domain=0:15] {0};
 \end{axis}
 
@@ -98,7 +98,7 @@
     yticklabels={-30,-20,-10,0,10,20,30},
 %Axis Labels
     ylabel style={align=center},
-	ylabel={$\Delta$ Manuf. Cost}\\{[\% of \$(2020)]},
+	ylabel={2003} \\ {$\Delta$ Manuf. Cost}\\{[\% of \$(2020)]},
 ]
 \draw (0.3,-27) rectangle (3.4,-34) node[pos=.5] {Economy of Scale};
 \draw (3.6,-27) rectangle (6.4,-34) node[pos=.5] {Equip. Perf.};
@@ -115,7 +115,7 @@
 	y=zero,
 	y error plus=upper,
 	y error minus=lower,
-] {../data/2003.csv};
+] {../data/2012.csv};
 \node[fill=white] at (4,23) {+62\%};
 \node[fill=white] at (7,23) {+1014\%};
 \node[fill=white,anchor=center,] at (1.2,25) {\$=\$(2020)};
