@@ -50,13 +50,13 @@
     height=200pt,
 %Domain
     enlarge x limits=0.03,
-    ymin=0, ymax=300,
+    ymin=0, ymax=1,
     xmin=0,xmax=18,
 %Ticks and Labels
     xmajorticks=false,
     xticklabels={,,},
-    ytick={0,50,100,150,200},
-    yticklabels={,50,100,150,200},
+    ytick={0,0.2,0.4,0.6,0.8,1},
+    yticklabels={,0.2,0.4,0.6,0.8,1},
     ylabel near ticks,
     yticklabel pos=right,
     ]
@@ -74,18 +74,18 @@
     height=200pt,
 %Domain
     enlarge x limits=0.03,
-    ymin=0, ymax=300,
+    ymin=0, ymax=1,
     xmin=0,xmax=18,
 %???
     %point meta = explicit,
 %Ticks and Labels
     xtick = data,
     xticklabels={,,},
-    ytick={0,50,100,150,200},
-    yticklabels={,50,100,150,200},
+    ytick={0,0.2,0.4,0.6,0.8,1},
+    yticklabels={,0.2,0.4,0.6,0.8,1},
 %Axes and Labels
     axis on top,
-    ylabel = {Manufacturing Cost [\$(2020)]},
+    ylabel = {Yielded Manufacturing Cost [\$(2020)]},
 %Legend
     legend pos=north west,
 	legend cell align={left},
@@ -97,7 +97,7 @@
 \addlegendentry{Epitaxy}
 \addlegendimage{/pgfplots/refstyle=greenbar,xshift=0.5em}
 \addlegendentry{Wafer Processing}
-\addlegendimage{line legend, red}
+\addlegendimage{/pgfplots/refstyle=redline}
 \addlegendentry{Total Yield}
 \addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
 \addlegendentry{Step Yield}
@@ -225,9 +225,9 @@
 \addplot [ybar,ybar legend,draw=blue,fill=blue!30]
 	table [col sep=comma, x=index, y=yield]
 	{../data/2003_yield.csv}; \label{bar1}
-\addplot [no markers, red]
+\addplot [line legend, no markers, red, dashed]
 	table [col sep=comma, x=index, y=cumyield]
-	{../data/2003_yield.csv};
+	{../data/2003_yield.csv}; \label{redline}
 \end{axis}
 
 %Labels only
