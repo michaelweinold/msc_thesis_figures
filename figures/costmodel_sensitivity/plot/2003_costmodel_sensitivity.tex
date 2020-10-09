@@ -13,41 +13,122 @@
 
 \begin{tikzpicture}
 
+%\begin{axis}[
+%Grouping
+%	name=2003_labels,
+%	at={(0,0)},
+%Position
+%    height=100pt,
+%    width=418pt,
+%Domain
+%	xmin=0,xmax=14,
+%	ymin=-190,ymax=100,
+%Ticks
+%    xticklabels={,,},
+%Other Labels
+%    visualization depends on={value \thisrow{unit} \as \labela},
+%    nodes near coords={\labela},
+%    %nodes near coords align = horizonal,
+%    nodes near coords style={rotate=90, anchor=south east},
+%]
+%\addplot [no markers, only marks]
+%	table [col sep=comma, x=index, y=labelheight]
+%	{../data/2003.csv};
+%\end{axis}
+
 \begin{axis}[
 %Grouping
-	name=top_labels,
+	name=2003_bars,
 	at={(0,0)},
 %Position
-    height=110pt,
+    height=90pt,
     width=418pt,
 %Domain
 	xmin=0,xmax=14,
-	ymin=-180,ymax=100,
+	ymin=-100,ymax=100,
 %Ticks
-    xticklabels={,,},
-%Other Labels
-    visualization depends on={value \thisrow{unit} \as \labela},
-    nodes near coords={\labela},
-    %nodes near coords align = horizonal,
-    nodes near coords style={rotate=90, anchor=south east},
+	xticklabels={,,},
+	yticklabels={,,-50,0,50,100},
+%Axis Labels
+    ylabel style={align=center},
+	ylabel={Range}\\{[\% resp. units]},
 ]
-\addplot [no markers, only marks]
-	table [col sep=comma, x=index, y=labelheight]
-	{../data/2003.csv};
+\addplot [blue,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=index,
+	y=zero,
+	y error plus=upper_par,
+	y error minus=lower_par,
+] {../data/2003.csv};
+\addplot [blue, domain=0:15] {0};
 \end{axis}
 
 \begin{axis}[
 %Grouping
-	name=top_bars,
-	at={(0,0)},
+	name=2003,
+	at={(2003_bars.west)},
+	yshift=-85pt,
+	anchor=west,
 %Position
-    height=110pt,
+    height=160pt,
     width=418pt,
 %Domain
 	xmin=0,xmax=14,
-	ymin=-180,ymax=100,
+	ymin=-36,ymax=30,
+%Ticks
+	xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
+	ytick={-30,-20,-10,0,10,20,30},
+	tick label style={rotate=90, align=center},
+	xticklabels={,,},
+    yticklabels={-30,-20,-10,0,10,20,30},
+%Axis Labels
+    ylabel style={align=center},
+	ylabel={2003} \\ {$\Delta$ Manuf. Cost}\\{[\% of \$(2020)]},
+]
+\path [fill=white] (0.3,-27) rectangle (3.4,-34) node[pos=.5] {Economy of Scale};
+\path [fill=white] (3.6,-27) rectangle (6.4,-34) node[pos=.5] {Equip. Perf.};
+\path [fill=white] (6.6,-27) rectangle (9.4,-34) node[pos=.5] {Wafer Size};
+\path [fill=white] (9.6,-27) rectangle (13.4,-34) node[pos=.5] {Resource Prices};
+\addplot [black, domain=0:15] {0};
+\addplot [
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=index,
+	y=zero,
+	y error plus=upper,
+	y error minus=lower,
+] {../data/2003.csv};
+\node[fill=white] at (4,23) {+62\%};
+\node[fill=white] at (7,23) {+1014\%};
+\node[fill=white,anchor=center,] at (1.2,25) {\$=\$(2020)};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2012
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=2012_bars,
+	at={(2003.west)},
+	yshift=-92.5pt,
+	anchor=west,
+%Position
+    height=90pt,
+    width=418pt,
+%Domain
+	xmin=0,xmax=14,
+	ymin=-100,ymax=100,
 %Ticks
 	xticklabels={,,},
+	yticklabels={,,-50,0,50,100},
 %Axis Labels
     ylabel style={align=center},
 	ylabel={Range}\\{[\% resp. units]},
@@ -68,16 +149,94 @@
 
 \begin{axis}[
 %Grouping
-	name=bottom,
-	at={(top_labels.west)},
-	yshift=-100pt,
+	name=2012,
+	at={(2012_bars.west)},
+	yshift=-65pt,
 	anchor=west,
 %Position
-    height=170pt,
+    height=120pt,
     width=418pt,
 %Domain
 	xmin=0,xmax=14,
-	ymin=-36,ymax=30,
+	ymin=-20,ymax=20,
+%Ticks
+	xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
+	ytick={-30,-20,-10,0,10,20,30},
+	tick label style={rotate=90, align=center},
+	xticklabels={,,},
+    yticklabels={-30,-20,-10,0,10,20,30},
+%Axis Labels
+    ylabel style={align=center},
+	ylabel={2012} \\ {$\Delta$ Manuf.Cost}\\{[\% of \$(2020)]},
+]
+\path [fill=white] (0.3,-17) rectangle (3.4,-12) node[pos=.5] {Economy of Scale};
+\path [fill=white] (3.6,-17) rectangle (6.4,-12) node[pos=.5] {Equip. Perf.};
+\path [fill=white] (6.6,-17) rectangle (9.4,-12) node[pos=.5] {Wafer Size};
+\path [fill=white] (9.6,-17) rectangle (13.4,-12) node[pos=.5] {Resource Prices};
+\addplot [black, domain=0:15] {0};
+\addplot [
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=index,
+	y=zero,
+	y error plus=upper,
+	y error minus=lower,
+] {../data/2012.csv};
+\node[fill=white] at (7,12) {+31\%};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2020
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	name=2020_bars,
+	at={(2012.west)},
+	yshift=-75pt,
+	anchor=west,
+%Position
+    height=90pt,
+    width=418pt,
+%Domain
+	xmin=0,xmax=14,
+	ymin=-100,ymax=100,
+%Ticks
+	xticklabels={,,},
+	yticklabels={,,-50,0,50,100},
+%Axis Labels
+    ylabel style={align=center},
+	ylabel={Range}\\{[\% resp. units]},
+]
+\addplot [blue,
+	error bars/.cd,
+	y dir=both, y explicit,
+	x dir=both, x explicit,
+] table [
+	col sep=comma,
+	x=index,
+	y=zero,
+	y error plus=upper_par,
+	y error minus=lower_par,
+] {../data/2020.csv};
+\addplot [blue, domain=0:15] {0};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=2020,
+	at={(2020_bars.west)},
+	yshift=-65pt,
+	anchor=west,
+%Position
+    height=120pt,
+    width=418pt,
+%Domain
+	xmin=0,xmax=14,
+	ymin=-20,ymax=20,
 %Ticks
 	xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
 	ytick={-30,-20,-10,0,10,20,30},
@@ -98,12 +257,12 @@
     yticklabels={-30,-20,-10,0,10,20,30},
 %Axis Labels
     ylabel style={align=center},
-	ylabel={2003} \\ {$\Delta$ Manuf. Cost}\\{[\% of \$(2020)]},
+	ylabel={2020} \\ {$\Delta$ Manuf.Cost}\\{[\% of \$(2020)]},
 ]
-\draw (0.3,-27) rectangle (3.4,-34) node[pos=.5] {Economy of Scale};
-\draw (3.6,-27) rectangle (6.4,-34) node[pos=.5] {Equip. Perf.};
-\draw (6.6,-27) rectangle (9.4,-34) node[pos=.5] {Wafer Size};
-\draw (9.6,-27) rectangle (13.4,-34) node[pos=.5] {Resource Prices};
+\path [fill=white] (0.3,-17) rectangle (3.4,-12) node[pos=.5] {Economy of Scale};
+\path [fill=white] (3.6,-17) rectangle (6.4,-12) node[pos=.5] {Equip. Perf.};
+\path [fill=white] (6.6,-17) rectangle (9.4,-12) node[pos=.5] {Wafer Size};
+\path [fill=white] (9.6,-17) rectangle (13.4,-12) node[pos=.5] {Resource Prices};
 \addplot [black, domain=0:15] {0};
 \addplot [
 	error bars/.cd,
@@ -115,11 +274,9 @@
 	y=zero,
 	y error plus=upper,
 	y error minus=lower,
-] {../data/2012.csv};
-\node[fill=white] at (4,23) {+62\%};
-\node[fill=white] at (7,23) {+1014\%};
-\node[fill=white,anchor=center,] at (1.2,25) {\$=\$(2020)};
+] {../data/2020.csv};
 \end{axis}
+
 
 \end{tikzpicture}
 
