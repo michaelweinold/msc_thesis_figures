@@ -29,7 +29,7 @@
     visualization depends on={value \thisrow{unit} \as \labela},
     nodes near coords={\labela},
     %nodes near coords align = horizonal,
-    nodes near coords style={rotate=90, anchor=south},
+    nodes near coords style={rotate=90, anchor=south east},
 ]
 \addplot [no markers, only marks]
 	table [col sep=comma, x=index, y=labelheight]
@@ -118,6 +118,7 @@
 ] {../data/2003.csv};
 \node[fill=white] at (4,23) {+62\%};
 \node[fill=white] at (7,23) {+1014\%};
+\node[fill=white,anchor=center,] at (1.2,25) {\$=\$(2020)};
 \end{axis}
 
 \end{tikzpicture}
