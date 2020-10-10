@@ -77,7 +77,7 @@
 %Axis Labels
 	ylabel=Flux/Package \text{[}lm\text{]},
 %Legend
-	legend entries={,Single Chip,Multi-Chip,Multi-Chip (Single Chip Equiv.), Chip-on-Board (Multi-Chip)},
+	legend entries={,,Single Chip,Multi-Chip,Multi-Chip (Single Chip Equiv.), Chip-on-Board (Multi-Chip)},
 	legend cell align={left},
 	legend pos=south west,
 	legend style={fill=none,draw=none},
@@ -86,11 +86,11 @@
 	table [col sep=comma, x=year, y=flux]
 	{../data/white_flux.csv};
 %Chip Number
-\addplot [black, only marks, mark=triangle,mark size=5pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_1chip.csv};
+\addplot [black, only marks, mark=triangle,mark size=4pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_1chip.csv};
 \addplot [black, only marks, mark=triangle,mark size=4pt] table [col sep=comma, x=year, y=cost]{../data/white_cost_1chip.csv};
 \addplot [black, only marks, mark=pentagon,mark size=4pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_equivalent1chip.csv};
+\addplot [black, only marks, mark=square,mark size=3pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_multichip.csv};
 \addplot [black, only marks, mark=o,mark size=4pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_COB.csv};
-\addplot [black, only marks, mark=square,mark size=4pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_multichip.csv};
 %Annotations
 \draw [dashed, draw=black] (axis cs: 2010,260) -- (axis cs: 2020,1333);
 \draw [dashed, draw=black] (axis cs: 2010,100) -- (axis cs: 2020,250);
