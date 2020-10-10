@@ -1,0 +1,14 @@
+index,step,yield,cumyield,tmp_repeats,repeats,labelheight
+1,Die Cost (yielded),0.82,,1,$\times$1,0.3
+2,Package Cost (yielded),0.82,,1,$\times$1,0.3
+3,Die_Attach,0.97,0.97,1,$\times$1,0.3
+4,Flip_Chip,,0.97,0,,0.3
+5,ESD Attach,,0.97,0,,0.3
+6,Wire_Bonding,0.96,0.9312,1,$\times$1,0.3
+7,Phosphor_Package,0.98,0.912576,1,$\times$1,0.3
+8,Curing,1,0.912576,1,$\times$1,0.3
+9,Encapsulation,,0.912576,0,,0.3
+10,Lens_Molding,,0.912576,0,,0.3
+11,Lens_Attach,,0.912576,0,,0.3
+12,LED_Test,0.9,0.8213184,1,$\times$1,0.3
+13,TOTAL,0.82,0.8213184,,,0.3
