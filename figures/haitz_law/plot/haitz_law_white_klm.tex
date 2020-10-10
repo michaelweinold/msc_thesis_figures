@@ -76,10 +76,32 @@
 	/pgf/number format/1000 sep={},
 %Axis Labels
 	ylabel=Flux/Package \text{[}lm\text{]},
+%Legend
+	legend entries={,Single Chip,Multi-Chip,Multi-Chip (Single Chip Equiv.), Chip-on-Board (Multi-Chip)},
+	legend cell align={left},
+	legend pos=south west,
+	legend style={fill=none,draw=none},
 			]
 \addplot [only marks]
 	table [col sep=comma, x=year, y=flux]
 	{../data/white_flux.csv};
+%Chip Number
+\addplot [black, only marks, mark=triangle,mark size=5pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_1chip.csv};
+\addplot [black, only marks, mark=triangle,mark size=4pt] table [col sep=comma, x=year, y=cost]{../data/white_cost_1chip.csv};
+\addplot [black, only marks, mark=pentagon,mark size=4pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_equivalent1chip.csv};
+\addplot [black, only marks, mark=o,mark size=4pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_COB.csv};
+\addplot [black, only marks, mark=square,mark size=4pt] table [col sep=comma, x=year, y=flux]{../data/white_flux_multichip.csv};
+%Annotations
+\draw [dashed, draw=black] (axis cs: 2010,260) -- (axis cs: 2020,1333);
+\draw [dashed, draw=black] (axis cs: 2010,100) -- (axis cs: 2020,250);
+%\addplot [black,domain=2010:2015] {380};
+%\addplot [black,domain=2010:2015] {235};
+%\addplot [black,domain=2015:2019] {750};
+%\addplot [black,domain=2015:2019] {250};
+%\addplot [black,domain=2019:2020] {1333};
+%\addplot [black,domain=2019:2020] {250};
+\node[fill=none] at (rel axis cs:0.99,0.46) [anchor=east]{Range Commercial};
+\node[fill=none] at (rel axis cs:0.99,0.39) [anchor=east]{Single Chips};
 \end{axis}
 
 \begin{axis}[
@@ -93,6 +115,7 @@
 %Domain
  	ymode=log,
 	ymin=0.01, ymax=1000000,
+	xmin=2000,xmax=2020,
 	ytick={0.1,1,10,100,1000,10000,100000,1000000},
 	max space between ticks=20,
 	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
