@@ -1,0 +1,56 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\usepackage[official]{eurosym} %For € symbol in text
+\usetikzlibrary{pgfplots.statistics} %For boxplots
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+
+%\newsavebox{\temp}
+
+\begin{document}
+
+
+\begin{tikzpicture}
+\begin{axis}[
+%Grouping
+	name=top,
+%Size
+	height=150pt,
+	width=250pt,
+%Domain
+	xmin=2005, xmax=2020,
+	ymin=0, ymax=30,
+%Ticks
+    ytick={0,10,20,30},
+    yticklabels={,10,20,30},
+	xtick distance=5,
+	minor x tick num=4,
+	minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis Labels
+    ylabel style={align=center},
+	ylabel={Levelized Annual Cost} \\ {at 10h/day [\$(2020)]},
+	legend entries={Incandescent, CFL, LED},
+	legend cell align={left},
+	legend pos=north east,
+	legend style={draw=none},
+	]
+\addplot [orange]
+	table [col sep=comma, x=year, y=incand]
+	{../data/data.csv};
+\addplot [green]
+	table [col sep=comma, x=year, y=cfl]
+	{../data/data.csv};
+\addplot [blue]
+	table [col sep=comma, x=year, y=led]
+	{../data/data.csv};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
