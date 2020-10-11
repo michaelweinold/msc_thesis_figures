@@ -39,31 +39,6 @@
 %Grouping
 	name=top,
 	at={(0,0)},
-%Size
-    width=495pt,
-    height=200pt,
-%Domain
-    enlarge x limits=0.03,
-    ymin=0, ymax=1.3,
-    xmin=0,xmax=12,
-%Ticks and Labels
-    xmajorticks=false,
-    xticklabels={,,},
-    ytick={0,0.2,0.4,0.6,0.8,1},
-    yticklabels={,0.2,0.4,0.6,0.8,1},
-    yticklabel pos=right,
-%Axes and Labels
-    visualization depends on={value \thisrow{label} \as \labela},
-    nodes near coords={\labela},
-    ]
-\addplot [scatter, only marks, no markers] table [col sep=comma, x=index, y=position] {../data/2003_package_labels.csv};
-%\node[draw=black,anchor=west,align=left] at (canvas cs:x=50pt,y=10pt) {};
-\end{axis}
-
-\begin{axis}[
-%Grouping
-	name=top,
-	at={(0,0)},
  %Plot Type
     ybar stacked,
     bar width=15pt,
@@ -72,20 +47,21 @@
     height=200pt,
 %Domain
     enlarge x limits=0.03,
-    ymin=0, ymax=1.3,
+    ymin=0, ymax=0.06,
     xmin=0,xmax=12,
 %???
     %point meta = explicit,
 %Ticks and Labels
+    scaled y ticks = false,
     xtick = data,
     xticklabels={,,},
-    ytick={0,0.2,0.4,0.6,0.8,1},
-    yticklabels={,0.2,0.4,0.6,0.8,1},
+    ytick={0,0.01,0.02,0.03,0.04,0.05},
+    yticklabels={,0.01,0.02,0.03,0.04,0.05},
 %Axes and Labels
     axis on top,
     ylabel = {Yielded Manufacturing Cost [\$(2020)]},
 %Legend
-    legend style={at={(0.06,0.03)},anchor=south west},
+    legend style={at={(0.66,0.03)},anchor=south west},
 	legend cell align={left},
 	legend style={draw=none,fill=white},
 			]
@@ -109,20 +85,20 @@
     y filter/.code = {\ifnum\coordindex>11 \def\pgfmathresult{0}\fi},
     draw = none,
     fill = none
-] table [col sep=comma, x expr = \coordindex, y = accumyprev] {../data/2003_package.csv};
-\addplot[ybar legend,fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/2003_package.csv}; \label{greenbar}
-\addplot[ybar legend,fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/2003_package.csv}; \label{cyanbar}
-\addplot[ybar legend,fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/2003_package.csv};
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 3, meta index = 3] {../data/2003_package.csv};
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 4, meta index = 4] {../data/2003_package.csv};
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 5, meta index = 5] {../data/2003_package.csv};
-\addplot[fill=violet!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 6, meta index = 6] {../data/2003_package.csv}; \label{violetbar}
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 7, meta index = 7] {../data/2003_package.csv};
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 8, meta index = 8] {../data/2003_package.csv};
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 9, meta index = 9] {../data/2003_package.csv};
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 10, meta index = 10] {../data/2003_package.csv};
-\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 11, meta index = 11] {../data/2003_package.csv};
-\addplot[fill=orange!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 12, meta index = 12] {../data/2003_package.csv}; \label{orangebar}
+] table [col sep=comma, x expr = \coordindex, y = accumyprev] {../data/2020_package.csv};
+\addplot[ybar legend,fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/2020_package.csv}; \label{greenbar}
+\addplot[ybar legend,fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/2020_package.csv}; \label{cyanbar}
+\addplot[ybar legend,fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/2020_package.csv};
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 3, meta index = 3] {../data/2020_package.csv};
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 4, meta index = 4] {../data/2020_package.csv};
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 5, meta index = 5] {../data/2020_package.csv};
+\addplot[fill=violet!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 6, meta index = 6] {../data/2020_package.csv}; \label{violetbar}
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 7, meta index = 7] {../data/2020_package.csv};
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 8, meta index = 8] {../data/2020_package.csv};
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 9, meta index = 9] {../data/2020_package.csv};
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 10, meta index = 10] {../data/2020_package.csv};
+\addplot[fill=cyan!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 11, meta index = 11] {../data/2020_package.csv};
+\addplot[fill=orange!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 12, meta index = 12] {../data/2020_package.csv}; \label{orangebar}
 % Plots the connecting lines
 % Number of \thisrow{} is number of connecting lines
 % Number of \thisrow{} is total number of columns minus one
@@ -154,8 +130,35 @@
             \dostuff
         }
     },
-  ] table [col sep=comma, x expr = \coordindex, y expr = 0] {../data/2003_package.csv};
+  ] table [col sep=comma, x expr = \coordindex, y expr = 0] {../data/2020_package.csv};
 
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=top,
+	at={(0,0)},
+%Size
+    width=495pt,
+    height=200pt,
+%Domain
+    enlarge x limits=0.03,
+    ymin=0, ymax=0.06,
+    xmin=0,xmax=12,
+%Ticks and Labels
+    scaled y ticks = false,
+    xmajorticks=false,
+    xticklabels={,,},
+    ytick={0,0.01,0.02,0.03,0.04,0.05},
+    yticklabels={,0.01,0.02,0.03,0.04,0.05},
+    yticklabel pos=right,
+%Axes and Labels
+    every node near coord/.style={fill=white, rotate=90, anchor=west},
+    visualization depends on={value \thisrow{label} \as \labela},
+    nodes near coords={\labela},
+    ]
+\addplot [scatter, only marks, no markers] table [col sep=comma, x=index, y=position] {../data/2020_package_labels.csv};
+%\node[draw=black,anchor=west,align=left] at (canvas cs:x=50pt,y=10pt) {};
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%Bottom
@@ -216,10 +219,10 @@
 			]
 \addplot [ybar,ybar legend,draw=blue,fill=blue!30]
 	table [col sep=comma, x=index, y=yield]
-	{../data/2003_package_yield.csv}; \label{bar1}
+	{../data/2020_package_yield.csv}; \label{bar1}
 \addplot [line legend, no markers, red, dashed]
 	table [col sep=comma, x=index, y=cumyield]
-	{../data/2003_package_yield.csv}; \label{redline}
+	{../data/2020_package_yield.csv}; \label{redline}
 \end{axis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%Bottom
@@ -273,7 +276,7 @@
     ]
 \addplot [no markers, only marks]
 	table [col sep=comma, x=index, y=labelheight]
-	{../data/2003_package_yield.csv};
+	{../data/2020_package_yield.csv};
 \end{axis}
     
 \end{tikzpicture}

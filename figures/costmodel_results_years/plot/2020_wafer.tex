@@ -1,0 +1,306 @@
+\documentclass[crop]{standalone}
+
+\usepackage{verbatim}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\usepackage[]{xcolor}
+
+\pgfplotsset{compat=1.8} %v=1.8 required for this plot
+
+% What does this do?
+% Number of \prevrow{} is total number of columns minus two
+\pgfplotstableset{
+    create on use/accumyprev/.style = {
+        create col/expr = {	\prevrow{0}+
+        					\prevrow{1}+
+        					\prevrow{2}+
+        					\prevrow{3}+
+        					\prevrow{4}+
+        					\prevrow{5}+
+        					\prevrow{6}+
+        					\prevrow{7}+
+        					\prevrow{8}+
+        					\prevrow{9}+
+        					\prevrow{10}+
+        					\prevrow{11}+
+        					\prevrow{12}+
+        					\prevrow{13}+
+        					\prevrow{14}+
+        					\prevrow{15}+
+        					\prevrow{16}+
+        					\prevrow{17}+
+        					\pgfmathaccuma}
+    }
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+%Axis ticks on right axis as well
+
+\begin{axis}[
+%Grouping
+	name=top,
+	at={(0,0)},
+ %Plot Type
+    ybar stacked,
+    bar width=15pt,
+%Size
+    width=595pt,
+    height=200pt,
+%Domain
+    enlarge x limits=0.025,
+    ymin=0, ymax=0.014,
+    xmin=0,xmax=18,
+%???
+    %point meta = explicit,
+%Ticks and Labels
+    scaled y ticks = false,
+    xtick = data,
+    xticklabels={,,},
+    ytick={0,0.0025,0.005,0.0075,0.01,0.0125},
+    yticklabels={,0.0025,0.005,0.0075,0.01,0.0125},
+%Axes and Labels
+    axis on top,
+    ylabel = {Yielded Manufacturing Cost [\$(2020)]},
+%Legend
+    legend pos=north west,
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+			]
+\addlegendimage{/pgfplots/refstyle=violetbar,xshift=0.5em}
+\addlegendentry{Substrate}
+\addlegendimage{/pgfplots/refstyle=redbar,xshift=0.5em}
+\addlegendentry{Epitaxy}
+\addlegendimage{/pgfplots/refstyle=greenbar,xshift=0.5em}
+\addlegendentry{Wafer Processing}
+\addlegendimage{/pgfplots/refstyle=redline}
+\addlegendentry{Total Yield}
+\addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
+\addlegendentry{Step Yield}
+% The first plot sets the "baseline":
+% Uses the sum of all previous y values,
+% except for the last bar, where it becomes 0
+% \ifnum\coordindex>n where n is total number of columns minus two
+\addplot[
+    y filter/.code = {\ifnum\coordindex>17 \def\pgfmathresult{0}\fi},
+    draw = none,
+    fill = none
+] table [col sep=comma, x expr = \coordindex, y = accumyprev] {../data/2020_wafer.csv};
+\addplot[ybar legend,fill=violet!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 0, meta index = 0] {../data/2020_wafer.csv}; \label{violetbar}
+\addplot[ybar legend,fill=red!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 1, meta index = 1] {../data/2020_wafer.csv}; \label{redbar}
+\addplot[ybar legend,fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 2, meta index = 2] {../data/2020_wafer.csv}; \label{greenbar}
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 3, meta index = 3] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 4, meta index = 4] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 5, meta index = 5] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 6, meta index = 6] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 7, meta index = 7] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 8, meta index = 8] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 9, meta index = 9] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 10, meta index = 10] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 11, meta index = 11] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 12, meta index = 12] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 13, meta index = 13] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 14, meta index = 14] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 15, meta index = 15] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 16, meta index = 16] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 17, meta index = 17] {../data/2020_wafer.csv};
+\addplot[fill=green!20,draw=black,ybar stacked] table [col sep=comma, x expr = \coordindex, y index = 18, meta index = 18] {../data/2020_wafer.csv};
+% Plots the connecting lines
+% Number of \thisrow{} is number of connecting lines
+% Number of \thisrow{} is total number of columns minus one
+  \addplot [
+    const plot, black,
+    point meta = {
+        TeX code symbolic = {
+            \pgfkeys{/pgf/fpu/output format=fixed}
+            \pgfmathtruncatemacro\upperbound{
+                \thisrowno{0}+
+                \thisrowno{1}+
+                \thisrowno{2}+
+                \thisrowno{3}+
+                \thisrowno{4}+
+                \thisrowno{5}+
+                \thisrowno{6}+
+                \thisrowno{7}+
+                \thisrowno{8}+
+                \thisrowno{9}+
+                \thisrowno{10}+
+                \thisrowno{11}+
+                \thisrowno{12}+
+                \thisrowno{13}+
+                \thisrowno{14}+
+                \thisrowno{15}+
+                \thisrowno{16}+
+                \thisrowno{17}+
+                \thisrowno{18}
+            }
+            \edef\dostuff{
+                \noexpand\def\noexpand\pgfplotspointmeta{%
+                    \thisrowno{0}--\upperbound%
+                }
+            }%
+            \dostuff
+        }
+    },
+  ] table [col sep=comma, x expr = \coordindex, y expr = 0] {../data/2020_wafer.csv};
+
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=top,
+	at={(0,0)},
+%Size
+    width=595pt,
+    height=200pt,
+%Domain
+    enlarge x limits=0.025,
+    ymin=0, ymax=0.014,
+    xmin=0,xmax=18,
+%Ticks and Labels
+    scaled y ticks = false,
+    xmajorticks=false,
+    xticklabels={,,},
+    ytick={0,0.0025,0.005,0.0075,0.01,0.0125},
+    yticklabels={,0.0025,0.005,0.0075,0.01,0.0125},
+    yticklabel pos=right,
+%Axes and Labels
+    every node near coord/.style={fill=white, rotate=90, anchor=west},
+    visualization depends on={value \thisrow{label} \as \labela},
+    nodes near coords={\labela},
+    ]
+\addplot [scatter, only marks, no markers] table [col sep=comma, x=index, y=position] {../data/2020_wafer_labels.csv};
+%\node[draw=black,anchor=west,align=left] at (canvas cs:x=50pt,y=10pt) {};
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%Bottom
+%%%%%%%%%%%%%%%%%%%%%%%%Axis ticks on right axis as well
+
+\begin{axis}[
+%Grouping
+	name=bottom,
+	at={(top.west)},
+	yshift=-115pt,
+	anchor=west,
+%Size
+	height=110pt,
+	width=595pt,
+%Domain
+	xmin=1,xmax=18,
+	ymin=0.3,ymax=1,
+%Ticks and Labels
+    xmajorticks=false,
+    xticklabels={,,},
+    yticklabels={30,50,75,100},
+	ytick={0.3,0.5,0.75,1},
+	ylabel near ticks,
+    yticklabel pos=right,
+    ]
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%Bottom
+%%%%%%%%%%%%%%%%%%%%%%%%Bars
+
+\begin{axis}[
+%Grouping
+    name=bottom,
+	at={(top.west)},
+	yshift=-115pt,
+	anchor=west,
+%Size
+	height=110pt,
+	width=595pt,
+%Domain
+	xmin=1,xmax=19,
+	ymin=0.3,ymax=1,
+%Type
+	%ybar stacked,
+	bar width=15pt,
+	axis on top,
+%Ticks
+    enlarge x limits=0.03,
+    scaled y ticks = false,
+	xtick=data,
+	xticklabels={,,},
+	ytick={0.3,0.5,0.75,1},
+	yticklabels={30,50,75,100},
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel = {Yield [\%]},
+			]
+\addplot [ybar,ybar legend,draw=blue,fill=blue!30]
+	table [col sep=comma, x=index, y=yield]
+	{../data/2020_wafer_yield.csv}; \label{bar1}
+\addplot [line legend, no markers, red, dashed]
+	table [col sep=comma, x=index, y=cumyield]
+	{../data/2020_wafer_yield.csv}; \label{redline}
+\end{axis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%Bottom
+%%%%%%%%%%%%%%%%%%%%%%%%Labels only
+
+\begin{axis}[
+%Grouping
+	%Grouping
+    name=bottom1,
+	at={(top.west)},
+	yshift=-115pt,
+	anchor=west,
+%Size
+    width=595pt,
+    height=110pt,
+%Domain
+	xmin=1,xmax=19,
+	ymin=0.3,ymax=1,
+%Type
+	%ybar stacked,
+	bar width=15pt,
+	axis on top,
+%Ticks
+    enlarge x limits=0.03,
+    scaled y ticks = false,
+	xtick=data,
+	xticklabels={,,},
+	ymajorticks=false,
+	yticklabels={,,},
+	/pgf/number format/1000 sep={},
+%Other Labels
+    visualization depends on={value \thisrow{repeats} \as \labela},
+    nodes near coords={\labela},
+%General
+    axis on top,
+%Bottom Labels
+    xticklabel style={rotate=90, align=right, anchor=east},
+    xticklabels = { Substrate,
+                    Epitaxy,
+                    Wafer \\ Inspection,
+                    Dry \\ Deposition,
+                    Litho \\ (Stepper),
+                    Litho \\ (Mask),
+                    Dry Etch,
+                    ITO Depn.,
+                    N-Metal,
+                    P-Metal,
+                    Contact \\ Metal,
+                    Generic \\ Metal,
+                    Wafer \\ Bonding,
+                    Wafer \\ LLO,
+                    Back- \\ grinding,
+                    CMP,
+                    Dicing,
+                    Probe \\ Test,
+                    TOTAL},
+    ]
+\addplot [no markers, only marks]
+	table [col sep=comma, x=index, y=labelheight]
+	{../data/2020_wafer_yield.csv};
+\end{axis}
+    
+\end{tikzpicture}
+
+\end{document}

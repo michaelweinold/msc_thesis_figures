@@ -1,0 +1,20 @@
+index,step,yield,cumyield,tmp_repeats,repeats,labelheight
+1,Substrate,,,,,0.3
+2,Epitaxy,0.9725,0.97,1,$\times$1,0.3
+3,Wafer_Inspection,1,0.97,6,$\times$6,0.3
+4,Dry_Depn,0.9925,0.94119003,3,$\times$3,0.3
+5,Lithography_Stepper,0.9975,0.93648408,1,$\times$1,0.3
+6,Lithography_Mask,0.9925,0.881681171,6,$\times$6,0.3
+7,Dry_Etch,0.9925,0.87286436,1,$\times$1,0.3
+8,ITO_Deposition,0.9925,0.864135716,1,$\times$1,0.3
+9,N_Metal,0.9925,0.855494359,1,$\times$1,0.3
+10,P_Metal,0.9925,0.846939415,1,$\times$1,0.3
+11,Contact_Metal,0.9925,0.838470021,1,$\times$1,0.3
+12,Generic_Metal,,0.838470021,,,0.3
+13,Wafer Bonding,0.9825,0.805266608,2,$\times$2,0.3
+14,Wafer LLO,,0.805266608,,,0.3
+15,Backgrinding,0.9825,0.789161276,1,$\times$1,0.3
+16,GaN_CMP,0.9825,0.773378051,1,$\times$1,0.3
+17,Wafer Dicing,0.9825,0.75791049,1,$\times$1,0.3
+18,Wafer_Probe_Test,1,0.75791049,1,$\times$1,0.3
+19,Sum,,0.75791049,,,0.3
