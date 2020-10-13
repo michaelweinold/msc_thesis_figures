@@ -41,7 +41,7 @@
 	legend pos=north east,
 	legend style={draw=none},
 	]
-\addplot [only marks]
+\addplot [only marks, blue]
 	table [col sep=comma, x=year, y=cpl]
 	{../data/dollar-all_years.csv};
 \addplot [thick, red]
@@ -52,8 +52,8 @@
 	{../data/dollar-doeprojection_all_years.csv};
 \addplot [orange, domain=2008:2020] {2.28};
 \node[orange, anchor=west] at (2008.8,3.85) {Incandescent};
-\addplot [blue, domain=2008:2020] {10};
-\node[blue, anchor=west] at (2008.8,17) {CFL};
+\addplot [green, domain=2008:2020] {10};
+\node[green, anchor=west] at (2008.8,17) [fill=white]{CFL};
 \end{axis}
 
 \begin{axis}[
@@ -148,9 +148,9 @@
 	table [col sep=comma, x=year, y=cpl]
 	{../data/dollar-doeprojection_all_years.csv};
 \addplot [orange, domain=2008:2020] {2.28};
-\node[orange, anchor=west] at (2008.2,3.85) {Incandescent};
-\addplot [blue, domain=2008:2020] {10};
-\node[blue, anchor=west] at (2008.2,16) {CFL};
+\node[orange, anchor=west] at (2008.2,2.48) [fill=white]{Incandescent};
+\addplot [teal, domain=2008:2020] {10};
+\node[teal, anchor=west] at (2008.2,10.5) [fill=white]{CFL};
 \end{axis}
 
 \begin{axis}[

@@ -1,0 +1,56 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+			
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=high,
+	height=5cm,
+	width=10cm,
+%Type
+	ybar stacked,
+	bar width=15pt,
+	nodes near coords,
+	axis on top,
+%Domain
+	ymin=0,ymax=100,
+	xmin=2007,xmax=2021,
+%Axis Labels
+	ylabel=Rel. Manuf. Cost \text{[}\%\text{]},
+	%xticklabels={,,},
+	/pgf/number format/1000 sep={},
+%Legend
+	legend entries={Wafer Processing,Epitaxy,Substrate,Phosphor,Packaging},
+	legend cell align={left},
+	legend pos=outer north east,
+	legend style={draw=none},
+]
+\addplot [ybar,fill=green!20,draw=black!70]
+	table [col sep=comma, x=year, y=wafer]
+	{../data/cost_high_relative.csv};
+\addplot [ybar,fill=red!20,draw=black!70]
+	table [col sep=comma, x=year, y=epi]
+	{../data/cost_high_relative.csv};
+\addplot [ybar,fill=blue!20,draw=black!70]
+	table [col sep=comma, x=year, y=subst]
+	{../data/cost_high_relative.csv};
+\addplot [ybar,fill=violet!20,draw=black!70]
+	table [col sep=comma, x=year, y=phos]
+	{../data/cost_high_relative.csv};
+\addplot [ybar,fill=cyan!20,draw=black!70]
+	table [col sep=comma, x=year, y=pack]
+	{../data/cost_high_relative.csv};
+\end{axis}
+
+
+\end{tikzpicture}
+\end{document}

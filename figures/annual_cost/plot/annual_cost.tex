@@ -21,10 +21,10 @@
 	name=top,
 %Size
 	height=150pt,
-	width=250pt,
+	width=150pt,
 %Domain
 	xmin=2005, xmax=2020,
-	ymin=0, ymax=30,
+	ymin=0, ymax=34,
 %Ticks
     ytick={0,10,20,30},
     yticklabels={,10,20,30},
@@ -37,13 +37,13 @@
 	ylabel={Levelized Annual Cost} \\ {at 10h/day [\$(2020)]},
 	legend entries={Incandescent, CFL, LED},
 	legend cell align={left},
-	legend pos=north east,
+	legend style={at={(0.05,0.43)},anchor=south west},
 	legend style={draw=none},
 	]
 \addplot [orange]
 	table [col sep=comma, x=year, y=incand]
 	{../data/data.csv};
-\addplot [green]
+\addplot [teal]
 	table [col sep=comma, x=year, y=cfl]
 	{../data/data.csv};
 \addplot [blue]
