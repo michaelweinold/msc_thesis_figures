@@ -31,10 +31,10 @@
 	legend cell align=left,
 	legend pos=south east,
 	legend style={draw=none},
-	legend entries={,Fire,, Incandescent,,HID},
+	legend entries={,Fire,, Incandescent,,HID,,LED,CFL},
 ]
 \addplot [domain=1850:2020] {370};
-\node[above,fill=white,anchor=west] at (1860,370) {Max. Efficacy $\eta$=370lm/W at CRI=90};
+\node[above,fill=white,anchor=west] at (1860,370) {Max. Efficacy K=370lm/W at CRI=90};
 \addplot [red, only marks]
 	table [col sep=comma, x=year, y=ler]
 	{../data/fire.csv};
@@ -59,6 +59,14 @@
 \addplot [yellow, smooth, dashed]
 	table [col sep=comma, x=year, y=data]
 	{../data/hid_trend.csv};
+\addplot [black, only marks]
+	table [col sep=comma, x=year, y=eff]
+	{../data/warm_white_trend.csv};
+\addplot [teal, only marks]
+	table [col sep=comma, x=year, y=data]
+	{../data/cfl_trend.csv};
+%TODO: 
+%LED Packages
 \addplot [red, smooth, dashed]
 	table [col sep=comma, x=year, y=data]
 	{../data/red_trend.csv};
