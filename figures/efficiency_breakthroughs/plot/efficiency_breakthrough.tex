@@ -1,0 +1,96 @@
+\documentclass[crop]{standalone}
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest,
+			xtick pos=left,
+			ytick pos=left
+			}
+			
+
+\begin{document}
+\begin{tikzpicture}
+
+%Years Legend only
+\begin{axis}[
+	height=200pt,
+	width=418pt,
+%Type
+	%nodes near coords,
+	axis on top,
+	enlarge x limits=0.04,
+%Domain
+	ymin=0,ymax=100,
+	xmin=0,xmax=10,
+%Axis Labels
+	%ylabel=Efficiency \text{[}\%\text{]},
+	xticklabels={,,},
+%Legend
+    legend style={at={(0.02,0.3)},anchor=south west},
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+			]
+\addlegendimage{no markers, thick, orange}
+\addlegendentry{2002}
+\addlegendimage{no markers, thick, red}
+\addlegendentry{2010}
+\addlegendimage{no markers, thick, purple}
+\addlegendentry{2016}
+\addlegendimage{no markers, thick, black}
+\addlegendentry{2010}
+]
+\end{axis}
+
+\begin{axis}[
+	height=200pt,
+	width=418pt,
+%Type
+	bar width=15pt,
+	%nodes near coords,
+	axis on top,
+	enlarge x limits=0.04,
+%Domain
+	ymin=0,ymax=100,
+	xmin=0,xmax=10,
+%Axis Labels
+	ylabel=Efficiency \text{[}\%\text{]},
+	xticklabels={,V$_\text{f}$E,LEE},
+%Legend
+    legend style={at={(0.02,0.03)},anchor=south west},
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+			]
+\addlegendimage{/pgfplots/refstyle=graybar}
+\addlegendentry{Other Improvements}
+\addlegendimage{/pgfplots/refstyle=bluebar}
+\addlegendentry{Spillover}
+\addlegendimage{/pgfplots/refstyle=redbar}
+\addlegendentry{Breakthrough}
+]
+%Hidden bar to push other bars to 2003 level
+\addplot [ybar stacked,fill=none,draw=none]
+	table [col sep=comma, x expr=\coordindex, y=hiddenbar]
+	{../data/efficiency_breakthroughs.csv};
+%Breakthroughs
+\addplot [ybar legend, ybar stacked,fill=gray!40,draw=gray]
+	table [col sep=comma, x expr=\coordindex, y=bt-1]
+	{../data/efficiency_breakthroughs.csv}; \label{graybar}
+\addplot [ybar legend, ybar stacked,fill=green!40,draw=blue]
+	table [col sep=comma, x expr=\coordindex, y=bt-2]
+	{../data/efficiency_breakthroughs.csv}; \label{bluebar}
+\addplot [ybar legend, ybar stacked,fill=teal!40,draw=blue]
+	table [col sep=comma, x expr=\coordindex, y=bt-3]
+	{../data/efficiency_breakthroughs.csv};
+\addplot [ybar legend, ybar stacked,fill=red!40,draw=blue]
+	table [col sep=comma, x expr=\coordindex, y=bt-4]
+	{../data/efficiency_breakthroughs.csv}; \label{redbar}
+%Efficiency Lines per Year
+%VfE
+\draw [orange, thick] (axis cs:-0.25,70) -- (axis cs:0.25,70);
+\draw [red, thick] (axis cs:-0.25,85) -- (axis cs:0.25,85);
+\draw [purple, thick] (axis cs:-0.25,96) -- (axis cs:0.25,96);
+\draw [black, thick] (axis cs:-0.25,99.5) -- (axis cs:0.25,99.5);
+\end{axis}
+
+\end{tikzpicture}
+\end{document}
