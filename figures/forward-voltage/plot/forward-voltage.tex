@@ -93,6 +93,31 @@
 
 \begin{tikzpicture}
 
+%Trendlines only
+\begin{axis}[
+%Grouping
+	name=trendlines,
+	at={(0,0)},
+%Domain
+	xmin=2000, xmax=2020,
+	ymin=2.55, ymax=4,
+%Size
+	width={\dimexpr 836pt-\wd\temp},
+	height=220pt,
+%Axis Labels
+    xticklabels={,,},
+    yticklabels={,,},
+%Legend
+	%legend entries={Classical, TFFC (top electr.) , TFFC (buried electr.), FC, CSP-FC, Osram Report},
+	%legend cell align={left},
+	%legend style={at={(0.99,0.99)},draw=none,fill=none},
+]
+\addplot [red, dashed, domain=2004:2019,smooth] {-0.08*x + 164.59};
+\addplot [blue, dashed, domain=2001:2019,smooth] {-0.04096986*x + 85.54513761};
+\addplot [teal, dashed, domain=2015:2020,smooth] {-0.0442857143*x + 92.1771428553};
+\addplot [orange, dashed, domain=2005:2019,smooth] {-0.04772071*x + 99.15070626};
+\end{axis}
+
 \begin{axis}[
 %Grouping
 	name=main,
@@ -111,10 +136,9 @@
 	ylabel style = {align=center},
 	ylabel=Forward Voltage \text{[}V\text{]} at 350mA,
 %Legend
-	legend pos=north east,
 	legend entries={Classical, TFFC (top electr.) , TFFC (buried electr.), FC, CSP-FC, Osram Report},
 	legend cell align={left},
-	legend style={draw=none,fill=none},
+	legend style={at={(0.99,0.99)},draw=none,fill=white},
 ]
 \addplot [red,only marks]
 	table [col sep=comma, x=year, y=vf]
@@ -143,6 +167,7 @@
 \node[above,fill=white] at (2004,3.4) {2020};
 \end{axis}
 
+%Inset Plot
 \begin{axis}[
 %Grouping
 	name=inset,
@@ -150,6 +175,7 @@
 	xshift=20,
 	yshift=-13,
 	anchor=west,
+	axis background/.style={fill=white},
 %Size
 	height=100pt,
 	width=150pt,
