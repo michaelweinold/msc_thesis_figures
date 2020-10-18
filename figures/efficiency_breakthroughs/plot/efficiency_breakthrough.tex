@@ -27,11 +27,11 @@
     xticklabel style={align=center},
     yticklabels={,0,20,40,60,80,100},
 	ylabel=Efficiency \text{[}\%\text{]},
-	xticklabels={,V$_\text{f}$E, IQE, Droop, LEE, CE \\ (\textcolor{red}{Red}), CE \\ (\textcolor{teal}{Green}/\textcolor{orange}{Yellow}), SE, \textbf{PCE}},
+	xticklabels={,V$_\text{f}$E, IQE, Droop, LEE, CE \\ (\textcolor{red}{Red}), CE \\ (\textcolor{teal}{Green}/\textcolor{orange}{black}), SE, \textbf{PCE}},
 %Legend
     legend style={at={(0.12,0.02)},anchor=south west},
 	legend cell align={left},
-	legend style={draw=none,fill=white},
+	legend style={draw=none,fill=none},
 	%nodes near coords,
 			]
 \addlegendimage{/pgfplots/refstyle=bluebar}
@@ -89,22 +89,24 @@
 	legend cell align={left},
 	legend style={draw=none,fill=none},
 			]
-\addlegendimage{no markers, thick, black}
-\addlegendentry{2020}
 \addlegendimage{no markers, thick, purple}
+\addlegendentry{2020}
+\addlegendimage{no markers, thick, magenta}
 \addlegendentry{2016}
-\addlegendimage{no markers, thick, red}
-\addlegendentry{2010}
 \addlegendimage{no markers, thick, orange}
-\addlegendentry{2002}
+\addlegendentry{2010}
 \addlegendimage{no markers, thick, teal}
-\addlegendentry{1997}
+\addlegendentry{2002}
 \addlegendimage{no markers, thick, blue}
+\addlegendentry{1997}
+\addlegendimage{no markers, thick, black}
 \addlegendentry{Physical Limit}
 ]
 %Table
 \node [above right] at (rel axis cs:0.4,0.03) {\includegraphics[width=83pt]{table.pdf}};
 %Annotations
+%VfE
+\node [] at (0,65) {\textcolor{teal}{N/A}};
 %CE
 \node [] at (6.35,73.5) {3};
 %Droop
@@ -120,49 +122,49 @@
 \node [] at (6,64) {\textcolor{teal}{N/A}};
 %Efficiency Lines per Year
 %VfE
-\draw [orange, thick] (axis cs:-0.25,70) -- (axis cs:0.25,70);
-\draw [red, thick] (axis cs:-0.25,85) -- (axis cs:0.25,85);
-\draw [purple, thick] (axis cs:-0.25,96) -- (axis cs:0.25,96);
-\draw [black, thick] (axis cs:-0.25,99.5) -- (axis cs:0.25,99.5);
-\draw[->, blue, thick] (axis cs:0,103) -- (axis cs:0,107);
+\draw [teal, thick] (axis cs:-0.25,70) -- (axis cs:0.25,70);
+\draw [orange, thick] (axis cs:-0.25,85) -- (axis cs:0.25,85);
+\draw [magenta, thick] (axis cs:-0.25,96) -- (axis cs:0.25,96);
+\draw [purple, thick] (axis cs:-0.25,99.5) -- (axis cs:0.25,99.5);
+\draw[->, black, thick] (axis cs:0,103) -- (axis cs:0,107);
 %IQE
-\draw [teal, thick] (axis cs:0.75,40) -- (axis cs:1.25,40);
-\draw [orange, thick] (axis cs:0.75,55) -- (axis cs:1.25,55);
-\draw [red, thick] (axis cs:0.75,70) -- (axis cs:1.25,70);
-\draw [purple, thick] (axis cs:0.75,88.02) -- (axis cs:1.25,88.02);
-\draw [black, thick] (axis cs:0.75,90) -- (axis cs:1.25,90);
-\draw [blue, thick] (axis cs:0.75,100) -- (axis cs:1.25,100);
+\draw [blue, thick] (axis cs:0.75,40) -- (axis cs:1.25,40);
+\draw [teal, thick] (axis cs:0.75,55) -- (axis cs:1.25,55);
+\draw [orange, thick] (axis cs:0.75,70) -- (axis cs:1.25,70);
+\draw [magenta, thick] (axis cs:0.75,88.02) -- (axis cs:1.25,88.02);
+\draw [purple, thick] (axis cs:0.75,90) -- (axis cs:1.25,90);
+\draw [black, thick] (axis cs:0.75,100) -- (axis cs:1.25,100);
 %Droop
-\draw [orange, thick] (axis cs:1.75,65) -- (axis cs:2.25,65);
-\draw [red, thick] (axis cs:1.75,70) -- (axis cs:2.25,70);
-\draw [purple, thick] (axis cs:1.75,89.06) -- (axis cs:2.25,89.06);
-\draw [black, thick] (axis cs:1.75,90.06) -- (axis cs:2.25,90.06);
-\draw [blue, thick] (axis cs:1.75,100) -- (axis cs:2.25,100);
+\draw [teal, thick] (axis cs:1.75,65) -- (axis cs:2.25,65);
+\draw [orange, thick] (axis cs:1.75,70) -- (axis cs:2.25,70);
+\draw [magenta, thick] (axis cs:1.75,89.06) -- (axis cs:2.25,89.06);
+\draw [purple, thick] (axis cs:1.75,90.06) -- (axis cs:2.25,90.06);
+\draw [black, thick] (axis cs:1.75,100) -- (axis cs:2.25,100);
 %LEE
-\draw [teal, thick] (axis cs:2.75,30) -- (axis cs:3.25,30);
-\draw [orange, thick] (axis cs:2.75,60) -- (axis cs:3.25,60);
-\draw [red, thick] (axis cs:2.75,80) -- (axis cs:3.25,80);
-\draw [purple, thick] (axis cs:2.75,86.86) -- (axis cs:3.25,86.86);
-\draw [black, thick] (axis cs:2.75,90) -- (axis cs:3.25,90);
-\draw [blue, thick] (axis cs:2.75,100) -- (axis cs:3.25,100);
+\draw [blue, thick] (axis cs:2.75,30) -- (axis cs:3.25,30);
+\draw [teal, thick] (axis cs:2.75,60) -- (axis cs:3.25,60);
+\draw [orange, thick] (axis cs:2.75,80) -- (axis cs:3.25,80);
+\draw [magenta, thick] (axis cs:2.75,86.86) -- (axis cs:3.25,86.86);
+\draw [purple, thick] (axis cs:2.75,90) -- (axis cs:3.25,90);
+\draw [black, thick] (axis cs:2.75,100) -- (axis cs:3.25,100);
 %CE(Red)
-\draw [orange, thick] (axis cs:3.75,45.265) -- (axis cs:4.25,45.265);
-\draw [red, thick] (axis cs:3.75,51.12) -- (axis cs:4.25,51.12);
-\draw [purple, thick] (axis cs:3.75,51.12) -- (axis cs:4.25,51.12);
-\draw [black, thick] (axis cs:3.75,56) -- (axis cs:4.25,56);
-\draw [blue, thick] (axis cs:3.75,70) -- (axis cs:4.25,70);
-%CE(Green/Yellow)
-\draw [orange, thick] (axis cs:4.75,65) -- (axis cs:5.25,65);
-\draw [red, thick] (axis cs:4.75,61) -- (axis cs:5.25,61);
-\draw [purple, thick] (axis cs:4.75,79.32398267) -- (axis cs:5.25,79.32398267);
-\draw [black, thick] (axis cs:4.75,80) -- (axis cs:5.25,80);
-\draw [blue, thick] (axis cs:4.75,91) -- (axis cs:5.25,91);
+\draw [teal, thick] (axis cs:3.75,45.265) -- (axis cs:4.25,45.265);
+\draw [orange, thick] (axis cs:3.75,51.12) -- (axis cs:4.25,51.12);
+\draw [magenta, thick] (axis cs:3.75,51.12) -- (axis cs:4.25,51.12);
+\draw [purple, thick] (axis cs:3.75,56) -- (axis cs:4.25,56);
+\draw [black, thick] (axis cs:3.75,70) -- (axis cs:4.25,70);
+%CE(Green/black)
+\draw [teal, thick] (axis cs:4.75,65) -- (axis cs:5.25,65);
+\draw [orange, thick] (axis cs:4.75,61) -- (axis cs:5.25,61);
+\draw [magenta, thick] (axis cs:4.75,79.32398267) -- (axis cs:5.25,79.32398267);
+\draw [purple, thick] (axis cs:4.75,80) -- (axis cs:5.25,80);
+\draw [black, thick] (axis cs:4.75,91) -- (axis cs:5.25,91);
 %SE
-\draw [orange, thick] (axis cs:5.75,74) -- (axis cs:6.25,74);
-\draw [red, thick] (axis cs:5.75,69.24939467) -- (axis cs:6.25,69.24939467);
-\draw [purple, thick] (axis cs:5.75,78.17) -- (axis cs:6.25,78.17);
-\draw [black, thick] (axis cs:5.75,83) -- (axis cs:6.25,83);
-\draw [blue, thick] (axis cs:5.75,100) -- (axis cs:6.25,100);
+\draw [teal, thick] (axis cs:5.75,74) -- (axis cs:6.25,74);
+\draw [orange, thick] (axis cs:5.75,69.24939467) -- (axis cs:6.25,69.24939467);
+\draw [magenta, thick] (axis cs:5.75,78.17) -- (axis cs:6.25,78.17);
+\draw [purple, thick] (axis cs:5.75,83) -- (axis cs:6.25,83);
+\draw [black, thick] (axis cs:5.75,100) -- (axis cs:6.25,100);
 \end{axis}
 
 \end{tikzpicture}
