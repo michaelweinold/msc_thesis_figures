@@ -11,6 +11,63 @@
 \begin{document}
 \begin{tikzpicture}
 
+\begin{axis}[
+	height=200pt,
+	width=418pt,
+%Type
+	bar width=15pt,
+	%nodes near coords,
+	axis on top,
+	enlarge x limits=0.04,
+	symbolic x coords={vfe,iqe,droop,lee,ce-red,ce-green,se,pce},
+%Domain
+	ymin=0,ymax=100,
+	xmin=vfe,xmax=pce,
+%Axis Labels
+    xticklabel style={align=center},
+	ylabel=Efficiency \text{[}\%\text{]},
+	xticklabels={,V$_\text{f}$E, IQE, Droop, LEE, CE \\ (\textcolor{red}{Red}), CE \\ (\textcolor{teal}{Green}), SE, \textbf{PCE}},
+%Legend
+    legend style={at={(0.02,0.03)},anchor=south west},
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+	%nodes near coords,
+			]
+\addlegendimage{/pgfplots/refstyle=bluebar}
+\addlegendentry{Spillover}
+\addlegendimage{/pgfplots/refstyle=graybar}
+\addlegendentry{Other Improvements}
+]
+%Hidden bar to push other bars to 2003 level
+\addplot [ybar stacked,fill=none,draw=none]
+	table [col sep=comma, x=losschannel, y=hiddenbar]
+	{../data/efficiency_breakthroughs.csv};
+%1 OTHER
+\addplot [ybar stacked,fill=gray!30,draw=gray]
+	table [col sep=comma, x=losschannel, y=o-1]
+	{../data/efficiency_breakthroughs.csv}; \label{graybar}
+%1 OTHER
+\addplot [ybar stacked,fill=blue!30,draw=blue]
+	table [col sep=comma, x=losschannel, y=so-1]
+	{../data/efficiency_breakthroughs.csv}; \label{bluebar}.
+%2 OTHER
+\addplot [ybar stacked,fill=gray!30,draw=gray]
+	table [col sep=comma, x=losschannel, y=o-2]
+	{../data/efficiency_breakthroughs.csv}; \label{graybar}
+%2 OTHER
+\addplot [ybar stacked,fill=blue!30,draw=blue]
+	table [col sep=comma, x=losschannel, y=so-2]
+	{../data/efficiency_breakthroughs.csv}; \label{bluebar}
+%1 OTHER
+\addplot [ybar stacked,fill=gray!30,draw=gray]
+	table [col sep=comma, x=losschannel, y=o-3]
+	{../data/efficiency_breakthroughs.csv}; \label{graybar}
+%1 OTHER
+\addplot [ybar stacked,fill=blue!30,draw=blue]
+	table [col sep=comma, x=losschannel, y=so-3]
+	{../data/efficiency_breakthroughs.csv}; \label{bluebar}
+\end{axis}
+
 %Years Legend only
 \begin{axis}[
 	height=200pt,
@@ -39,50 +96,6 @@
 \addlegendimage{no markers, thick, black}
 \addlegendentry{2010}
 ]
-\end{axis}
-
-\begin{axis}[
-	height=200pt,
-	width=418pt,
-%Type
-	bar width=15pt,
-	%nodes near coords,
-	axis on top,
-	enlarge x limits=0.04,
-%Domain
-	ymin=0,ymax=100,
-	xmin=0,xmax=7,
-%Axis Labels
-    xticklabel style={align=center},
-	ylabel=Efficiency \text{[}\%\text{]},
-	xticklabels={,V$_\text{f}$E, IQE, Droop, LEE, CE \\ (\textcolor{red}{Red}), CE \\ (\textcolor{teal}{Green}), SE, \textbf{PCE}},
-%Legend
-    legend style={at={(0.02,0.03)},anchor=south west},
-	legend cell align={left},
-	legend style={draw=none,fill=white},
-			]
-\addlegendimage{/pgfplots/refstyle=bluebar}
-\addlegendentry{Spillover}
-\addlegendimage{/pgfplots/refstyle=graybar}
-\addlegendentry{Other Improvements}
-]
-%Hidden bar to push other bars to 2003 level
-\addplot [ybar stacked,fill=none,draw=none]
-	table [col sep=comma, x expr=\coordindex, y=hiddenbar]
-	{../data/efficiency_breakthroughs.csv};
-%Breakthroughs
-\addplot [ybar legend, ybar stacked,fill=gray!40,draw=gray]
-	table [col sep=comma, x expr=\coordindex, y=bt-1]
-	{../data/efficiency_breakthroughs.csv}; \label{graybar}
-\addplot [ybar legend, ybar stacked,fill=blue!40,draw=blue]
-	table [col sep=comma, x expr=\coordindex, y=bt-2]
-	{../data/efficiency_breakthroughs.csv}; \label{bluebar}
-\addplot [ybar legend, ybar stacked,fill=gray!40,draw=gray]
-	table [col sep=comma, x expr=\coordindex, y=bt-3]
-	{../data/efficiency_breakthroughs.csv};
-\addplot [ybar legend, ybar stacked,fill=blue!40,draw=blue]
-	table [col sep=comma, x expr=\coordindex, y=bt-4]
-	{../data/efficiency_breakthroughs.csv};
 %Efficiency Lines per Year
 %VfE
 \draw [orange, thick] (axis cs:-0.25,70) -- (axis cs:0.25,70);
@@ -116,7 +129,7 @@
 \draw [black, thick] (axis cs:4.75,80) -- (axis cs:5.25,80);
 %SE
 \draw [orange, thick] (axis cs:5.75,74) -- (axis cs:6.25,74);
-\draw [red, thick] (axis cs:5.75,78) -- (axis cs:6.25,78);
+\draw [red, thick] (axis cs:5.75,69.24939467) -- (axis cs:6.25,69.24939467);
 \draw [purple, thick] (axis cs:5.75,78.17) -- (axis cs:6.25,78.17);
 \draw [black, thick] (axis cs:5.75,83) -- (axis cs:6.25,83);
 \end{axis}
