@@ -21,12 +21,12 @@
 	enlarge x limits=0.04,
 %Domain
 	ymin=0,ymax=100,
-	xmin=0,xmax=10,
+	xmin=0,xmax=7,
 %Axis Labels
 	%ylabel=Efficiency \text{[}\%\text{]},
 	xticklabels={,,},
 %Legend
-    legend style={at={(0.02,0.3)},anchor=south west},
+    legend style={at={(0.02,0.2)},anchor=south west},
 	legend cell align={left},
 	legend style={draw=none,fill=white},
 			]
@@ -51,21 +51,20 @@
 	enlarge x limits=0.04,
 %Domain
 	ymin=0,ymax=100,
-	xmin=0,xmax=10,
+	xmin=0,xmax=7,
 %Axis Labels
+    xticklabel style={align=center},
 	ylabel=Efficiency \text{[}\%\text{]},
-	xticklabels={,V$_\text{f}$E,LEE},
+	xticklabels={,V$_\text{f}$E, IQE, Droop, LEE, CE \\ (\textcolor{red}{Red}), CE \\ (\textcolor{teal}{Green}), SE, \textbf{PCE}},
 %Legend
     legend style={at={(0.02,0.03)},anchor=south west},
 	legend cell align={left},
 	legend style={draw=none,fill=white},
 			]
-\addlegendimage{/pgfplots/refstyle=graybar}
-\addlegendentry{Other Improvements}
 \addlegendimage{/pgfplots/refstyle=bluebar}
 \addlegendentry{Spillover}
-\addlegendimage{/pgfplots/refstyle=redbar}
-\addlegendentry{Breakthrough}
+\addlegendimage{/pgfplots/refstyle=graybar}
+\addlegendentry{Other Improvements}
 ]
 %Hidden bar to push other bars to 2003 level
 \addplot [ybar stacked,fill=none,draw=none]
@@ -75,21 +74,51 @@
 \addplot [ybar legend, ybar stacked,fill=gray!40,draw=gray]
 	table [col sep=comma, x expr=\coordindex, y=bt-1]
 	{../data/efficiency_breakthroughs.csv}; \label{graybar}
-\addplot [ybar legend, ybar stacked,fill=green!40,draw=blue]
+\addplot [ybar legend, ybar stacked,fill=blue!40,draw=blue]
 	table [col sep=comma, x expr=\coordindex, y=bt-2]
 	{../data/efficiency_breakthroughs.csv}; \label{bluebar}
-\addplot [ybar legend, ybar stacked,fill=teal!40,draw=blue]
+\addplot [ybar legend, ybar stacked,fill=gray!40,draw=gray]
 	table [col sep=comma, x expr=\coordindex, y=bt-3]
 	{../data/efficiency_breakthroughs.csv};
-\addplot [ybar legend, ybar stacked,fill=red!40,draw=blue]
+\addplot [ybar legend, ybar stacked,fill=blue!40,draw=blue]
 	table [col sep=comma, x expr=\coordindex, y=bt-4]
-	{../data/efficiency_breakthroughs.csv}; \label{redbar}
+	{../data/efficiency_breakthroughs.csv};
 %Efficiency Lines per Year
 %VfE
 \draw [orange, thick] (axis cs:-0.25,70) -- (axis cs:0.25,70);
 \draw [red, thick] (axis cs:-0.25,85) -- (axis cs:0.25,85);
 \draw [purple, thick] (axis cs:-0.25,96) -- (axis cs:0.25,96);
 \draw [black, thick] (axis cs:-0.25,99.5) -- (axis cs:0.25,99.5);
+%IQE
+\draw [orange, thick] (axis cs:0.75,55) -- (axis cs:1.25,55);
+\draw [red, thick] (axis cs:0.75,70) -- (axis cs:1.25,70);
+\draw [purple, thick] (axis cs:0.75,88.02) -- (axis cs:1.25,88.02);
+\draw [black, thick] (axis cs:0.75,90) -- (axis cs:1.25,90);
+%Droop
+\draw [orange, thick] (axis cs:1.75,65) -- (axis cs:2.25,65);
+\draw [red, thick] (axis cs:1.75,70) -- (axis cs:2.25,70);
+\draw [purple, thick] (axis cs:1.75,90.06) -- (axis cs:2.25,90.06);
+\draw [black, thick] (axis cs:1.75,90.06) -- (axis cs:2.25,90.06);
+%LEE
+\draw [orange, thick] (axis cs:2.75,60) -- (axis cs:3.25,60);
+\draw [red, thick] (axis cs:2.75,80) -- (axis cs:3.25,80);
+\draw [purple, thick] (axis cs:2.75,86.86) -- (axis cs:3.25,86.86);
+\draw [black, thick] (axis cs:2.75,90) -- (axis cs:3.25,90);
+%CE(Red)
+\draw [orange, thick] (axis cs:3.75,45.265) -- (axis cs:4.25,45.265);
+\draw [red, thick] (axis cs:3.75,51.12) -- (axis cs:4.25,51.12);
+\draw [purple, thick] (axis cs:3.75,51.12) -- (axis cs:4.25,51.12);
+\draw [black, thick] (axis cs:3.75,56) -- (axis cs:4.25,56);
+%CE(Green/Yellow)
+\draw [orange, thick] (axis cs:4.75,61) -- (axis cs:5.25,61);
+\draw [red, thick] (axis cs:4.75,61) -- (axis cs:5.25,61);
+\draw [purple, thick] (axis cs:4.75,79.32398267) -- (axis cs:5.25,79.32398267);
+\draw [black, thick] (axis cs:4.75,80) -- (axis cs:5.25,80);
+%SE
+\draw [orange, thick] (axis cs:5.75,74) -- (axis cs:6.25,74);
+\draw [red, thick] (axis cs:5.75,78) -- (axis cs:6.25,78);
+\draw [purple, thick] (axis cs:5.75,78.17) -- (axis cs:6.25,78.17);
+\draw [black, thick] (axis cs:5.75,83) -- (axis cs:6.25,83);
 \end{axis}
 
 \end{tikzpicture}
