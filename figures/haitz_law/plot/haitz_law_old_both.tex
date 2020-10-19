@@ -16,7 +16,7 @@
 
 \begin{axis}[
 %Size
-    width=260pt,
+    width=418pt,
     height=175pt,
 %Domain
 	ymin=0.0001, ymax=1000000,
@@ -48,7 +48,7 @@
 
 \begin{axis}[
 %Size
-    width=260pt,
+    width=418pt,
     height=175pt,
 %Axis
 	axis y line*=right,
@@ -76,7 +76,7 @@
 
 \begin{axis}[
 %Size
-    width={\dimexpr 520pt-\wd\temp},
+    width={\dimexpr 836pt-\wd\temp},
     height=175pt,
 %Domain
 	ymin=0.0001, ymax=1000000,
@@ -92,13 +92,12 @@
 	ylabel=Flux/Package \text{[}lm\text{]},
 %Legend
 	legend entries={White LEDs, Red LEDs},
-	legend pos=south east,
 	legend cell align={left},
-	legend style={draw=none}
+	legend style={draw=none,fill=none,anchor=south west,at={(0.75,0.02)},}
 ]
 \addplot [only marks]
 	table [col sep=comma, x=year, y=flux]
-	{../data/white_flux.csv};
+	{../data/white_flux_old.csv};
 \addplot [red,only marks]
 	table [col sep=comma, x=year, y=flux]
 	{../data/red_flux.csv};
@@ -108,26 +107,31 @@
 
 \begin{axis}[
 %Size
-    width={\dimexpr 520pt-\wd\temp},
+    width={\dimexpr 836pt-\wd\temp},
     height=175pt,
 %Axis
 	axis y line*=right,
 	axis x line=none,
- %Domain
+%Domain
 	xmin=1970, xmax=2020,
  	ymode=log,
 	ymin=0.0001, ymax=1000000,
 	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
 	max space between ticks=20,
 	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
+%Legend
+	legend entries={,,Original Haitz' Law (2000)},
+	legend cell align={left},
+	legend style={draw=none,fill=none,anchor=south west,at={(0.35,0.02)},},
 ]
 \addplot [only marks, mark=10-pointed star]
 	table [col sep=comma, x=year, y=cost]
 	{../data/white_cost.csv};
-	]
 \addplot [red, only marks, mark=10-pointed star]
 	table [col sep=comma, x=year, y=cost]
 	{../data/red_cost.csv};
+\addplot [red,only marks, mark=o,mark size=3pt]	table [col sep=comma, x=year, y=flux] {../data/red_flux_haitz-org.csv};
+\addplot [red,only marks, mark=o,mark size=3pt]	table [col sep=comma, x=year, y=cost] {../data/red_cost_haitz-org.csv};
 \end{axis}
 
 \end{tikzpicture}
