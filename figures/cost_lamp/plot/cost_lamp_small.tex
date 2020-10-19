@@ -56,60 +56,6 @@
 \node[green, anchor=west] at (2008.8,17) [fill=white]{CFL};
 \end{axis}
 
-\begin{axis}[
-%Grouping
-	name=boxplot,
-	at={(0,-0.8)},
-	anchor=north west,
-%Size
-	height=200pt,
-	width=418pt,
-%Domain
-	boxplot/draw direction=y,
-%Log
-	ymode=log,
-%Ticks
-	xticklabels={},
-	log ticks with fixed point,
-%Axis Labels
-	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
-%Legend
-	]
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2009.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2010.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2011.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2012.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2013.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2014.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2015.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2016.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2017.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2018.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2019.csv};
-\end{axis}
-
 \end{tikzpicture}}
 
 
@@ -127,7 +73,7 @@
 	ymode=log,
 %Ticks
 	log ticks with fixed point,
-	xtick distance=5,
+	xtick distance=2,
 	minor x tick num=4,
 	minor y tick num=4,
 	/pgf/number format/1000 sep={},
@@ -151,61 +97,6 @@
 \node[orange, anchor=west] at (2008.2,2.48) [fill=white]{Incandescent};
 \addplot [teal, domain=2008:2020] {10};
 \node[teal, anchor=west] at (2008.2,10.5) [fill=white]{CFL};
-\end{axis}
-
-\begin{axis}[
-%Grouping
-	name=boxplot,
-	at={(0,-0.6)},
-	anchor=north west,
-%Size
-	height=200pt,
-	width={\dimexpr 836pt-\wd\temp},
-%Domain
-	boxplot/draw direction=y,
-%Log
-	ymode=log,
-%Ticks
-    xtick pos=upper,
-	xticklabels={},
-	log ticks with fixed point,
-%Axis Labels
-	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
-%Legend
-	]
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2009.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2010.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2011.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2012.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2013.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2014.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2015.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2016.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2017.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2018.csv};
-\addplot [boxplot]
-	table [col sep=comma, y index=0]
-	{../data/dollar-2019.csv};
 \end{axis}
 
 \end{tikzpicture}

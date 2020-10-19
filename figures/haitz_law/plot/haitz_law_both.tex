@@ -1,25 +1,25 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=8cm,
 			xtick pos=left,
 			ytick pos=left
 			}
 
 \begin{document}
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
+%Size
+    width=205pt,
+    height=175pt,
 %Domain
 	ymin=0.0001, ymax=1000000,
 	xmin=1970, xmax=2020,
 	ymode=log,
 %Ticks
-	xtick distance=5,
+	xtick distance=10,
 	minor x tick num=4,
 	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
 	max space between ticks=20,
@@ -28,19 +28,26 @@
 	ylabel=Flux/Package \text{[}lm\text{]},
 %Legend
 	legend entries={White LEDs, Red LEDs},
+	legend pos=south east,
 	legend cell align={left},
-	legend style={at={(0.5,0.975)},anchor=north}
+	legend style={draw=none}
 ]
 \addplot [only marks]
 	table [col sep=comma, x=year, y=flux]
 	{../data/white_flux.csv};
-]
 \addplot [red,only marks]
 	table [col sep=comma, x=year, y=flux]
 	{../data/red_flux.csv};
+\draw[->](1981,0.15) -- (1972,0.15);
+\draw[->](2010,40) -- (2018,40);
+\node [above right] at (rel axis cs:-1.1,0.25);
 \end{axis}
 
 \begin{axis}[
+%Size
+    width=205pt,
+    height=175pt,
+%Axis
 	axis y line*=right,
 	axis x line=none,
  %Domain
@@ -60,6 +67,5 @@
 	{../data/red_cost.csv};
 \end{axis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{tikzpicture}
 \end{document}
