@@ -7,12 +7,16 @@
 			ytick pos=left
 			}
 
+\newsavebox{\temp}
+
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
 
 \begin{axis}[
 %Size
-    width=205pt,
+    width=260pt,
     height=175pt,
 %Domain
 	ymin=0.0001, ymax=1000000,
@@ -40,12 +44,71 @@
 	{../data/red_flux.csv};
 \draw[->](1981,0.15) -- (1972,0.15);
 \draw[->](2010,40) -- (2018,40);
-\node [above right] at (rel axis cs:-1.1,0.25);
 \end{axis}
 
 \begin{axis}[
 %Size
-    width=205pt,
+    width=260pt,
+    height=175pt,
+%Axis
+	axis y line*=right,
+	axis x line=none,
+ %Domain
+	xmin=1970, xmax=2020,
+ 	ymode=log,
+	ymin=0.0001, ymax=1000000,
+	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
+	max space between ticks=20,
+	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
+]
+\addplot [only marks, mark=10-pointed star]
+	table [col sep=comma, x=year, y=cost]
+	{../data/white_cost.csv};
+	]
+\addplot [red, only marks, mark=10-pointed star]
+	table [col sep=comma, x=year, y=cost]
+	{../data/red_cost.csv};
+\end{axis}
+
+\end{tikzpicture}}
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Size
+    width={\dimexpr 520pt-\wd\temp},
+    height=175pt,
+%Domain
+	ymin=0.0001, ymax=1000000,
+	xmin=1970, xmax=2020,
+	ymode=log,
+%Ticks
+	xtick distance=10,
+	minor x tick num=4,
+	ytick={0.001,0.01,0.1,1,10,100,1000,10000,100000,1000000},
+	max space between ticks=20,
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel=Flux/Package \text{[}lm\text{]},
+%Legend
+	legend entries={White LEDs, Red LEDs},
+	legend pos=south east,
+	legend cell align={left},
+	legend style={draw=none}
+]
+\addplot [only marks]
+	table [col sep=comma, x=year, y=flux]
+	{../data/white_flux.csv};
+\addplot [red,only marks]
+	table [col sep=comma, x=year, y=flux]
+	{../data/red_flux.csv};
+\draw[->](1981,0.15) -- (1972,0.15);
+\draw[->](2010,40) -- (2018,40);
+\end{axis}
+
+\begin{axis}[
+%Size
+    width={\dimexpr 520pt-\wd\temp},
     height=175pt,
 %Axis
 	axis y line*=right,
