@@ -41,7 +41,7 @@
     width=418pt,
     height=200pt,
 %Color
-	red,
+	gray,
 	axis y line*=right,
 	axis x line=none,
 %Domain
@@ -51,7 +51,7 @@
 	max space between ticks=20,
 	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
 ]
-\addplot [red, only marks]
+\addplot [gray, only marks]
 	table [col sep=comma, x=year, y=cost]
 	{../data/white_cost.csv};
 \end{axis}
@@ -109,7 +109,7 @@
     width={\dimexpr 836pt-\wd\temp},
     height=200pt,
 %Color
-	red,
+	gray,
 	axis y line*=right,
 	axis x line=none,
 %Domain
@@ -120,7 +120,7 @@
 	max space between ticks=20,
 	ylabel=Cost/Flux \text{[}\$(2020)/klm\text{]},
 ]
-\addplot [red, only marks]
+\addplot [gray, only marks]
 	table [col sep=comma, x=year, y=cost]
 	{../data/white_cost.csv};
 \end{axis}

@@ -24,7 +24,7 @@
     /pgf/number format/1000 sep={},
 	%xticklabel style={rotate=90, anchor=near xticklabel},
 %Axis Labels
-	ylabel=Energy \text{[}TWh/year\text{]},
+	ylabel=El. Energy \text{[}TWh/year\text{]},
 	xlabel={EU},
 %Legend
 	legend cell align=left,
@@ -44,7 +44,7 @@
 %Position
     name=right,
     at={(left.west)},
-	xshift=200pt,
+	xshift=195pt,
 	anchor=west,
     height=135pt,
     width=220pt,
@@ -80,12 +80,13 @@
     width={\dimexpr 220pt+418pt-\wd\temp},
 %Domain
 	xmin=2010,xmax=2020,
-	ymin=0,ymax=150,
+	ymin=0,ymax=450,
 %Ticks
+    ytick={0,100,200,300,400},
     /pgf/number format/1000 sep={},
 	%xticklabel style={rotate=90, anchor=near xticklabel},
 %Axis Labels
-	ylabel=Energy \text{[}TWh/year\text{]},
+	ylabel=El. Energy \text{[}TWh/year\text{]},
 	xlabel={EU},
 %Legend
 	legend cell align=left,
@@ -93,6 +94,7 @@
 	legend style={draw=none,fill=none},
 	legend entries={LED Savings, PV Production},
 ]
+%\addplot [red, dashed, domain=2010:2020] {74.08}; Consumption Austria (2018)
 \addplot [ blue, no markers]
 	table [col sep=comma, x=year, y=led]
 	{../data/eu.csv};
@@ -105,7 +107,7 @@
 %Position
     name=right,
     at={(left.west)},
-	xshift=200pt,
+	xshift=195pt,
 	anchor=west,
     height=135pt,
     width={\dimexpr 220pt+418pt-\wd\temp},
@@ -113,6 +115,7 @@
 	xmin=2010,xmax=2020,
 	ymin=0,ymax=450,
 %Ticks
+    ytick={0,100,200,300,400},
     /pgf/number format/1000 sep={},
 	%xticklabel style={rotate=90, anchor=near xticklabel},
 %Axis Labels
@@ -123,6 +126,7 @@
 	legend style={draw=none,fill=none},
 	legend entries={LED Savings, PV Production},
 ]
+%\addplot [red, dashed, domain=2010:2020] {244.25}; Consumption Florida (2018)
 \addplot [ blue, no markers]
 	table [col sep=comma, x=year, y=led]
 	{../data/usa.csv};

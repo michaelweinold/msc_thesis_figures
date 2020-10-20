@@ -4,6 +4,7 @@
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
+\newsavebox{\temp}
 
 \pgfplotsset{compat=newest,
 			xtick pos=left,
@@ -11,22 +12,23 @@
 			}
 
 \begin{document}
+
+\savebox{\temp}{
 \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{axis}[
 %Grouping
 	name=top,
 	at={(0,0)},
 %Size
-	height=5cm,
-	width=10cm,
+	height=120pt,
+	width=418pt,
 %Domain
 	xmin=2007.5,xmax=2020.5,
 	ymin=0,ymax=100,
 %Type
 	ybar stacked,
-	bar width=10pt,
+	bar width=20pt,
 	axis on top,
 %Ticks
 	xticklabels={,,},
@@ -70,14 +72,14 @@
 	at={(0,-5)},
 	anchor=north west,
 %Size
-	height=5cm,
-	width=10cm,
+	height=120pt,
+	width=418pt,
 %Domain
 	xmin=2007.5,xmax=2020.5,
 	ymin=0,ymax=100,
 %Type
 	ybar stacked,
-	bar width=10pt,
+	bar width=20pt,
 	axis on top,
 %Ticks
 	/pgf/number format/1000 sep={},
@@ -88,6 +90,7 @@
 	legend entries={50mm (2 Inch), 75mm (3 Inch), 100mm (4 Inch), 150mm (6 Inch), 200mm (8 Inch)},
 	legend cell align={left},
 	legend pos=south east,
+	legend style={draw=none},
 			]
 \addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!30]
 	table [col sep=comma, x=year, y=2]
@@ -119,7 +122,116 @@
 	{../data/veeco_projection.csv};
 \end{axis}
 
+\end{tikzpicture}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}
+
+\begin{axis}[
+%Grouping
+	name=top,
+	at={(0,0)},
+%Size
+	height=120pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2007.5,xmax=2020.5,
+	ymin=0,ymax=100,
+%Type
+	ybar stacked,
+	bar width=20pt,
+	axis on top,
+%Ticks
+	xticklabels={,,},
+	yticklabels={20,40,60,80,100},
+	ytick={20,40,60,80,100},
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel={50mm Equivalent},
+			]
+\addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!30]
+	table [col sep=comma, x=year, y=2]
+	{../data/yole_data.csv};
+\addplot [ybar,draw=Blue,fill=Blue!30]
+	table [col sep=comma, x=year, y=4]
+	{../data/yole_data.csv};
+\addplot [ybar,draw=CadetBlue,fill=CadetBlue!30]
+	table [col sep=comma, x=year, y=6]
+	{../data/yole_data.csv};
+\addplot [ybar,draw=RedViolet,fill=RedViolet!30]
+	table [col sep=comma, x=year, y=8]
+	{../data/yole_data.csv};
+%
+\addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!10]
+	table [col sep=comma, x=year, y=2]
+	{../data/yole_projection.csv};
+\addplot [ybar,draw=Blue,fill=Blue!10]
+	table [col sep=comma, x=year, y=4]
+	{../data/yole_projection.csv};
+\addplot [ybar,draw=CadetBlue,fill=CadetBlue!10]
+	table [col sep=comma, x=year, y=6]
+	{../data/yole_projection.csv};
+\addplot [ybar,draw=RedViolet,fill=RedViolet!10]
+	table [col sep=comma, x=year, y=8]
+	{../data/yole_projection.csv};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	name=bottom,
+	at={(0,-5)},
+	anchor=north west,
+%Size
+	height=120pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Domain
+	xmin=2007.5,xmax=2020.5,
+	ymin=0,ymax=100,
+%Type
+	ybar stacked,
+	bar width=20pt,
+	axis on top,
+%Ticks
+	/pgf/number format/1000 sep={},
+%Axis Labels
+	ylabel style={align=center},
+	ylabel={\% of Systems},
+%Legend
+	legend entries={50mm (2 Inch), 75mm (3 Inch), 100mm (4 Inch), 150mm (6 Inch), 200mm (8 Inch)},
+	legend cell align={left},
+	legend pos=south east,
+	legend style={draw=none},
+			]
+\addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!30]
+	table [col sep=comma, x=year, y=2]
+	{../data/veeco_data.csv};
+\addplot [ybar,draw=Blue,fill=Blue!30]
+	table [col sep=comma, x=year, y=3]
+	{../data/veeco_data.csv};
+\addplot [ybar,draw=Gray,fill=Gray!30]
+	table [col sep=comma, x=year, y=4]
+	{../data/veeco_data.csv};
+\addplot [ybar,draw=CadetBlue,fill=CadetBlue!30]
+	table [col sep=comma, x=year, y=6]
+	{../data/veeco_data.csv};
+\addplot [ybar,draw=RedViolet,fill=RedViolet!30]
+	table [col sep=comma, x=year, y=8]
+	{../data/veeco_data.csv};
+	%
+\addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!10]
+	table [col sep=comma, x=year, y=2]
+	{../data/veeco_projection.csv};
+\addplot [ybar,draw=Blue,fill=Blue!10]
+	table [col sep=comma, x=year, y=3]
+	{../data/veeco_projection.csv};
+\addplot [ybar,draw=Gray,fill=Gray!10]
+	table [col sep=comma, x=year, y=4]
+	{../data/veeco_projection.csv};
+\addplot [ybar,draw=CadetBlue,fill=CadetBlue!10]
+	table [col sep=comma, x=year, y=6]
+	{../data/veeco_projection.csv};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}
