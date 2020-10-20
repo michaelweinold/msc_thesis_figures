@@ -9,13 +9,15 @@
 			
 \newsavebox{\temp}
 
+\usepackage[official]{eurosym} %For € symbol in text
+
 \begin{document}
 %\savebox{\temp}{
 \begin{tikzpicture}
 
 \begin{axis}[
 %Grouping
-	height=350pt,
+	height=300pt,
 	width=418pt,
 %Domain
 	xmin=1850,
@@ -29,12 +31,12 @@
 	ylabel= Luminous Efficacy \text{[}lm/W\text{]},
 %Legend
 	legend cell align=left,
-	legend pos=south east,
+	legend pos=north west,
 	legend style={draw=none},
 	legend entries={,Fire,, Incandescent,,HID,,LED,CFL},
 ]
 \addplot [domain=1850:2020] {370};
-\node[above,fill=white,anchor=west] at (1860,370) {Max. Efficacy K=370lm/W at CRI=90};
+\node[above,fill=white,anchor=west] at (1920,370) {Max. Efficacy K=370lm/W at CRI=90};
 \addplot [red, only marks]
 	table [col sep=comma, x=year, y=ler]
 	{../data/fire.csv};
@@ -44,7 +46,7 @@
 \node[anchor=west] at (1850,0.035) {Fatwood};
 \node[anchor=west] at (1858,0.068) {Candles};
 \node[anchor=west] at (1882,0.19) {Oil Lamps};
-\node[anchor=west] at (1900,0.6) {Welsbach Mantle Gas Lantern};
+\node[anchor=west] at (1900,0.6) {Welsbach Mantle};
 \addplot [orange, only marks]
 	table [col sep=comma, x=year, y=ler]
 	{../data/incandescent.csv};
@@ -78,7 +80,43 @@
 	table [col sep=comma, x=year, y=data]
 	{../data/blue_trend.csv};
 \end{axis}
-\end{tikzpicture}
 
+\begin{axis}[
+%Grouping
+    at={(45,50)},
+    axis background/.style={fill=white},
+%Size
+	height=130pt,
+	width=135pt,
+%Domain
+	xmin=2005, xmax=2020,
+	ymin=0, ymax=30,
+%Ticks
+    ytick={0,10,20,30},
+    yticklabels={,10,20,30},
+	xtick distance=5,
+	minor x tick num=4,
+	minor y tick num=4,
+	/pgf/number format/1000 sep={},
+%Axis Labels
+    ylabel style={align=center},
+	ylabel={Levelized Annual Cost} \\ {at 10h/day [\$(2020)]},
+	legend entries={Incandescent, CFL, LED},
+	legend cell align={left},
+	legend style={at={(0.05,0.43)},anchor=south west},
+	legend style={draw=none},
+	]
+\addplot [orange]
+	table [col sep=comma, x=year, y=incand]
+	{../data/annual_cost_data.csv};
+\addplot [teal]
+	table [col sep=comma, x=year, y=cfl]
+	{../data/annual_cost_data.csv};
+\addplot [blue]
+	table [col sep=comma, x=year, y=led]
+	{../data/annual_cost_data.csv};
+\end{axis}
+
+\end{tikzpicture}
 
 \end{document}
