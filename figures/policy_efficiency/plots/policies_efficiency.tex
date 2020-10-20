@@ -1,12 +1,10 @@
-\documentclass[crop,tikz]{standalone}
+\documentclass[crop]{standalone}
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
 
 \usetikzlibrary{backgrounds}
 
 \pgfplotsset{compat=newest,
-			width=10cm,
-			height=8cm,
 			xtick pos=left,
 			ytick pos=left,
 			}
@@ -15,13 +13,17 @@
 \pgfdeclarelayer{background}
 \pgfsetlayers{background,main,foreground}
 
+\newsavebox{\temp}
 
-\usepackage{comment}
 \begin{document}
-\begin{tikzpicture}[]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\savebox{\temp}{
+\begin{tikzpicture}
 
 \begin{axis}[
+%Size
+    width=250pt,
+    height=250pt,
 %Domain
 	xmin=300,ymin=0,
 	xmax=1500,ymax=140,
@@ -34,32 +36,19 @@
 	legend cell align={left},
 	legend pos=north west,
 	legend entries={,,,,,Minimum Performance,Incandescent Performance,Halogen Performance,Average LED Lamp Performance},
+	legend style={fill=white,draw=none},
 			]
 %2009 Regulation
 \addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
 	{../data/2009_1.csv};
-\node[above,black] at (1300,7) {2009};
+\node[above,black] at (1300,5) {2009};
 \addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
 	{../data/2009_2.csv};
 \addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
 	{../data/2009_3.csv};
-\begin{comment}
-\addplot []
-	table [col sep=comma, x=flux, y=eff2]
-	{../data/2009_1.csv};
-\addplot []
-	table [col sep=comma, x=flux, y=eff2]
-	{../data/2009_2.csv};
-\addplot []
-	table [col sep=comma, x=flux, y=eff2]
-	{../data/2009_3.csv};
- \node[anchor=north east] (source) at (axis cs:1000,45){2016 (goal from 2009)};
-       \node (destination) at (axis cs:1150,22){};
-       \draw[->](source)--(destination);
-\end{comment}
 %2012 Regulation
 \addplot [thick]
 	table [col sep=comma, x=flux, y=eff1]
@@ -91,6 +80,75 @@
 \addplot[mark=none, blue, thick] coordinates {(0,86) (1500,86)};
 \node[above,blue] at (800,86) {2020};
 \end{axis}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{tikzpicture}}
+
+
+\begin{tikzpicture}
+
+\begin{axis}[
+%Size
+    width={\dimexpr 500pt-\wd\temp},
+    height=250pt,
+%Domain
+	xmin=300,ymin=0,
+	xmax=1500,ymax=140,
+%Ticks
+%
+%Axis Labels
+	ylabel=Luminous Efficacy \text{[}lm/W\text{]},
+	xlabel=Flux \text{[}lm\text{]},
+%Legend
+	legend cell align={left},
+	legend pos=north west,
+	legend entries={,,,,,Minimum Performance,Incandescent Performance,Halogen Performance,Average LED Lamp Performance},
+	legend style={fill=white,draw=none},
+			]
+%2009 Regulation
+\addplot [thick]
+	table [col sep=comma, x=flux, y=eff1]
+	{../data/2009_1.csv};
+\node[above,black] at (1300,5) {2009};
+\addplot [thick]
+	table [col sep=comma, x=flux, y=eff1]
+	{../data/2009_2.csv};
+\addplot [thick]
+	table [col sep=comma, x=flux, y=eff1]
+	{../data/2009_3.csv};
+%2012 Regulation
+\addplot [thick]
+	table [col sep=comma, x=flux, y=eff1]
+	{../data/2012.csv};
+\node[above,black] at (1300,30) {2013};
+\addplot [thick]
+	table [col sep=comma, x=flux, y=eff2]
+	{../data/2012.csv};
+\node[above,black] at (1300,56) {2016};
+%2020 Regulation
+\addplot [thick]
+	table [col sep=comma, x=flux, y=eff]
+	{../data/2020.csv};
+\begin{pgfonlayer}{foreground}
+\node[above,black] at (1300,115) {2020};
+\end{pgfonlayer}
+%Comparison
+\addplot [thick,red]
+	table [col sep=comma, x=flux, y=eff]
+	{../data/incand.csv};
+\addplot [thick,orange]
+	table [col sep=comma, x=flux, y=eff]
+	{../data/halogen.csv};
+%Average Product Performance
+\addplot[mark=none, blue, thick] coordinates {(0,74) (1500,74)};
+\node[above,blue] at (800,64) {2013};
+\addplot[mark=none, blue, thick] coordinates {(0,80) (1500,80)};
+\begin{pgfonlayer}{foreground}
+	\node[above,blue,fill=white] at (800,75) {2016};
+\end{pgfonlayer}
+\addplot[mark=none, blue, thick] coordinates {(0,86) (1500,86)};
+\node[above,blue] at (800,86) {2020};
+\end{axis}
+
 \end{tikzpicture}
+
 \end{document}

@@ -18,7 +18,7 @@
 %Grouping
     name=left,
     scale only axis=false, %axis+label dimensions (without legend)
-	height=150pt,
+	height=100pt,
 	width=220pt,
 %Domain
 	ymin=0,ymax=1,
@@ -29,8 +29,9 @@
 	%minor y tick num=4,
 %Axis
 %Axis Labels
+    ylabel style={align=center},
 	xlabel=Wavelength \text{[}nm\text{]},
-	ylabel=Intensity \text{[}Arb. Units\text{]},
+	ylabel={Intensity} \\ { [Arb. Units] },
 ]
 \addplot [thick]
 	table [col sep=comma, x=nm, y=L]
@@ -50,7 +51,7 @@
     at={(left.west)},
 	xshift=200pt,
 	anchor=west,
-	height=150pt,
+	height=100pt,
 	width=220pt,
 %Domain
 	ymin=0,ymax=1,
@@ -77,7 +78,7 @@
 %Grouping
     name=left,
     scale only axis=false,
-	height=150pt,
+	height=100pt,
 	width={\dimexpr 200pt+418pt-\wd\temp},
 %Domain
 	ymin=0,ymax=1,
@@ -88,8 +89,9 @@
 	%minor y tick num=4,
 %Axis
 %Axis Labels
+	ylabel style={align=center},
 	xlabel=Wavelength \text{[}nm\text{]},
-	ylabel=Intensity \text{[}Arb. Units\text{]},
+	ylabel={Intensity} \\ { [Arb. Units] },
 ]
 \addplot [thick, blue]
 	table [col sep=comma, x=nm, y=L]
@@ -109,7 +111,7 @@
     at={(left.west)},
 	xshift=200pt,
 	anchor=west,
-	height=150pt,
+	height=100pt,
 	width={\dimexpr 200pt+418pt-\wd\temp},
 %Domain
 	ymin=0,ymax=1,
@@ -120,8 +122,9 @@
 	%minor y tick num=4,
 %Axis
 %Axis Labels
+	ylabel style={align=center},
 	xlabel=Wavelength \text{[}nm\text{]},
-	ylabel=Sensitivity \text{[}Arb. Units\text{]},
+	ylabel={Sensitivity} \\ { [Arb. Units] },
 ]
 \addplot [thick]
 	table [col sep=comma, x=nm, y=lf]
