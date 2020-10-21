@@ -11,6 +11,8 @@
 			ytick pos=left
 			}
 
+\usetikzlibrary{patterns}
+
 \begin{document}
 
 \savebox{\temp}{
@@ -58,7 +60,7 @@
 \addplot [ybar,draw=Blue,fill=Blue!10]
 	table [col sep=comma, x=year, y=4]
 	{../data/yole_projection.csv};
-\addplot [ybar,draw=CadetBlue,fill=CadetBlue!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=CadetBlue},draw=CadetBlue]
 	table [col sep=comma, x=year, y=6]
 	{../data/yole_projection.csv};
 \addplot [ybar,draw=RedViolet,fill=RedViolet!10]
@@ -162,16 +164,16 @@
 	table [col sep=comma, x=year, y=8]
 	{../data/yole_data.csv};
 %
-\addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=RoyalBlue},draw=RoyalBlue]
 	table [col sep=comma, x=year, y=2]
 	{../data/yole_projection.csv};
-\addplot [ybar,draw=Blue,fill=Blue!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=Blue},draw=Blue]
 	table [col sep=comma, x=year, y=4]
 	{../data/yole_projection.csv};
-\addplot [ybar,draw=CadetBlue,fill=CadetBlue!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=CadetBlue},draw=CadetBlue]
 	table [col sep=comma, x=year, y=6]
 	{../data/yole_projection.csv};
-\addplot [ybar,draw=RedViolet,fill=RedViolet!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=RedViolet},draw=RedViolet]
 	table [col sep=comma, x=year, y=8]
 	{../data/yole_projection.csv};
 \end{axis}
@@ -218,16 +220,16 @@
 	table [col sep=comma, x=year, y=8]
 	{../data/veeco_data.csv};
 	%
-\addplot [ybar,draw=RoyalBlue,fill=RoyalBlue!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=RoyalBlue},draw=RoyalBlue]
 	table [col sep=comma, x=year, y=2]
 	{../data/veeco_projection.csv};
-\addplot [ybar,draw=Blue,fill=Blue!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=Blue},draw=Blue]
 	table [col sep=comma, x=year, y=3]
 	{../data/veeco_projection.csv};
-\addplot [ybar,draw=Gray,fill=Gray!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=gray},draw=gray]
 	table [col sep=comma, x=year, y=4]
 	{../data/veeco_projection.csv};
-\addplot [ybar,draw=CadetBlue,fill=CadetBlue!10]
+\addplot [ybar,postaction={pattern=north east lines,pattern color=CadetBlue},draw=CadetBlue]
 	table [col sep=comma, x=year, y=6]
 	{../data/veeco_projection.csv};
 \end{axis}
