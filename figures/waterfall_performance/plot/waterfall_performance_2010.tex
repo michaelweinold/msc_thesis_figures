@@ -51,13 +51,13 @@
     				Internal \\ Nonradiative Loss,
     				Droop,
     				Unextracted Light,
-    				\textcolor{blue}{Blue Light:} \\ Scat. and Absorption,
+    				\textcolor{blue}{Blue Light:} \\ Scat.\& Absorption,
     				\textcolor{red}{Red Phosphor:} \\ Nonradiative Loss,
     			    \textcolor{red}{Red Phosphor:} \\ Stokes Loss,
-    				\textcolor{red}{Red Phosphor:} \\ Scat. and Absorption,
+    				\textcolor{red}{Red Phosphor:} \\ Scat.\& Absorption,
     				\textcolor{teal}{Green Phosphor:} \\ Nonradiative Loss,
     				\textcolor{teal}{Green Phosphor:} \\ Stokes Loss,
-    				\textcolor{teal}{Green Phosphor:} \\ Scat. and Absorption,
+    				\textcolor{teal}{Green Phosphor:} \\ Scat.\& Absorption,
     				Spectral Loss,
     				Light \\ OUTPUT},
 %Axes and Labels
@@ -158,7 +158,28 @@
     nodes near coords={\labela},
 ]
 \addplot [scatter, only marks, no markers] table [col sep=comma, x expr = \coordindex, y=y] {../data/2010/labels2.csv};
-\node[draw=black,anchor=east,align=right] at (canvas cs:x=522.5pt,y=284pt) {Percentages indicate losses of remaining energy at point of loss channel. Absolute losses in W below. \\ Percentages for \textcolor{red}{red}, \textcolor{teal}{green} and \textcolor{blue}{blue} loss channels indicate losses of remaining \textcolor{red}{R}/\textcolor{teal}{G}/\textcolor{blue}{B} light energy.};
+\node [above right] at (rel axis cs:0.58,0.7) {\includegraphics[width=2.5cm]{../data/package/2010_chip.pdf}};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+    at={(1465,185)},
+	height=150pt,
+	width=150pt,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Axis Labels
+	xlabel style = {align=center},
+	ylabel={Intensity [Arb.Units]},
+	xlabel={Wavelength [nm]} \\ {Y$^\star$+258},
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/phosphor/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/phosphor/2004_lumileds_Eu.csv};
 \end{axis}
 
 \end{tikzpicture}

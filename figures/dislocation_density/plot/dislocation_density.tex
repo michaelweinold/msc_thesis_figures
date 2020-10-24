@@ -32,7 +32,7 @@
 	scaled y ticks = false,
 %Axis Labels
 	ylabel style = {align=center},
-	ylabel=Threading Dislocation \\ Density \text{[}cm$^{-2}$\text{]},
+	ylabel={Threading} \\ {Dislocation} \\ {Density [cm$^{-2}$]},
 ]
 % Planar
 \addplot [
@@ -134,7 +134,7 @@
 \begin{axis}[
 %Grouping
 	name=left,
-	height=150pt,
+	height=125pt,
 	width=70pt,
 %Domain
 	xmin=1983, xmax=1987,
@@ -149,7 +149,7 @@
 	scaled y ticks = false,
 %Axis Labels
 	ylabel style = {align=center},
-	ylabel=Threading Dislocation \\ Density \text{[}cm$^{-2}$\text{]},
+	ylabel={Threading} \\ {Dislocation} \\ {Density [cm$^{-2}$]},
 ]
 % Planar
 \addplot [
@@ -188,7 +188,7 @@
 	at={(left.west)},
 	xshift=30pt,
 	anchor=west,
-	height=150pt,
+	height=125pt,
 	width={\dimexpr 770pt-\wd\temp},
 %Domain
 	xmin=1995, xmax=2020,
@@ -205,7 +205,7 @@
 %Legend
 	legend cell align={left},
 	legend pos=outer north east,
-	legend style={draw=none},
+	legend style={draw=none,fill=none},
 	legend entries={Direct Growth, Buffer Layer (AlN),Buffer Layer (GaN), Cantilever, PSS, Buffer Layer (SiN), Buffer Layer (Atomic Dep.)},
 			]
 	]

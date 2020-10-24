@@ -33,9 +33,9 @@
 	legend style={draw=none},
 ]
 \addlegendimage{line legend, black}
-\addlegendentry{DOE Average}
+\addlegendentry{DoE Average}
 \addlegendimage{line legend, black, dashed}
-\addlegendentry{DOE Targets}
+\addlegendentry{DoE Targets}
 \addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
 \addlegendentry{Classical Chip}
 \addlegendimage{/pgfplots/refstyle=bar2,xshift=0.5em}
@@ -73,7 +73,7 @@
 \addplot [ybar, ybar legend,fill=orange!20,draw=black!70] table [col sep=comma, x=year, y=thinfilm]{../data/best.csv}; \label{bar2}
 \addplot [ybar, ybar legend,fill=blue!20,draw=black!70] table [col sep=comma, x=year, y=flipchip]{../data/best.csv}; \label{bar3}
 \addplot [ybar, ybar legend,fill=teal!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv}; \label{bar4}
-% DOE Targets
+% DoE Targets
 \draw [] (axis cs: 2005,80) -- (axis cs: 2010,80);
 \draw [] (axis cs: 2010,85) -- (axis cs: 2015,85);
 \draw [] (axis cs: 2015,87) -- (axis cs: 2020,87);
@@ -100,9 +100,9 @@
 	legend style={draw=none},
 ]
 \addlegendimage{line legend, black}
-\addlegendentry{DOE Average}
+\addlegendentry{DoE Average}
 \addlegendimage{line legend, black, dashed}
-\addlegendentry{DOE Targets}
+\addlegendentry{DoE Targets}
 \addlegendimage{/pgfplots/refstyle=bar1,xshift=0.5em}
 \addlegendentry{Classical Chip}
 \addlegendimage{/pgfplots/refstyle=bar2,xshift=0.5em}
@@ -140,7 +140,7 @@
 \addplot [ybar, ybar legend,fill=orange!20,draw=black!70] table [col sep=comma, x=year, y=thinfilm]{../data/best.csv}; \label{bar2}
 \addplot [ybar, ybar legend,fill=blue!20,draw=black!70] table [col sep=comma, x=year, y=flipchip]{../data/best.csv}; \label{bar3}
 \addplot [ybar, ybar legend,fill=teal!20,draw=black!70] table [col sep=comma, x=year, y=csp]{../data/best.csv}; \label{bar4}
-% DOE Targets
+% DoE Targets
 \draw [] (axis cs: 2005,80) -- (axis cs: 2010,80);
 \draw [] (axis cs: 2010,85) -- (axis cs: 2015,85);
 \draw [] (axis cs: 2015,87) -- (axis cs: 2020,87);

@@ -16,7 +16,7 @@
 \begin{axis}[
 %Position
     name=left,
-    height=135pt,
+    height=100pt,
     width=220pt,
 %Domain
 	xmin=2010,xmax=2020,
@@ -24,7 +24,8 @@
     /pgf/number format/1000 sep={},
 	%xticklabel style={rotate=90, anchor=near xticklabel},
 %Axis Labels
-	ylabel=El. Energy \text{[}TWh/year\text{]},
+	ylabel style={align=center},
+	ylabel= {Energy} \\ {[TWh/year]},
 	xlabel={EU},
 %Legend
 	legend cell align=left,
@@ -46,7 +47,7 @@
     at={(left.west)},
 	xshift=195pt,
 	anchor=west,
-    height=135pt,
+    height=100pt,
     width=220pt,
 %Domain
 	xmin=2010,xmax=2020,
@@ -76,7 +77,7 @@
 \begin{axis}[
 %Position
     name=left,
-    height=135pt,
+    height=100pt,
     width={\dimexpr 220pt+418pt-\wd\temp},
 %Domain
 	xmin=2010,xmax=2020,
@@ -86,7 +87,8 @@
     /pgf/number format/1000 sep={},
 	%xticklabel style={rotate=90, anchor=near xticklabel},
 %Axis Labels
-	ylabel=El. Energy \text{[}TWh/year\text{]},
+    ylabel style={align=center},
+	ylabel= {Energy} \\ {[TWh/year]},
 	xlabel={EU},
 %Legend
 	legend cell align=left,
@@ -109,7 +111,7 @@
     at={(left.west)},
 	xshift=195pt,
 	anchor=west,
-    height=135pt,
+    height=100pt,
     width={\dimexpr 220pt+418pt-\wd\temp},
 %Domain
 	xmin=2010,xmax=2020,

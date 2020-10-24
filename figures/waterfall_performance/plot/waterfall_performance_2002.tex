@@ -163,7 +163,28 @@
     nodes near coords={\labela},
 ]
 \addplot [scatter, only marks, no markers] table [col sep=comma, x expr = \coordindex, y=y] {../data/2002/labels2.csv};
-\node[draw=black,anchor=east,align=right] at (canvas cs:x=522.5pt,y=284pt) {Percentages indicate losses of remaining energy at point of loss channel. Absolute losses in W below. \\ Percentages for \textcolor{red}{red}, \textcolor{teal}{green} and \textcolor{blue}{blue} loss channels indicate losses of remaining \textcolor{red}{R}/\textcolor{teal}{G}/\textcolor{blue}{B} light energy.};
+\node [above right] at (rel axis cs:0.58,0.7) {\includegraphics[width=2.5cm]{../data/package/2002_chip.pdf}};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+    at={(1465,185)},
+	height=150pt,
+	width=150pt,
+%Domain
+	ymin=0, ymax=1,
+	xmin=400, xmax=750,
+%Axis Labels
+	xlabel style = {align=center},
+	ylabel={Intensity [Arb.Units]},
+	xlabel={Wavelength $[$nm$]$} \\ {R$^*$+YGAG},
+			]
+\addplot [red]
+	table [col sep=comma, x=wavelength, y=sensitivity]
+	{../data/phosphor/luminosity.csv};
+\addplot []
+	table [col sep=comma, x=wavelength, y=intensity]
+	{../data/phosphor/2002_lumileds_ygag.csv};
 \end{axis}
 
 \end{tikzpicture}
