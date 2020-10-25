@@ -22,12 +22,59 @@
 
 \begin{document}
 
+\savebox{\temp}{
 \begin{tikzpicture}
 
+%Color comparison
+\begin{axis}[
+	height=230pt,
+	width=418pt,
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+]
+%SALON
+\filldraw [draw=black,fill=color-salon_cri90] (axis cs:90.08753105,8100) rectangle (91.08753105,9100);
+\node[anchor=south, fill=none, white] at (90.58753105,9100) {5};
+\draw [black] (axis cs:90.58753105,2660.031766) -- (axis cs:90.58753105,8100);
+%PFS
+\filldraw [draw=black,fill=color-pfs_cri97] (axis cs:96.5,11500) rectangle (97.5,10500);
+\node[anchor=south, fill=none, white] at (97.03849313,11500) {7};
+\draw [black] (axis cs:97.03849313,2923.725665) -- (axis cs:97.03849313,10500);
+%SLA
+\filldraw [draw=black,fill=color-sla_cri84] (axis cs:82.07882807,10300) rectangle (83.07882807,9300);
+\draw [black] (axis cs:82.57882807,2911.055923) -- (axis cs:82.57882807,9300);
+\node[anchor=south, fill=none, white] at (82.57882807,10300) {1};
+%YAG
+\filldraw [draw=black,fill=color-yag_cri83] (axis cs:82.60020625,11500) rectangle (83.60020625,10500);
+\node[anchor=south, fill=none, white] at (83.10020625,11500) {2};
+\draw [black] (axis cs:83.10020625,5679.755813) -- (axis cs:83.10020625,10500);
+%QD
+\filldraw [draw=black,fill=color-qd_cri91] (axis cs:91.22437373,11500) rectangle (92.22437373,10500);
+\node[anchor=south, fill=none, white] at (91.72437373,11500) {6};
+\draw [black] (axis cs:91.72437373,2844.091094) -- (axis cs:91.72437373,10500);
+%YGAG
+\filldraw [draw=black,fill=color-ygag_cri89] (axis cs:89.10700039,10300) rectangle (90.10700039,9300);
+\node[anchor=south, fill=none, white] at (89.60700039,10300) {3};
+\draw [black] (axis cs:89.60700039,2886.091161) -- (axis cs:89.60700039,9300);
+%258
+\filldraw [draw=black,fill=color-258_cri90] (axis cs:89.71233055,11500) rectangle (90.71233055,10500);
+\node[anchor=south, fill=none, white] at (90.21233055,11500) {4};
+\draw [black] (axis cs:90.21233055,3216.169983) -- (axis cs:90.21233055,10500);
 
+\end{axis}
 
 \begin{axis}[
-	height=200pt,
+	height=230pt,
 	width=418pt,
 %Type
 	axis on top,
@@ -43,10 +90,11 @@
 	ylabel={Colour Temperature [K]},
 	xlabel={Colour Rendering Index (CRI)},
 %Legend
-    legend pos=outer north east,
+    %legend pos=south west,
 	legend cell align={left},
-	legend style={draw=none,fill=none, anchor=north west},
-	legend entries={1997,2002,2010,2016,2020,CFL (Comparison),Spillover,Non-Spillover},
+	legend style={draw=none,fill=none},
+	legend style={at={(0.13,0.425)},anchor=north west},
+	legend entries={1997,2002,2010,2016,2020,CFL},
 ]
 \addplot [blue,only marks]
 	table [col sep=comma, x=cri, y=cct]
@@ -63,15 +111,9 @@
 \addplot [purple,only marks]
 	table [col sep=comma, x=cri, y=cct]
 	{../data/2020.csv};
-\addplot [black,only marks, mark=triangle*]
+\addplot [black,only marks, mark=triangle*, mark options={scale=2}]
 	table [col sep=comma, x=cri, y=cct]
 	{../data/cfl.csv};
-\addplot [black,only marks, mark=o, mark options={scale=2}]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/spillover.csv};
-\addplot [black,only marks, mark=square, mark options={scale=2}]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/non-spillover.csv};
 %Labels etc.
 \addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
 \addplot [domain=75:76] [thick, orange] {2400};
@@ -79,22 +121,67 @@
 \addplot [domain=77:100] [thick, orange] {2400};
 \addplot [domain=77:100] [thick, red] {1850};
 \node[anchor=west, fill=white] at (78.5,1670) {1850K, Candle};
-\node[anchor=west, fill=white] at (78.5,2510) {2400K, Incandescent};
+\node[anchor=west, fill=white] at (78.5,2430) {2400K, Incandescent};
 \addplot [domain=75:76] [thick, Apricot] {5000};
 \addplot [domain=77:100] [thick, Apricot] {5000};
 \addplot [domain=75:100] [thick, SkyBlue] {6500};
 \draw[<->, black] (axis cs:78,5000) -- (axis cs:78,6500);
-\node[anchor=west, fill=white] at (78.5,6750) {5000 - 6500K, Daylight};
+\node[anchor=west, fill=white] at (78.5,6530) {5000 - 6500K, Daylight};
 %Color Temperature
 \node[anchor=south, fill=none, rotate=270, white] at (76.15,2500) {\textit{warm}};
 \node[anchor=south, fill=none, rotate=270] at (76.15,5100) {\textit{neutral}};
 \node[anchor=south, fill=none, rotate=270] at (76.15,7600) {\textit{cool}};
 \end{axis}
 
+%Top Layer
+\begin{axis}[
+	height=230pt,
+	width=418pt,
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+%Legend
+    %legend pos=south west,
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+	legend style={at={(0.23,0.425)},anchor=north west},
+	legend entries={Spillover, No Spillover},
+]
+]
+\addplot [black,only marks, mark=o, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/spillover.csv};
+\addplot [black,only marks, mark=square, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/non-spillover.csv};
+%Daylight Reference
+\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
+\node[anchor=south east, fill=white] at (99.5,11500) {D65};
+\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
+\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
+\node[anchor=south, fill=none, white] at (100,10300) {R};
+\node[anchor=south, fill=none, white] at (100,11500) {D};
+
+\end{axis}
+
+
+\end{tikzpicture}}
+
+
+\begin{tikzpicture}
+
 %Color comparison
 \begin{axis}[
-	height=200pt,
-	width=418pt,
+	height=230pt,
+	width={\dimexpr 836pt-\wd\temp},
 %Type
 	clip=false,
 %Domain
@@ -108,11 +195,6 @@
     yticklabels={,,},
     xticklabels={,,},
 ]
-%Daylight Reference
-\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
-\node[anchor=south east, fill=white] at (99.5,11500) {D65};
-\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
-\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
 %SALON
 \filldraw [draw=black,fill=color-salon_cri90] (axis cs:90.08753105,8100) rectangle (91.08753105,9100);
 \node[anchor=south, fill=none, white] at (90.58753105,9100) {5};
@@ -124,29 +206,126 @@
 %SLA
 \filldraw [draw=black,fill=color-sla_cri84] (axis cs:82.07882807,10300) rectangle (83.07882807,9300);
 \draw [black] (axis cs:82.57882807,2911.055923) -- (axis cs:82.57882807,9300);
+\node[anchor=south, fill=none, white] at (82.57882807,10300) {1};
 %YAG
 \filldraw [draw=black,fill=color-yag_cri83] (axis cs:82.60020625,11500) rectangle (83.60020625,10500);
-\node[anchor=south, fill=none, white] at (89.60700039,10300) {3};
-\draw [black] (axis cs:89.60700039,2886.091161) -- (axis cs:89.60700039,10500);
+\node[anchor=south, fill=none, white] at (83.10020625,11500) {2};
+\draw [black] (axis cs:83.10020625,5679.755813) -- (axis cs:83.10020625,10500);
 %QD
 \filldraw [draw=black,fill=color-qd_cri91] (axis cs:91.22437373,11500) rectangle (92.22437373,10500);
 \node[anchor=south, fill=none, white] at (91.72437373,11500) {6};
 \draw [black] (axis cs:91.72437373,2844.091094) -- (axis cs:91.72437373,10500);
 %YGAG
 \filldraw [draw=black,fill=color-ygag_cri89] (axis cs:89.10700039,10300) rectangle (90.10700039,9300);
+\node[anchor=south, fill=none, white] at (89.60700039,10300) {3};
+\draw [black] (axis cs:89.60700039,2886.091161) -- (axis cs:89.60700039,9300);
 %258
 \filldraw [draw=black,fill=color-258_cri90] (axis cs:89.71233055,11500) rectangle (90.71233055,10500);
 \node[anchor=south, fill=none, white] at (90.21233055,11500) {4};
 \draw [black] (axis cs:90.21233055,3216.169983) -- (axis cs:90.21233055,10500);
-%Labels
+
+\end{axis}
+
+\begin{axis}[
+	height=230pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Type
+	axis on top,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+	ytick={7000,6000,5000,4000,3000,2000,1000},
+	ylabel={Colour Temperature [K]},
+	xlabel={Colour Rendering Index (CRI)},
+%Legend
+    %legend pos=south west,
+	legend cell align={left},
+	legend style={draw=none,fill=none},
+	legend style={at={(0.13,0.425)},anchor=north west},
+	legend entries={1997,2002,2010,2016,2020,CFL},
+]
+\addplot [blue,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/1997.csv};
+\addplot [cyan,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2002.csv};
+\addplot [PineGreen,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2010.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2016.csv};
+\addplot [purple,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2020.csv};
+\addplot [black,only marks, mark=triangle*, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/cfl.csv};
+%Labels etc.
+\addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
+\addplot [domain=75:76] [thick, orange] {2400};
+\addplot [domain=75:76] [thick, red] {1850};
+\addplot [domain=77:100] [thick, orange] {2400};
+\addplot [domain=77:100] [thick, red] {1850};
+\node[anchor=west, fill=white] at (78.5,1670) {1850K, Candle};
+\node[anchor=west, fill=white] at (78.5,2430) {2400K, Incandescent};
+\addplot [domain=75:76] [thick, Apricot] {5000};
+\addplot [domain=77:100] [thick, Apricot] {5000};
+\addplot [domain=75:100] [thick, SkyBlue] {6500};
+\draw[<->, black] (axis cs:78,5000) -- (axis cs:78,6500);
+\node[anchor=west, fill=white] at (78.5,6530) {5000 - 6500K, Daylight};
+%Color Temperature
+\node[anchor=south, fill=none, rotate=270, white] at (76.15,2500) {\textit{warm}};
+\node[anchor=south, fill=none, rotate=270] at (76.15,5100) {\textit{neutral}};
+\node[anchor=south, fill=none, rotate=270] at (76.15,7600) {\textit{cool}};
+\end{axis}
+
+%Top Layer
+\begin{axis}[
+	height=230pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+%Legend
+    %legend pos=south west,
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+	legend style={at={(0.23,0.425)},anchor=north west},
+	legend entries={Spillover, No Spillover},
+]
+]
+\addplot [black,only marks, mark=o, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/spillover.csv};
+\addplot [black,only marks, mark=square, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/non-spillover.csv};
+%Daylight Reference
+\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
+\node[anchor=south east, fill=white] at (99.5,11500) {D65};
+\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
+\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
 \node[anchor=south, fill=none, white] at (100,10300) {R};
 \node[anchor=south, fill=none, white] at (100,11500) {D};
 
-\node[anchor=south, fill=none, white] at (89.60700039,10300) {3};
-\node[anchor=south, fill=none, white] at (83.10020625,11500) {2};
-\node[anchor=south, fill=none, white] at (82.57882807,10300) {1};
 \end{axis}
-\end{tikzpicture}
 
+
+\end{tikzpicture}
 
 \end{document}
