@@ -37,24 +37,57 @@
 %Axis Ticks
 	scaled y ticks = false,
 %Axis Labels
-	x ticks={,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
 	ylabel={Colour Temperature [K]},
-	xlabel={Colour Rendering (CRI)},
+	ytick distance={1000},
+	xlabel={Colour Rendering Index (CRI)},
 %Legend
-    %legend style={at={(0.12,0.02)},anchor=south west},
-	%legend cell align={left},
-	%legend style={draw=none,fill=none},
+    legend pos=outer north east,
+	legend cell align={left},
+	legend style={draw=none,fill=none, anchor=north west},
+	legend entries={1997,2002,2010,2016,2020,CFL (Comparison),Spillover,Non-Spillover},
 ]
-%Hidden bar to push other bars to 2003 level
+\addplot [blue,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/1997.csv};
+\addplot [cyan,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2002.csv};
+\addplot [PineGreen,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2010.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2016.csv};
+\addplot [purple,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2020.csv};
+\addplot [black,only marks, mark=triangle*]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/cfl.csv};
+\addplot [black,only marks, mark=o, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/spillover.csv};
+\addplot [black,only marks, mark=square, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/non-spillover.csv};
+%Labels etc.
 \addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
-\addplot [domain=75:100] [thick, red] {2400};
-\addplot [domain=75:100] [thick, red] {1850};
-\node[anchor=west, fill=white] at (80.5,1750) {1850K, Candle};
-\node[anchor=west, fill=white] at (80.5,2650) {2400K, Incandescent};
-\addplot [domain=75:100] [thick, orange] {5000};
-\addplot [domain=75:100] [thick, cyan] {6500};
-\draw[<->, black] (axis cs:80,5000) -- (axis cs:80,6500);
-\node[anchor=west, fill=white] at (80.5,5750) {5000-6500K, Daylight};
+\addplot [domain=75:76] [thick, orange] {2400};
+\addplot [domain=75:76] [thick, red] {1850};
+\addplot [domain=77:100] [thick, orange] {2400};
+\addplot [domain=77:100] [thick, red] {1850};
+\node[anchor=west, fill=white] at (78.5,1670) {1850K, Candle};
+\node[anchor=west, fill=white] at (78.5,2510) {2400K, Incandescent};
+\addplot [domain=75:76] [thick, Apricot] {5000};
+\addplot [domain=77:100] [thick, Apricot] {5000};
+\addplot [domain=75:100] [thick, SkyBlue] {6500};
+\draw[<->, black] (axis cs:78,5000) -- (axis cs:78,6500);
+\node[anchor=west, fill=white] at (78.5,6750) {5000 - 6500K, Daylight};
+%Color Temperature
+\node[anchor=south, fill=none, rotate=270, white] at (76.15,2500) {\textit{warm}};
+\node[anchor=south, fill=none, rotate=270] at (76.15,5100) {\textit{neutral}};
+\node[anchor=south, fill=none, rotate=270] at (76.15,7600) {\textit{cool}};
 \end{axis}
 
 %Color comparison
@@ -69,6 +102,7 @@
 	xmin=75,xmax=100,
 %Axis Ticks
 	scaled y ticks = false,
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
 %Axis Labels
     yticklabels={,,},
     xticklabels={,,},
