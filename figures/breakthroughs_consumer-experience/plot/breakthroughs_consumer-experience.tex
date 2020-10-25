@@ -1,0 +1,98 @@
+\documentclass[crop]{standalone}
+
+\usepackage[dvipsnames]{xcolor} % For additional colors, must be loaded before tikz
+
+%Color definitions for red CRI comparison
+\definecolor{tcs09}{RGB}{233,33,76}
+\definecolor{color-daylight}{RGB}{215,67,64}
+\definecolor{color-salon_cri89}{RGB}{236,80,69}
+\definecolor{color-pfs_cri94}{RGB}{235,69,69}
+\definecolor{color-sla_cri84}{RGB}{224,78,67}
+\definecolor{color-yag_cri83}{RGB}{221,75,63}
+\definecolor{color-qd_cri91}{RGB}{232,77,68}
+\definecolor{color-ygag_cri79}{RGB}{229,72,67}
+
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest}
+
+\newsavebox{\temp}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+
+
+\begin{axis}[
+	height=200pt,
+	width=418pt,
+%Type
+	axis on top,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+	x ticks={,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+	ylabel={Colour Temperature [K]},
+	xlabel={Colour Rendering (CRI)},
+%Legend
+    %legend style={at={(0.12,0.02)},anchor=south west},
+	%legend cell align={left},
+	%legend style={draw=none,fill=none},
+]
+%Hidden bar to push other bars to 2003 level
+\addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
+\addplot [domain=75:100] [thick, red] {2400};
+\addplot [domain=75:100] [thick, red] {1850};
+\node[anchor=west, fill=white] at (80.5,1750) {1850K, Candle};
+\node[anchor=west, fill=white] at (80.5,2650) {2400K, Incandescent};
+\addplot [domain=75:100] [thick, orange] {5000};
+\addplot [domain=75:100] [thick, cyan] {6500};
+\draw[<->, black] (axis cs:80,5000) -- (axis cs:80,6500);
+\node[anchor=west, fill=white] at (80.5,5750) {5000-6500K, Daylight};
+\end{axis}
+
+%Color comparison
+\begin{axis}[
+	height=200pt,
+	width=418pt,
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+]
+%Daylight Reference
+\filldraw [draw=black,fill=color-daylight] (axis cs:99,11500) rectangle (101,10500);
+\node[anchor=south, fill=white] at (100,10500) {D65};
+\filldraw [draw=black,fill=tcs09] (axis cs:99,9500) rectangle (101,8500);
+\node[anchor=south, fill=white] at (100,8500) {TCS09};
+%SALON
+\filldraw [draw=black,fill=color-salon_cri89] (axis cs:88.5,11500) rectangle (89.5,10500);
+%PFS
+\filldraw [draw=black,fill=color-pfs_cri94] (axis cs:93.5,11500) rectangle (94.5,10500);
+%SLA
+\filldraw [draw=black,fill=color-sla_cri84] (axis cs:83.5,11500) rectangle (84.5,10500);
+%YAG
+\filldraw [draw=black,fill=color-yag_cri83] (axis cs:82.5,11500) rectangle (83.5,10500);
+%QD
+\filldraw [draw=black,fill=color-qd_cri91] (axis cs:90.5,11500) rectangle (91.5,10500);
+%YGAG
+\filldraw [draw=black,fill=color-ygag_cri79] (axis cs:78.5,11500) rectangle (79.5,10500);
+
+\end{axis}
+\end{tikzpicture}
+
+
+\end{document}
