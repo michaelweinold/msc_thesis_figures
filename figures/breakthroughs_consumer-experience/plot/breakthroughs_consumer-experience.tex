@@ -5,12 +5,13 @@
 %Color definitions for red CRI comparison
 \definecolor{tcs09}{RGB}{233,33,76}
 \definecolor{color-daylight}{RGB}{215,67,64}
-\definecolor{color-salon_cri89}{RGB}{236,80,69}
-\definecolor{color-pfs_cri94}{RGB}{235,69,69}
+\definecolor{color-salon_cri90}{RGB}{236,80,69}
+\definecolor{color-pfs_cri97}{RGB}{235,69,69}
 \definecolor{color-sla_cri84}{RGB}{224,78,67}
 \definecolor{color-yag_cri83}{RGB}{221,75,63}
 \definecolor{color-qd_cri91}{RGB}{232,77,68}
-\definecolor{color-ygag_cri79}{RGB}{229,72,67}
+\definecolor{color-ygag_cri89}{RGB}{229,72,67}
+\definecolor{color-258_cri90}{RGB}{231,75,66}
 
 
 \usepackage{../../../supplementary/header/header_pgfplot_standalone}
@@ -38,8 +39,8 @@
 	scaled y ticks = false,
 %Axis Labels
 	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+	ytick={7000,6000,5000,4000,3000,2000,1000},
 	ylabel={Colour Temperature [K]},
-	ytick distance={1000},
 	xlabel={Colour Rendering Index (CRI)},
 %Legend
     legend pos=outer north east,
@@ -108,23 +109,42 @@
     xticklabels={,,},
 ]
 %Daylight Reference
-\filldraw [draw=black,fill=color-daylight] (axis cs:99,11500) rectangle (101,10500);
-\node[anchor=south, fill=white] at (100,10500) {D65};
-\filldraw [draw=black,fill=tcs09] (axis cs:99,9500) rectangle (101,8500);
-\node[anchor=south, fill=white] at (100,8500) {TCS09};
+\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
+\node[anchor=south east, fill=white] at (99.5,11500) {D65};
+\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
+\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
 %SALON
-\filldraw [draw=black,fill=color-salon_cri89] (axis cs:88.5,11500) rectangle (89.5,10500);
+\filldraw [draw=black,fill=color-salon_cri90] (axis cs:90.08753105,8100) rectangle (91.08753105,9100);
+\node[anchor=south, fill=none, white] at (90.58753105,9100) {5};
+\draw [black] (axis cs:90.58753105,2660.031766) -- (axis cs:90.58753105,8100);
 %PFS
-\filldraw [draw=black,fill=color-pfs_cri94] (axis cs:93.5,11500) rectangle (94.5,10500);
+\filldraw [draw=black,fill=color-pfs_cri97] (axis cs:96.5,11500) rectangle (97.5,10500);
+\node[anchor=south, fill=none, white] at (97.03849313,11500) {7};
+\draw [black] (axis cs:97.03849313,2923.725665) -- (axis cs:97.03849313,10500);
 %SLA
-\filldraw [draw=black,fill=color-sla_cri84] (axis cs:83.5,11500) rectangle (84.5,10500);
+\filldraw [draw=black,fill=color-sla_cri84] (axis cs:82.07882807,10300) rectangle (83.07882807,9300);
+\draw [black] (axis cs:82.57882807,2911.055923) -- (axis cs:82.57882807,9300);
 %YAG
-\filldraw [draw=black,fill=color-yag_cri83] (axis cs:82.5,11500) rectangle (83.5,10500);
+\filldraw [draw=black,fill=color-yag_cri83] (axis cs:82.60020625,11500) rectangle (83.60020625,10500);
+\node[anchor=south, fill=none, white] at (89.60700039,10300) {3};
+\draw [black] (axis cs:89.60700039,2886.091161) -- (axis cs:89.60700039,10500);
 %QD
-\filldraw [draw=black,fill=color-qd_cri91] (axis cs:90.5,11500) rectangle (91.5,10500);
+\filldraw [draw=black,fill=color-qd_cri91] (axis cs:91.22437373,11500) rectangle (92.22437373,10500);
+\node[anchor=south, fill=none, white] at (91.72437373,11500) {6};
+\draw [black] (axis cs:91.72437373,2844.091094) -- (axis cs:91.72437373,10500);
 %YGAG
-\filldraw [draw=black,fill=color-ygag_cri79] (axis cs:78.5,11500) rectangle (79.5,10500);
+\filldraw [draw=black,fill=color-ygag_cri89] (axis cs:89.10700039,10300) rectangle (90.10700039,9300);
+%258
+\filldraw [draw=black,fill=color-258_cri90] (axis cs:89.71233055,11500) rectangle (90.71233055,10500);
+\node[anchor=south, fill=none, white] at (90.21233055,11500) {4};
+\draw [black] (axis cs:90.21233055,3216.169983) -- (axis cs:90.21233055,10500);
+%Labels
+\node[anchor=south, fill=none, white] at (100,10300) {R};
+\node[anchor=south, fill=none, white] at (100,11500) {D};
 
+\node[anchor=south, fill=none, white] at (89.60700039,10300) {3};
+\node[anchor=south, fill=none, white] at (83.10020625,11500) {2};
+\node[anchor=south, fill=none, white] at (82.57882807,10300) {1};
 \end{axis}
 \end{tikzpicture}
 
