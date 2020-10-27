@@ -128,9 +128,9 @@
 \draw[<->, black] (axis cs:78,5000) -- (axis cs:78,6500);
 \node[anchor=west, fill=white] at (78.5,6530) {5000 - 6500K, Daylight};
 %Color Temperature
-\node[anchor=south, fill=none, rotate=270, white] at (76.15,2500) {\textit{warm}};
-\node[anchor=south, fill=none, rotate=270] at (76.15,5100) {\textit{neutral}};
-\node[anchor=south, fill=none, rotate=270] at (76.15,7600) {\textit{cool}};
+\node[anchor=north, fill=none, rotate=90, white] at (76,2500) {\textit{warm}};
+\node[anchor=north, fill=none, rotate=90] at (76,5100) {\textit{neutral}};
+\node[anchor=north, fill=none, rotate=90] at (76,7600) {\textit{cool}};
 \end{axis}
 
 %Top Layer
@@ -163,12 +163,12 @@
 	table [col sep=comma, x=cri, y=cct]
 	{../data/non-spillover.csv};
 %Daylight Reference
-\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
-\node[anchor=south east, fill=white] at (99.5,11500) {D65};
-\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
-\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
-\node[anchor=south, fill=none, white] at (100,10300) {R};
-\node[anchor=south, fill=none, white] at (100,11500) {D};
+%\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
+%\node[anchor=south east, fill=white] at (99.5,11500) {D65};
+%\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
+%\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
+%\node[anchor=south, fill=none, white] at (100,10300) {R};
+%\node[anchor=south, fill=none, white] at (100,11500) {D};
 
 \end{axis}
 
@@ -269,6 +269,7 @@
 	{../data/cfl.csv};
 %Labels etc.
 \addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
+\draw [fill=white, draw=none] (75,12000) rectangle (78,8300);
 \addplot [domain=75:76] [thick, orange] {2400};
 \addplot [domain=75:76] [thick, red] {1850};
 \addplot [domain=77:100] [thick, orange] {2400};
@@ -281,9 +282,9 @@
 \draw[<->, black] (axis cs:78,5000) -- (axis cs:78,6500);
 \node[anchor=west, fill=white] at (78.5,6530) {5000 - 6500K, Daylight};
 %Color Temperature
-\node[anchor=south, fill=none, rotate=270, white] at (76.15,2500) {\textit{warm}};
-\node[anchor=south, fill=none, rotate=270] at (76.15,5100) {\textit{neutral}};
-\node[anchor=south, fill=none, rotate=270] at (76.15,7600) {\textit{cool}};
+\node[anchor=center, fill=none, rotate=90, white] at (76.5,2500) {\textit{warm}};
+\node[anchor=north, fill=none, rotate=90] at (76,5100) {\textit{neutral}};
+\node[anchor=north, fill=none, rotate=90] at (76,7600) {\textit{cool}};
 \end{axis}
 
 %Top Layer
@@ -318,12 +319,12 @@
 	table [col sep=comma, x=cri, y=cct]
 	{../data/non-spillover.csv};
 %Daylight Reference
-\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
-\node[anchor=south east, fill=white] at (99.5,11500) {D65};
-\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
-\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
-\node[anchor=south, fill=none, white] at (100,10300) {R};
-\node[anchor=south, fill=none, white] at (100,11500) {D};
+%\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
+%\node[anchor=south east, fill=white] at (99.5,11500) {D65};
+%\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
+%\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
+%\node[anchor=south, fill=none, white] at (100,10300) {R};
+%\node[anchor=south, fill=none, white] at (100,11500) {D};
 
 \end{axis}
 
