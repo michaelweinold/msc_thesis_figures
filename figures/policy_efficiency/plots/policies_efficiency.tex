@@ -102,7 +102,7 @@
 	legend cell align={left},
 	legend pos=north west,
 	legend entries={,,,,,Minimum Performance,Incandescent Performance,Halogen Performance,Average LED Lamp Performance},
-	legend style={fill=white,draw=none},
+	legend style={fill=none,draw=none},
 			]
 %2009 Regulation
 \addplot [thick]
@@ -147,6 +147,7 @@
 \end{pgfonlayer}
 \addplot[mark=none, blue, thick] coordinates {(0,86) (1500,86)};
 \node[above,blue] at (800,86) {2020};
+\draw [fill=white, draw=none] (600,99) rectangle (1200,110);
 \end{axis}
 
 \end{tikzpicture}
