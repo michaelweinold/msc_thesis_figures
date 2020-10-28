@@ -17,7 +17,7 @@
 \begin{axis}[
 %Grouping
 	name=left,
-	height=150pt,
+	height=100pt,
 	width=220pt,
 	scale only axis=false,
 %Domain
@@ -37,6 +37,7 @@
 	legend entries={CRI=70, CRI=80, CRI=90},
 	legend cell align={left},
 	legend pos=south west,
+	legend style={draw=none},
 			]
 \addplot [smooth, orange]
 	table [col sep=comma, x=cct, y=70]
@@ -55,7 +56,7 @@
 	at={(left.west)},
 	xshift=200pt,
 	anchor=west,
-	height=150pt,
+	height=100pt,
 	width=220pt,
 	scale only axis=false,
 %Domain
@@ -88,7 +89,7 @@
 \begin{axis}[
 %Grouping
 	name=left,
-	height={\dimexpr 300pt-\ht\temp},
+	height=100pt,
 	width={\dimexpr 200pt+418pt-\wd\temp},
 	scale only axis=false,
 %Domain
@@ -102,20 +103,21 @@
 	scaled x ticks = false,
 	xlabel style={align=center},
 	ylabel style={align=center},
-	ylabel=Maximum Theoretical \\ Luminous Efficacy \text{[}lm/W\text{]},
+	ylabel={Max. Theor.} \\ {Lum. Efficacy} \\ {[lm/W]},
 	xlabel=Color Temperature \text{[}K\text{]},
 %Legend
 	legend entries={CRI=70, CRI=80, CRI=90},
 	legend cell align={left},
 	legend pos=south west,
+	legend style={fill=none, draw=none},
 			]
-\addplot [smooth, orange]
+\addplot [smooth, teal]
 	table [col sep=comma, x=cct, y=70]
 	{../data/efficacy-cct.csv};
-\addplot [smooth, red]
+\addplot [smooth, blue]
 	table [col sep=comma, x=cct, y=80]
 	{../data/efficacy-cct.csv};
-\addplot [smooth, magenta]
+\addplot [smooth, red]
 	table [col sep=comma, x=cct, y=90]
 	{../data/efficacy-cct.csv};
 \end{axis}
@@ -126,7 +128,7 @@
 	at={(left.west)},
 	xshift=200pt,
 	anchor=west,
-	height={\dimexpr 300pt-\ht\temp},
+	height=100pt,
 	width={\dimexpr 200pt+418pt-\wd\temp},
 	scale only axis=false,
 %Domain
@@ -140,12 +142,13 @@
 	scaled x ticks = false,
 	xlabel style={align=center},
 	ylabel style={align=center},
-	ylabel=Maximum Theoretical \\ Luminous Efficacy \text{[}lm/W\text{]},
+	ylabel={Max. Theor.} \\ {Lum. Efficacy} \\ {[lm/W]},
 	xlabel=CRI,
 %Legend
 	legend entries={CCT=3500K, CCT=6500K},
 	legend cell align={left},
 	legend pos=south west,
+	legend style={fill=none, draw=none},
 			]
 \addplot [red, smooth]
 	table [col sep=comma, x=cri, y=3500]

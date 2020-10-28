@@ -93,13 +93,13 @@
 	xlabel=Wavelength \text{[}nm\text{]},
 	ylabel={Intensity} \\ { [Arb. Units] },
 ]
-\addplot [thick, blue]
+\addplot [thick, red]
 	table [col sep=comma, x=nm, y=L]
 	{../data/data.csv};
 \addplot [thick, green]
 	table [col sep=comma, x=nm, y=M]
 	{../data/data.csv};
-\addplot [thick, red]
+\addplot [thick, blue]
 	table [col sep=comma, x=nm, y=S]
 	{../data/data.csv};
 \end{axis}
