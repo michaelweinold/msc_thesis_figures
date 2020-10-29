@@ -280,7 +280,7 @@
 \addplot [domain=75:76] [thick, Apricot] {5000};
 \addplot [domain=77:100] [thick, Apricot] {5000};
 \addplot [domain=75:100] [thick, SkyBlue] {6500};
-\draw[<->, black] (axis cs:78,5000) -- (axis cs:78,6500);
+\draw[<->, black] (axis cs:78.4,5000) -- (axis cs:78.4,6500);
 \node[anchor=west, fill=white] at (78.5,6530) {5000 - 6500K, Daylight};
 %Color Temperature
 \node[anchor=center, fill=none, rotate=90, white] at (76.5,2500) {\textit{warm}};
@@ -326,7 +326,10 @@
 %\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
 %\node[anchor=south, fill=none, white] at (100,10300) {R};
 %\node[anchor=south, fill=none, white] at (100,11500) {D};
-
+\draw[->, red] (axis cs:94,9500) -- (axis cs:99.3,9500);
+\node[anchor=west, fill=white] at (95,9500) {\textcolor{red}{desirable}};
+\draw[<->, red] (axis cs:78.4,5000) -- (axis cs:78.4,2400);
+\node[anchor=west, fill=white] at (78.5,3800) {\textcolor{red}{desirable}};
 \end{axis}
 
 
