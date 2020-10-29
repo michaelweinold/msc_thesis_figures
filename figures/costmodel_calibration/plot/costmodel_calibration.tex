@@ -102,19 +102,19 @@
 ]
 \addplot [ybar,fill=green!20,draw=black!70]
 	table [col sep=comma, x=year, y=wafer]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=red!20,draw=black!70]
 	table [col sep=comma, x=year, y=epi]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=blue!20,draw=black!70]
 	table [col sep=comma, x=year, y=subst]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=violet!20,draw=black!70]
 	table [col sep=comma, x=year, y=phos]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=cyan!20,draw=black!70]
 	table [col sep=comma, x=year, y=pack]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \end{axis}
 
 \end{tikzpicture}}
@@ -132,13 +132,16 @@
 	ybar stacked,
 	bar width=15pt,
 	nodes near coords,
+	nodes near coords style={/pgf/number format/.cd,precision=0},
 	axis on top,
 %Domain
 	ymin=0,ymax=100,
-	xmin=2003,xmax=2020,
+	xmin=2002,xmax=2020,
+%Ticks
+    minor x tick num=1,
 %Axis Labels
     ylabel style={align=center},
-    ylabel = {\% of Manuf. Cost \\ \textit{U.S. DoE SSL Rep.}},
+    ylabel = {\% of Manuf. Cost \\ \textit{US DoE SSL Rep.}},
 	xticklabels={,,},
 	yticklabels={,,20,40,60,80,100},
 	/pgf/number format/1000 sep={},
@@ -196,31 +199,34 @@
 	ybar stacked,
 	bar width=15pt,
 	nodes near coords,
+	nodes near coords style={/pgf/number format/.cd,precision=0},
 	axis on top,
 %Domain
 	ymin=0,ymax=100,
-	xmin=2003,xmax=2020,
+	xmin=2002,xmax=2020,
+%Ticks
+    minor x tick num=1,
 %Axis Labels
     ylabel style={align=center},
-    ylabel = {  \\ \textit{Cost Model}},
+    ylabel = {\% of Manuf. Cost \\ \textit{Cost Model}},
 	%xticklabels={,,},
 	/pgf/number format/1000 sep={},
 ]
 \addplot [ybar,fill=green!20,draw=black!70]
 	table [col sep=comma, x=year, y=wafer]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=red!20,draw=black!70]
 	table [col sep=comma, x=year, y=epi]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=blue!20,draw=black!70]
 	table [col sep=comma, x=year, y=subst]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=violet!20,draw=black!70]
 	table [col sep=comma, x=year, y=phos]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \addplot [ybar,fill=cyan!20,draw=black!70]
 	table [col sep=comma, x=year, y=pack]
-	{../data/costmodel_data_rounded.csv};
+	{../data/costmodel_data.csv};
 \end{axis}
 
 \end{tikzpicture}

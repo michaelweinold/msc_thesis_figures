@@ -85,6 +85,10 @@
     every node near coord/.append style={align=center,text width=1.5cm, yshift=+2pt,fill=none}
 ]
 \addplot [scatter, only marks] table [col sep=comma, x=cri, y=eff]{../data/efficacy-toplabels.csv};
+\draw[->, red] (axis cs:96,303) -- (axis cs:99,325);
+\node [fill=white] at (97.5,313.5) {\textcolor{red}{desired}};
+%\node [] at (95,300) {\textcolor{red}{$\text{LER} \rightarrow \text{LER}_{max}\approx370lm/W$}};
+%\node [] at (95,290) {\textcolor{red}{$\text{CRI} \rightarrow \text{CRI}_{max}=100$}};
 \end{axis}
 
 \end{tikzpicture}
