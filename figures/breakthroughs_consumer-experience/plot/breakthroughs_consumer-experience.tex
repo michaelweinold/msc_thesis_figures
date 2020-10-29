@@ -94,23 +94,23 @@
 	legend cell align={left},
 	legend style={draw=none,fill=none},
 	legend style={at={(0.13,0.425)},anchor=north west},
-	legend entries={1997,2002,2010,2016,2020,CFL},
+	legend entries={2020,2016,2010,2002,1997,CFL},
 ]
-\addplot [blue,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/1997.csv};
-\addplot [cyan,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/2002.csv};
-\addplot [PineGreen,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/2010.csv};
-\addplot [orange,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/2016.csv};
 \addplot [purple,only marks]
 	table [col sep=comma, x=cri, y=cct]
 	{../data/2020.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2016.csv};
+\addplot [PineGreen,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2010.csv};
+\addplot [cyan,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2002.csv};
+\addplot [blue,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/1997.csv};
 \addplot [black,only marks, mark=triangle*, mark options={scale=2}]
 	table [col sep=comma, x=cri, y=cct]
 	{../data/cfl.csv};
@@ -247,29 +247,30 @@
 	legend cell align={left},
 	legend style={draw=none,fill=none},
 	legend style={at={(0.13,0.425)},anchor=north west},
-	legend entries={1997,2002,2010,2016,2020,CFL},
+	legend entries={2020,2016,2010,2002,1997,CFL},
 ]
-\addplot [blue,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/1997.csv};
-\addplot [cyan,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/2002.csv};
-\addplot [PineGreen,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/2010.csv};
-\addplot [orange,only marks]
-	table [col sep=comma, x=cri, y=cct]
-	{../data/2016.csv};
 \addplot [purple,only marks]
 	table [col sep=comma, x=cri, y=cct]
 	{../data/2020.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2016.csv};
+\addplot [PineGreen,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2010.csv};
+\addplot [cyan,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2002.csv};
+\addplot [blue,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/1997.csv};
 \addplot [black,only marks, mark=triangle*, mark options={scale=2}]
 	table [col sep=comma, x=cri, y=cct]
 	{../data/cfl.csv};
 %Labels etc.
 \addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
 \draw [fill=white, draw=none] (75,12000) rectangle (78.2,8300);
+\draw [fill=white, draw=none] (99,12000) rectangle (100,7300);
 \addplot [domain=75:76] [thick, orange] {2400};
 \addplot [domain=75:76] [thick, red] {1850};
 \addplot [domain=77:100] [thick, orange] {2400};

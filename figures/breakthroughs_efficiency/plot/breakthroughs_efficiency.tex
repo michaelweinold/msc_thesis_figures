@@ -207,7 +207,7 @@
 	ylabel=Efficiency \text{[}\%\text{]},
 	xticklabels={,V$_\text{f}$E, IQE, Droop, LEE, CE$_{\text{red}}$, CE$_{\text{yellow/green}}$, SE, $\eta_P$},
 %Legend
-    legend style={at={(0.12,0.02)},anchor=south west},
+    legend style={at={(0.365,0.02)},anchor=south west},
 	legend cell align={left},
 	legend style={draw=none,fill=none},
 	%nodes near coords,
@@ -285,7 +285,7 @@
 \addlegendentry{Physical Limit}
 ]
 %Table
-\node [above right] at (rel axis cs:0.4,0.03) {\includegraphics[width=83pt]{table.pdf}};
+\node [above right] at (rel axis cs:0.08,0.03) {\includegraphics[width=97pt]{table.pdf}};
 %Annotations
 %VfE
 \node [] at (0,65) {\textcolor{blue}{N/A}};
@@ -310,7 +310,8 @@
 \draw [PineGreen, thick] (axis cs:-0.25,85) -- (axis cs:0.25,85);
 \draw [orange, thick] (axis cs:-0.25,96) -- (axis cs:0.25,96);
 \draw [red, thick] (axis cs:-0.25,99.5) -- (axis cs:0.25,99.5);
-\draw[->, black, thick] (axis cs:0,103) -- (axis cs:0,107);
+\draw[->, black, thick] (axis cs:0,100) -- (axis cs:0,108);
+\draw [black, thick] (axis cs:-0.25,108) -- (axis cs:0.25,108);
 %IQE
 \draw [blue, thick] (axis cs:0.75,40) -- (axis cs:1.25,40);
 \draw [Cyan, thick] (axis cs:0.75,55) -- (axis cs:1.25,55);

@@ -155,8 +155,42 @@
         }
     },
   ] table [col sep=comma, x expr = \coordindex, y expr = 0] {../data/2003_package.csv};
-
 \end{axis}
+
+\begin{axis}[
+%Grouping
+	name=horizontal-bars,
+	at={(0,0)},
+ %Plot Type
+%Size
+    width=595pt,
+    height=200pt,
+%Domain
+    enlarge x limits=0.03,
+    ymin=0, ymax=1.3,
+    xmin=0,xmax=12,
+%???
+    %point meta = explicit,
+%Ticks and Labels
+    ticks=none,
+%Axes and Labels
+    axis on top,
+%Legend
+    legend style={at={(0.21,0.03)},anchor=south west},
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+			]
+\addlegendimage{no markers, thick, red}
+\addlegendentry{2020 Total Cost}
+\addlegendimage{no markers, thick, orange}
+\addlegendentry{2012 Total Cost}
+\draw [orange, thick] (axis cs:11.5,0.111777467) -- (axis cs:12.5,0.111777467); %2012
+\draw [red, thick] (axis cs:11.5,0.053137026) -- (axis cs:12.5,0.053137026); %2020
+\end{axis}
+
+%Comparison with other years
+%Horizontal lines
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%Bottom
 %%%%%%%%%%%%%%%%%%%%%%%%Axis ticks on right axis as well
