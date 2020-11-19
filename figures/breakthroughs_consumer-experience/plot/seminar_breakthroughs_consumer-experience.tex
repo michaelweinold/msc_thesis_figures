@@ -1,0 +1,269 @@
+\documentclass[crop]{standalone}
+
+\usepackage[dvipsnames]{xcolor} % For additional colors, must be loaded before tikz
+
+
+\usepackage{../../../supplementary/header/header_pgfplot_standalone}
+
+\pgfplotsset{compat=newest}
+
+\newsavebox{\temp}
+
+\begin{document}
+
+\savebox{\temp}{
+\begin{tikzpicture}
+
+%Color comparison
+\begin{axis}[
+	height=230pt,
+	width=418pt,
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+]
+\end{axis}
+
+\begin{axis}[
+	height=230pt,
+	width=418pt,
+%Type
+	axis on top,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+	ytick={7000,6000,5000,4000,3000,2000,1000},
+	ylabel={Colour Temperature [K]},
+	xlabel={Colour Rendering Index (CRI)},
+%Legend
+    %legend pos=south west,
+	legend cell align={left},
+	legend style={draw=none,fill=none},
+	legend style={at={(0.13,0.425)},anchor=north west},
+	legend entries={2020,2016,2010,2002,1997,CFL},
+]
+\addplot [purple,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2020.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2016.csv};
+\addplot [PineGreen,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2010.csv};
+\addplot [cyan,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2002.csv};
+\addplot [blue,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/1997.csv};
+\addplot [black,only marks, mark=triangle*, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/cfl.csv};
+%Labels etc.
+\addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
+\addplot [domain=75:76] [thick, orange] {2400};
+\addplot [domain=75:76] [thick, red] {1850};
+\addplot [domain=77:100] [thick, orange] {2400};
+\addplot [domain=77:100] [thick, red] {1850};
+\node[anchor=west, fill=white] at (78.5,1670) {1850K, Candle};
+\node[anchor=west, fill=white] at (78.5,2430) {2400K, Incandescent};
+\addplot [domain=75:76] [thick, Apricot] {5000};
+\addplot [domain=77:100] [thick, Apricot] {5000};
+\addplot [domain=75:100] [thick, SkyBlue] {6500};
+\draw[<->, black] (axis cs:78,5000) -- (axis cs:78,6500);
+\node[anchor=west, fill=white] at (78.5,6530) {5000 - 6500K, Daylight};
+%Color Temperature
+\node[anchor=north, fill=none, rotate=90, white] at (76,2500) {\textit{warm}};
+\node[anchor=north, fill=none, rotate=90] at (76,5100) {\textit{neutral}};
+\node[anchor=north, fill=none, rotate=90] at (76,7600) {\textit{cool}};
+\end{axis}
+
+%Top Layer
+\begin{axis}[
+	height=230pt,
+	width=418pt,
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+%Legend
+    %legend pos=south west,
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+	legend style={at={(0.23,0.425)},anchor=north west},
+	legend entries={Spillover, No Spillover},
+]
+]
+\addplot [black,only marks, mark=o, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/spillover.csv};
+\addplot [black,only marks, mark=square, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/non-spillover.csv};
+%Daylight Reference
+%\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
+%\node[anchor=south east, fill=white] at (99.5,11500) {D65};
+%\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
+%\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
+%\node[anchor=south, fill=none, white] at (100,10300) {R};
+%\node[anchor=south, fill=none, white] at (100,11500) {D};
+
+\end{axis}
+
+
+\end{tikzpicture}}
+
+
+\begin{tikzpicture}
+
+%Color comparison
+\begin{axis}[
+	height=230pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+]
+\end{axis}
+
+\begin{axis}[
+	height=230pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Type
+	axis on top,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+%Axis Labels
+	xtick={78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100},
+	ytick={7000,6000,5000,4000,3000,2000,1000},
+	ylabel={Colour Temperature [K]},
+	xlabel={Colour Rendering Index (CRI)},
+%Legend
+    %legend pos=south west,
+	legend cell align={left},
+	legend style={draw=none,fill=none},
+	legend style={at={(0.13,0.425)},anchor=north west},
+	legend entries={2020,2016,2010,2002,1997,CFL},
+]
+\addplot [purple,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2020.csv};
+\addplot [orange,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2016.csv};
+\addplot [PineGreen,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2010.csv};
+\addplot [cyan,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/2002.csv};
+\addplot [blue,only marks]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/1997.csv};
+\addplot [black,only marks, mark=triangle*, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/cfl.csv};
+%Labels etc.
+\addplot graphics [xmin=75,xmax=78,ymin=12000,ymax=1000] {../data/cct_spectrum_vertical.pdf};
+\draw [fill=white, draw=none] (75,12000) rectangle (78.2,8300);
+\draw [fill=white, draw=none] (99,12000) rectangle (100,7300);
+\addplot [domain=75:76] [thick, orange] {2400};
+\addplot [domain=75:76] [thick, red] {1850};
+\addplot [domain=77:100] [thick, orange] {2400};
+\addplot [domain=77:100] [thick, red] {1850};
+\node[anchor=west, fill=white] at (78.5,1670) {1850K, Candle};
+\node[anchor=west, fill=white] at (78.5,2430) {2400K, Incandescent};
+\addplot [domain=75:76] [thick, Apricot] {5000};
+\addplot [domain=77:100] [thick, Apricot] {5000};
+\addplot [domain=75:100] [thick, SkyBlue] {6500};
+\draw[<->, black] (axis cs:78.4,5000) -- (axis cs:78.4,6500);
+\node[anchor=west, fill=white] at (78.5,6530) {5000 - 6500K, Daylight};
+%Color Temperature
+\node[anchor=center, fill=none, rotate=90, white] at (76.5,2500) {\textit{warm}};
+\node[anchor=north, fill=none, rotate=90] at (76,5100) {\textit{neutral}};
+\node[anchor=north, fill=none, rotate=90] at (76,7600) {\textit{cool}};
+\end{axis}
+
+%Top Layer
+\begin{axis}[
+	height=230pt,
+	width={\dimexpr 836pt-\wd\temp},
+%Type
+	clip=false,
+%Domain
+	ymin=1000,ymax=12000,
+	y dir=reverse,
+	xmin=75,xmax=100,
+%Axis Ticks
+	scaled y ticks = false,
+	ytick style={draw=none},
+	xtick style={draw=none},
+%Axis Labels
+    yticklabels={,,},
+    xticklabels={,,},
+%Legend
+    %legend pos=south west,
+	legend cell align={left},
+	legend style={draw=none,fill=white},
+	legend style={at={(0.23,0.425)},anchor=north west},
+	legend entries={Spillover, No Spillover},
+]
+]
+\addplot [black,only marks, mark=o, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/spillover.csv};
+\addplot [black,only marks, mark=square, mark options={scale=2}]
+	table [col sep=comma, x=cri, y=cct]
+	{../data/non-spillover.csv};
+%Daylight Reference
+%\filldraw [draw=black,fill=color-daylight] (axis cs:99.5,11500) rectangle (100.5,10500);
+%\node[anchor=south east, fill=white] at (99.5,11500) {D65};
+%\filldraw [draw=black,fill=tcs09] (axis cs:99.5,10300) rectangle (100.5,9300);
+%\node[anchor=south east, fill=white] at (99.5,10300) {TCS9};
+%\node[anchor=south, fill=none, white] at (100,10300) {R};
+%\node[anchor=south, fill=none, white] at (100,11500) {D};
+\draw[->, red] (axis cs:94,9500) -- (axis cs:99.3,9500);
+\node[anchor=west, fill=white] at (95,9500) {\textcolor{red}{desirable}};
+\draw[<->, red] (axis cs:78.4,5000) -- (axis cs:78.4,2400);
+\node[anchor=west, fill=white] at (78.5,3800) {\textcolor{red}{desirable}};
+\end{axis}
+
+
+\end{tikzpicture}
+
+\end{document}
