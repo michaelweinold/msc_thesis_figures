@@ -1,0 +1,101 @@
+\documentclass[crop]{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{dateplot} % For using dates as x-coordinates
+
+\begin{document}
+\begin{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{axis}[
+%Grouping
+	height=7cm,
+	width=10cm,
+%Domain
+	xmin=2019-10-01,
+	xmax=2020-12-30,
+	ymin=0,
+%Axes
+	blue,
+	date coordinates in=x,
+	xticklabel={\month.\year},
+	axis y line*=right,
+	axis x line=none,
+%Labels
+	ylabel={Emails Sent},
+%Ticks and Tick Labels
+	xticklabels={,,},
+	]
+\pgfplotsset{every outer y axis line/.style={xshift=1.5cm}, every tick/.style={xshift=1.5cm}, every y tick label/.style={xshift=1.5cm} }
+\addplot [blue, mark=none] table [col sep=comma, x=date, y=data] {../data/emails.csv}; 
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	height=7cm,
+	width=10cm,
+%Axes
+	date coordinates in=x,
+	xticklabel={\month.\year},
+	axis y line*=left,
+	scaled y ticks = false,
+%Domain
+	xmin=2019-10-01,
+	xmax=2020-12-30,
+	ymin=0,
+%Labels
+	ylabel={Words Written},
+%Ticks and Tick Labels
+	xtick={2019-11-01,2019-12-01,2019-12-01,2020-01-01,2020-02-01,2020-03-01,2020-04-01,2020-05-01,2020-06-01,2020-07-01,2020-08-01,2020-09-01,2020-10-01,2020-11-01,2020-12-01},
+	x tick label style={rotate=90, anchor=east},
+%Legend
+	legend cell align={left},
+	legend pos=north west,
+	legend style={draw=none},
+	legend entries={Thesis Body, Thesis Figures},
+	]
+\addplot [mark=none] table [col sep=comma, x=date, y=data] {../data/thesis.csv}; 
+\addplot [densely dashed,mark=none] table [col sep=comma, x=date, y=data] {../data/figures.csv};
+%Deadline
+\draw [red] (axis cs:2020-10-31,0) -- (axis cs:2020-10-31,50000);
+\node[anchor=south, fill=white] at (2020-10-31,3000) {Deadline};
+%Christmas
+\draw [teal] (axis cs:2019-12-24,0) -- (axis cs:2019-12-24,50000);
+\draw [teal] (axis cs:2019-12-31,0) -- (axis cs:2019-12-31,50000);
+\node[anchor=south, fill=white] at (2019-12-31,21000) {Christmas};
+%Easter
+\draw [teal] (axis cs:2020-04-19,0) -- (axis cs:2020-04-19,50000);
+\draw [teal] (axis cs:2020-04-22,0) -- (axis cs:2020-04-22,50000);
+\node[anchor=south, fill=white] at (2020-04-22,28000) {Easter};
+%Return Home
+\draw [teal] (axis cs:2020-07-01,0) -- (axis cs:2020-07-01,50000);
+\node[anchor=south, fill=white] at (2020-07-01,33000) {Return Home};
+\end{axis}
+
+\begin{axis}[
+%Grouping
+	height=7cm,
+	width=10cm,
+%Axes
+	orange,
+	date coordinates in=x,
+	xticklabel={\month.\year},
+	axis y line*=right,
+	axis x line=none,
+%Domain
+	ymin=0,
+%Labels
+	ylabel={Movies Watched},
+%Ticks and Tick Labels
+	xticklabels={,,},
+	]
+\addplot [orange, mark=none] table [col sep=comma, x=date, y=data] {../data/movies.csv};
+\end{axis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+\end{document}
