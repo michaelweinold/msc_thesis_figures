@@ -10,6 +10,7 @@
 \begin{tikzpicture}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%Axis for Emails Sent
 \begin{axis}[
 %Grouping
 	height=7cm,
@@ -30,7 +31,31 @@
 	xticklabels={,,},
 	]
 \pgfplotsset{every outer y axis line/.style={xshift=1.5cm}, every tick/.style={xshift=1.5cm}, every y tick label/.style={xshift=1.5cm} }
-\addplot [blue, mark=none] table [col sep=comma, x=date, y=data] {../data/emails.csv}; 
+\addplot [blue, mark=none] table [col sep=comma, x=date, y=data] {../data/emails.csv};
+\end{axis}
+
+%Axis for Mendeley Library
+\begin{axis}[
+%Grouping
+	height=7cm,
+	width=10cm,
+%Domain
+	xmin=2019-10-01,
+	xmax=2020-12-30,
+	ymin=0,
+%Axes
+	red,
+	date coordinates in=x,
+	xticklabel={\month.\year},
+	axis y line*=right,
+	axis x line=none,
+%Labels
+	ylabel={Mendeley Library Items},
+%Ticks and Tick Labels
+	xticklabels={,,},
+	]
+\pgfplotsset{every outer y axis line/.style={xshift=3.5cm}, every tick/.style={xshift=3.5cm}, every y tick label/.style={xshift=3.5cm} }
+\addplot [red, mark=none] table [col sep=comma, x=date, y=data] {../data/library.csv}; 
 \end{axis}
 
 \begin{axis}[
@@ -60,7 +85,7 @@
 \addplot [mark=none] table [col sep=comma, x=date, y=data] {../data/thesis.csv}; 
 \addplot [densely dashed,mark=none] table [col sep=comma, x=date, y=data] {../data/figures.csv};
 %Deadline
-\draw [red] (axis cs:2020-10-31,0) -- (axis cs:2020-10-31,50000);
+\draw [] (axis cs:2020-10-31,0) -- (axis cs:2020-10-31,50000);
 \node[anchor=south, fill=white] at (2020-10-31,3000) {Deadline};
 %Christmas
 \draw [teal] (axis cs:2019-12-24,0) -- (axis cs:2019-12-24,50000);
@@ -69,10 +94,10 @@
 %Easter
 \draw [teal] (axis cs:2020-04-19,0) -- (axis cs:2020-04-19,50000);
 \draw [teal] (axis cs:2020-04-22,0) -- (axis cs:2020-04-22,50000);
-\node[anchor=south, fill=white] at (2020-04-22,28000) {Easter};
+\node[anchor=south, fill=white] at (2020-04-22,21000) {Easter};
 %Return Home
 \draw [teal] (axis cs:2020-07-01,0) -- (axis cs:2020-07-01,50000);
-\node[anchor=south, fill=white] at (2020-07-01,33000) {Return Home};
+\node[anchor=south, fill=white] at (2020-07-01,36000) {Return Home};
 \end{axis}
 
 \begin{axis}[
