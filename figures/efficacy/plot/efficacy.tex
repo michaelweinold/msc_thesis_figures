@@ -4,7 +4,7 @@
 
 \pgfplotsset{compat=newest,
 			width=10cm,
-			height=8cm,
+			height=6cm,
 			xtick pos=left,
 			ytick pos=left
 			}
@@ -16,7 +16,7 @@
 \begin{axis}[
 %Domain
 xmin=1995, xmax=2020,
-ymin=0, 
+ymin=0,ymax=280, 
 %Ticks
 xtick distance=5,
 minor x tick num=4,
@@ -27,6 +27,7 @@ ylabel=Luminous Efficacy \text{[}lm/W\text{]},
 %Legend
 legend pos=north west,
 legend entries={Best Performers},
+legend style={draw=none},
 			]
 \addplot [only marks]
 	table [col sep=comma, x=year, y=efficacy]
